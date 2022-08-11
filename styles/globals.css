@@ -1,0 +1,57 @@
+:root {
+    --main-bg-color: #FFFFFF;
+    --primary-bg-color: #678E29;
+    --secondary-bg-color: #07476B;
+    --main-text-color: #00608F;
+    --primary-text-color: #678E29;
+    --secondary-text-color: #655C5D;
+}
+
+@font-face {
+    font-family: "Oswald";
+    src: url("../public/font/Oswald-VariableFont_wght.ttf");
+}
+
+body {
+    font-family: "Oswald";
+    background-color: var(--main-bg-color);
+}
+
+/* Estilos de colores generales */
+
+.bg-color-1 {
+    background-color: var(--primary-bg-color);
+}
+
+.bg-color-2 {
+    background-color: var(--secondary-bg-color);
+}
+
+/* Estilos generales de texto */
+
+.primary-text {
+    color: var(--main-text-color);
+}
+
+.secondary-text {
+    color: var(--secondary-text-color);
+}
+
+.bold-text {
+    font-weight: bold;
+}
+
+.light-text {
+    font-weight: 200;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.border-w-3 {
+    border-width: 3px;
+}
+
+/*  */
+
