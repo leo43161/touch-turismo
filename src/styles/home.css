@@ -1,0 +1,50 @@
+
+.card-evento-slider .event-slider {
+    height: 300px
+}
+
+.card-aloj .aloj-slider {
+    height: 220px
+}
+
+.card-evento-slider .evento-card-img img,
+.card-aloj .aloj-card-img img {
+    object-fit: cover;
+}
+
+.btn-touch {
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.btn-touch:hover {
+    background: var(--secondary-text-color);
+    border: 0;
+}
+.carousel-control-prev{
+    order:0
+}
+.carousel-inner{
+    order:1
+}
+.carousel-control-next{
+    order:2
+}
+.carousel-control-prev,
+.carousel-control-next {
+    background-color: var(--primary-text-color);
+    position: relative;
+    width: 9%;
+    opacity: 1;
+}
+
+.home-button{
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

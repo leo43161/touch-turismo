@@ -9,7 +9,7 @@
 
 @font-face {
     font-family: "Oswald";
-    src: url("../public/font/Oswald-VariableFont_wght.ttf");
+    src: url("../assets/font/Oswald-VariableFont_wght.ttf");
 }
 
 body {
@@ -55,3 +55,18 @@ body {
 
 /*  */
 
+.z-100 {
+    z-index: 1000;
+}
+
+.center-modal {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.object-cover {
+    object-fit: cover;
+}
