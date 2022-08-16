@@ -1,5 +1,6 @@
 import HeaderSecc from "../components/HeaderSecc";
 import Form from 'react-bootstrap/Form';
+import CardAlojamiento from "../components/alojamientos/CardAlojamiento";
 
 export default function alojamientos() {
     return (
@@ -31,6 +32,11 @@ export default function alojamientos() {
                             <option value="2">Two</option>
                             <option value="3">Three</option>
                         </Form.Select>
+                    </div>
+                </div>
+                <div className="mt-3">
+                    <div class="d-flex flex-column">
+                        <CardAlojamiento></CardAlojamiento>
                     </div>
                 </div>
             </main>

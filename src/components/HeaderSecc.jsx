@@ -18,13 +18,13 @@ export default function HeaderSecc({ icon, title, color }) {
             <div className="d-flex align-content-center justify-content-between px-4 py-3 container">
                 <div className="text-light d-flex align-items-center">
                     <div className="bg-white p-3 rounded" style={{ color: "#0089B8" }}>
-                        <Icon className="icon-size-3"></Icon>
+                        <Icon className="icon-size-2"></Icon>
                     </div>
                     <h1 className="fw-bold text-uppercase ms-4 mb-0">{title}</h1>
                 </div>
                 <a href="/" className="d-flex align-items-center text-decoration-none" style={{ color: "#0089B8" }}>
                     <div className="text-white rounded py-1 px-3 d-flex align-items-center flex-column">
-                        <FaReply className="icon-size-4"></FaReply>
+                        <FaReply className="icon-size-3"></FaReply>
                         <span style={{ fontSize: "20px" }}>Regresar</span>
                     </div>
                 </a>
