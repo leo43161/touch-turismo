@@ -56,6 +56,15 @@ body {
 .icon-size-1{
     font-size: 6.5em;
 }
+.icon-size-2{
+    font-size: 5.5em;
+}
+.icon-size-3{
+    font-size: 4.5em;
+}
+.icon-size-4{
+    font-size: 3.5em;
+}
 
 /*  */
 
@@ -73,4 +82,91 @@ body {
 
 .object-cover {
     object-fit: cover;
+}
+
+/* COLORES DE SECCIONES */
+
+:root {
+    --aloj-color: #0089B8;
+    --trans-color: #C4007A;
+    --rest-color: #63367B;
+    --agen-color: #DE9520;
+    --acti-color: #A0BF37;
+    --mapas-color: #E51E21;
+}
+
+/* Estilos de colores generales */
+
+.bg-aloj {
+    background-color: var(--aloj-color);
+}
+
+.bg-trans {
+    background-color: var(--trans-color);
+}
+
+.bg-rest {
+    background-color: var(--rest-color);
+}
+
+.bg-agen {
+    background-color: var(--agen-color);
+}
+
+.bg-acti {
+    background-color: var(--acti-color);
+}
+
+.bg-mapas {
+    background-color: var(--mapas-color);
+}
+
+.text-aloj {
+    color: var(--aloj-color);
+}
+
+.text-trans {
+    color: var(--trans-color);
+}
+
+.text-rest {
+    color: var(--rest-color);
+}
+
+.text-agen {
+    color: var(--agen-color);
+}
+
+.text-acti {
+    color: var(--acti-color);
+}
+
+.text-mapas {
+    color: var(--mapas-color);
+}
+
+/* BORDES */
+
+.border-aloj {
+   border-color: var(--aloj-color);
+}
+
+.border-trans {
+    border-color: var(--trans-color);
+}
+
+.border-rest {
+    border-color: var(--rest-color);
+}
+
+.border-agen {
+    border-color: var(--agen-color);
+}
+
+.border-acti {
+    border-color: var(--acti-color);
+}
+
+.border-mapas {
+    border-color: var(--mapas-color);
 }
