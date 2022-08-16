@@ -1,17 +1,10 @@
-import { useState } from 'react';
 import Head from 'next/head'
 import HomeEventoCard from '../components/HomeEventoCard';
-import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
+import { FaArrowAltCircleLeft, FaArrowAltCircleRight, FaHotel, FaBus } from "react-icons/fa";
 import Carousel from 'react-bootstrap/Carousel';
+import SectionsButton from '../components/SectionsButton';
 
 export default function Home() {
-  const [active, setActive] = useState(0);
-
-
-  const nextIcon = () => (
-    <span><FaArrowAltCircleLeft className="fs-1" /></span>
-  )
-
   return (
     <div>
       <Head>
@@ -40,14 +33,71 @@ export default function Home() {
             }
           >
             <Carousel.Item>
-              <HomeEventoCard img={"/img/eventos/evento-1.jpg"}></HomeEventoCard>
+              <HomeEventoCard
+                img={"/img/eventos/evento-1.jpg"}
+                titulo={"XK Race Tucumán 2022"}
+                lugar={"Hotel Howard Johnson Yerba Buena - El Cadillal"}
+                horario={"09:00 a 13:00 hs"}
+                descripcion={"Carrera de aventura multi-disciplina de larga distancia, que desde el año 2006 se ha posicionado en Argentina y países vecinos como el circuito de aventura más desafiante en su tipo."}
+              ></HomeEventoCard>
             </Carousel.Item>
             <Carousel.Item>
-              <HomeEventoCard img={"/img/eventos/evento-2.jpg"}></HomeEventoCard>
+              <HomeEventoCard
+                img={"/img/eventos/evento-2.jpg"}
+                titulo={"XK Race Tucumán 2022"}
+                lugar={"Hotel Howard Johnson Yerba Buena - El Cadillal"}
+                horario={"09:00 a 13:00 hs"}
+                descripcion={"Carrera de aventura multi-disciplina de larga distancia, que desde el año 2006 se ha posicionado en Argentina y países vecinos como el circuito de aventura más desafiante en su tipo."}
+              ></HomeEventoCard>
             </Carousel.Item>
           </Carousel>
         </div>
       </header>
+      <main>
+        <div className="px-5 py-4 bg-color-2 text-light text-center mb-5">
+          <h1 className="fw-bold">NAVEGÁ ENTRE NUESTRAS OPCIONES</h1>
+        </div>
+        <div className="container flex justify-content-center mb-3">
+          <div className="row text-white">
+            <SectionsButton
+              color={"#0089B8"}
+              titulo={"alojamientos"}
+              icon={"aloj"}
+              link={"alojamientos"}
+            ></SectionsButton>
+           <SectionsButton
+              color={"#C4007A"}
+              titulo={"transportes"}
+              icon={"trans"}
+              link={"transporte"}
+            ></SectionsButton>
+            <SectionsButton
+              color={"#63367B"}
+              titulo={"restaurantes"}
+              icon={"rest"}
+              link={"restaurantes"}
+            ></SectionsButton>
+            <SectionsButton
+              color={"#DE9520"}
+              titulo={"agencias"}
+              icon={"agen"}
+              link={"agencias"}
+            ></SectionsButton>
+            <SectionsButton
+              color={"#A0BF37"}
+              titulo={"actividades"}
+              icon={"act"}
+              link={"actividades"}
+            ></SectionsButton>
+            <SectionsButton
+              color={"#E51E21"}
+              titulo={"mapas"}
+              icon={"map"}
+              link={"mapas"}
+            ></SectionsButton>
+          </div>
+        </div>
+      </main>
     </div>
   )
 }
