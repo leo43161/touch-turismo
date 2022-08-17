@@ -1,4 +1,4 @@
-const aloj = [
+export default [
     {
         id: 1,
         titulo: "Sheraton Tucuman Hotel",
