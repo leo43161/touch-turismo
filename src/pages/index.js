@@ -20,7 +20,7 @@ export default function Home() {
           </a>
         </div>
         <div>
-          <Carousel className="d-flex"
+          <Carousel className="d-flex carousel-home"
             nextIcon={
               <span>
                 <FaArrowAltCircleRight className="fs-1" />
@@ -65,7 +65,7 @@ export default function Home() {
               icon={"aloj"}
               link={"alojamientos"}
             ></SectionsButton>
-           <SectionsButton
+            <SectionsButton
               color={"#C4007A"}
               titulo={"transportes"}
               icon={"trans"}

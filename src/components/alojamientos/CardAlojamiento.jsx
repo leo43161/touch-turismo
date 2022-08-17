@@ -2,9 +2,9 @@ import React from 'react'
 import { FaMapMarkerAlt, FaPhoneAlt, FaGlobeAmericas, FaStar } from "react-icons/fa";
 
 
-export default function CardAlojamiento() {
+export default function CardAlojamiento({handleShow}) {
     return (
-        <div className="col-12 card-aloj border rounded shadow-sm border-aloj mb-3">
+        <div className="col-12 card-aloj border rounded shadow-sm border-aloj mb-3" style={{overflow: 'hidden'}} onClick={handleShow}>
             <div className="d-flex align-items-center aloj-slider">
                 <div className="aloj-card-img card-img-top d-flex h-100">
                     <img src="/img/alojamientos/aloj-1.jpg" className="w-100" alt="..." />
@@ -23,7 +23,7 @@ export default function CardAlojamiento() {
                     <div>
                         <h5 className="secondary-text">
                             <FaMapMarkerAlt className="secondary-text me-2"></FaMapMarkerAlt>
-                            Av. Soldati y Calle Haití­ - Tucuman</h5>
+                            Av. Soldati y Calle Haití - Tucuman</h5>
                         <h5 className="secondary-text">
                             <FaPhoneAlt className="secondary-text me-2"></FaPhoneAlt>
                             <span>(381) 455-4700</span>
