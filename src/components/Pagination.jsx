@@ -9,19 +9,21 @@ export default function PaginationTouch({ perPages, total, paginate, page }) {
 
     return (
         <Pagination size="lg">
-            <Pagination.Prev
+        <Pagination.Item
                 onClick={() => paginate(page - 1)}
-                disabled={pageNumbers[0] === page}
-            />
+                disabled={pageNumbers[0] === page}>
+                    Atras
+                </Pagination.Item>
             {pageNumbers.map(number => (
                 <Pagination.Item onClick={() => paginate(number)} key={number} active={number === page}>
                     {number}
                 </Pagination.Item>
             ))}
-            <Pagination.Next
+            <Pagination.Item
                 onClick={() => paginate(page + 1)}
-                disabled={pageNumbers.length === page}
-            />
+                disabled={pageNumbers.length === page}>
+                    Siguiente
+                </Pagination.Item>
         </Pagination>
     )
 }
