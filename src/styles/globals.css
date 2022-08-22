@@ -71,6 +71,11 @@ body {
 
 /*  */
 
+.articulos-list{
+    height: 1100px;
+    overflow: hidden;
+}
+
 .z-100 {
     z-index: 1000;
 }

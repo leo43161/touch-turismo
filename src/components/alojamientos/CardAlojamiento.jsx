@@ -2,16 +2,16 @@ import React from 'react'
 import { FaMapMarkerAlt, FaPhoneAlt, FaGlobeAmericas, FaStar } from "react-icons/fa";
 
 
-export default function CardAlojamiento({handleShow}) {
+export default function CardAlojamiento({ handleShow, alojamiento }) {
     return (
-        <div className="col-12 card-aloj border rounded shadow-sm border-aloj mb-3" style={{overflow: 'hidden'}} onClick={handleShow}>
+        <div className="col-12 card-aloj border rounded shadow-sm border-aloj mb-3" style={{ overflow: 'hidden' }} onClick={handleShow}>
             <div className="d-flex align-items-center aloj-slider">
                 <div className="aloj-card-img card-img-top d-flex h-100">
-                    <img src="/img/alojamientos/aloj-1.jpg" className="w-100" alt="..." />
+                    <img src={"/img/alojamientos/" + alojamiento.img} className="w-100" alt="..." />
                 </div>
                 <div className="col-9 px-4 py-3 d-flex flex-column justify-content-around h-100">
                     <div className="d-flex justify-content-between">
-                        <h2 className="text-aloj bold-text mb-0">Sheraton Tucuman Hotel</h2>
+                        <h2 className="text-aloj bold-text mb-0">{alojamiento.titulo}</h2>
                         <div className="d-flex text-aloj align-items-center">
                             <FaStar className="icon-size-5"></FaStar>
                             <FaStar className="icon-size-5"></FaStar>
