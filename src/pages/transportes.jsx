@@ -4,6 +4,7 @@ import { useState } from "react";
 
 export default function transportes() {
     const [origen] = useState([-26.831011, -65.204603]);
+    const [destino, setDestino] = useState([-26.816810, -65.196848]);
     const MapWithNoSSR = dynamic(() => import("../components/transportes/Map"), {
         ssr: false
     });
@@ -12,10 +13,10 @@ export default function transportes() {
         <div>
             <HeaderSecc title="alojamiento" icon="trans" color="#C4007A"></HeaderSecc>
             <div className="mb-4" style={{ height: "70vh" }}>
-                <MapWithNoSSR origen={origen}></MapWithNoSSR>
+                <MapWithNoSSR origen={origen} destino={destino} setDestino={setDestino}></MapWithNoSSR>
             </div>
             <div>
-            
+
             </div>
         </div>
     )
