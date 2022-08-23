@@ -65,7 +65,7 @@ export default function alojamientos() {
     return (
         <div>
             <HeaderSecc title="alojamiento" icon="aloj" color="#0089B8"></HeaderSecc>
-            <main className="container articulos-list mb-5">
+            <main className="container articulos-list mb-5 mt-4">
                 <div className="d-flex justify-content-around align-items-center bg-aloj p-2 rounded">
                     <h2 className="m-0 text-white">Filtros:</h2>
                     <div>

@@ -14,15 +14,15 @@ export default function HeaderSecc({ icon, title, color }) {
     }
     const Icon = Icons[icon] ? Icons[icon] : Icons.err;
     return (
-        <header className="mb-4" style={{ backgroundColor: "#0089B8" }}>
+        <header style={{ backgroundColor: color }}>
             <div className="d-flex align-content-center justify-content-between px-4 py-3 container">
                 <div className="text-light d-flex align-items-center">
-                    <div className="bg-white p-3 rounded" style={{ color: "#0089B8" }}>
+                    <div className="bg-white p-3 rounded" style={{ color: color }}>
                         <Icon className="icon-size-2"></Icon>
                     </div>
                     <h1 className="fw-bold text-uppercase ms-4 mb-0">{title}</h1>
                 </div>
-                <a href="/" className="d-flex align-items-center text-decoration-none" style={{ color: "#0089B8" }}>
+                <a href="/" className="d-flex align-items-center text-decoration-none" style={{ color: color }}>
                     <div className="text-white rounded py-1 px-3 d-flex align-items-center flex-column">
                         <FaReply className="icon-size-3"></FaReply>
                         <span style={{ fontSize: "20px" }}>Regresar</span>

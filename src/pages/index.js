@@ -69,7 +69,7 @@ export default function Home() {
               color={"#C4007A"}
               titulo={"transportes"}
               icon={"trans"}
-              link={"transporte"}
+              link={"transportes"}
             ></SectionsButton>
             <SectionsButton
               color={"#63367B"}
