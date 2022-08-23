@@ -15,7 +15,7 @@ export default function transportes() {
                 <MapWithNoSSR origen={origen}></MapWithNoSSR>
             </div>
             <div>
-
+            
             </div>
         </div>
     )
