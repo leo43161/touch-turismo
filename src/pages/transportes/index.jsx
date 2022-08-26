@@ -9,7 +9,7 @@ export default function index() {
       <HeaderSecc title="Transportes" icon="trans" color="#C4007A"></HeaderSecc>
       <div className="container mt-5">
 
-        <div className="col mb-5" onClick={() => router.push('/about')}>
+        <div className="col mb-5" onClick={() => router.push('/transportes/destino')}>
           <div className="card shadow p-4">
             <div className="card-body d-flex justify-content-start align-items-center px-3">
               <FaRoute className='icon-size-1'></FaRoute>
@@ -21,7 +21,7 @@ export default function index() {
           </div>
         </div>
 
-        <div className="col mb-5">
+        {/* <div className="col mb-5">
           <div className="card mb-3 shadow p-4">
             <div className="card-body d-flex justify-content-start align-items-center px-3">
               <FaRoute className='icon-size-1'></FaRoute>
@@ -42,7 +42,7 @@ export default function index() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   )
