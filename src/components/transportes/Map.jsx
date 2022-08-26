@@ -1,23 +1,30 @@
-import { MapContainer, TileLayer, Marker, Popup, ZoomControl } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Popup, ZoomControl, Polyline } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css';
 import "leaflet-defaulticon-compatibility";
 import { useMemo, useState, useRef } from 'react';
 
-export default function Map({ origen, destino, setDestino }) {
+export default function Map({ origen, destino }) {
   const markerRef = useRef(null);
+  const [position, setPosition] = useState(destino);
+  const [route, setRoute] = useState(null);
   const eventHandlers = useMemo(
     () => ({
       dragend() {
         const marker = markerRef.current
         if (marker != null) {
-          setDestino(marker.getLatLng())
+          setPosition(marker.getLatLng());
+          setRoute([
+            [-26.8307333, -65.2057426],
+            [-26.8311024, -65.203906],
+            [-26.8316938, -65.2013321],
+          ]);
         }
       },
     }),
     [],
   )
-  console.log(destino);
+  console.log(position);
 
   const corner1 = L.latLng(-26.658483, -65.348965),
     corner2 = L.latLng(-26.980421, -65.052577),
@@ -63,7 +70,7 @@ export default function Map({ origen, destino, setDestino }) {
         ref={markerRef}
       >
       </Marker>
-
+      {route && <Polyline pathOptions={{ color: 'lime' }} positions={route} />}
       <ZoomControl zoom position="bottomright"></ZoomControl>
     </MapContainer>
   )

@@ -1,6 +1,8 @@
 import HeaderSecc from "../components/HeaderSecc";
 import dynamic from "next/dynamic";
 import { useState } from "react";
+import RecorridosTest from "../data/RecorridosTest";
+import BusesLists from "../components/transportes/BusesLists";
 
 export default function transportes() {
     const [origen] = useState([-26.831011, -65.204603]);
@@ -13,10 +15,10 @@ export default function transportes() {
         <div>
             <HeaderSecc title="alojamiento" icon="trans" color="#C4007A"></HeaderSecc>
             <div className="mb-4" style={{ height: "70vh" }}>
-                <MapWithNoSSR origen={origen} destino={destino} setDestino={setDestino}></MapWithNoSSR>
+                <MapWithNoSSR origen={origen} destino={destino}></MapWithNoSSR>
             </div>
             <div>
-
+            <BusesLists></BusesLists>
             </div>
         </div>
     )
