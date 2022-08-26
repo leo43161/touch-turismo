@@ -24,7 +24,6 @@ export default function Map({ origen, destino }) {
     }),
     [],
   )
-  console.log(position);
 
   const corner1 = L.latLng(-26.658483, -65.348965),
     corner2 = L.latLng(-26.980421, -65.052577),

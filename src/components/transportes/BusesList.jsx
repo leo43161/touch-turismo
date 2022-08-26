@@ -1,7 +1,9 @@
 import React from 'react'
 import BusList from './BusList'
+import Buses from "../../data/Buses";
 
-export default function BusesLists() {
+export default function BusesLists({ busesMatch }) {
+  let _buses = Buses.filter((bus) => busesMatch.includes(bus.cod));
   return (
     <div className="p-3">
       <div className="card mb-3">
@@ -14,14 +16,9 @@ export default function BusesLists() {
           </h1>
         </div>
         <div className="px-2">
-          <BusList></BusList>
-          <BusList></BusList>
-          <BusList></BusList>
-          <BusList></BusList>
-          <BusList></BusList>
-          <BusList></BusList>
-          <BusList></BusList>
-          <BusList></BusList>
+        {_buses.map((value)=>(
+          <BusList bus={value}></BusList>
+        ))}
         </div>
       </div>
     </div>
