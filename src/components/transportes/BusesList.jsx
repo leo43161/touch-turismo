@@ -1,9 +1,43 @@
-import React from 'react'
 import BusList from './BusList'
 import Buses from "../../data/Buses";
+import RecorridosTest from '../../data/RecorridosTest';
+import { useEffect, useState } from 'react';
 
-export default function BusesLists({ busesMatch }) {
+export default function BusesLists({ busesMatch, setRoute, setParadas }) {
+  const [busActive, setBusActive] = useState(0);
+
   let _buses = Buses.filter((bus) => busesMatch.includes(bus.cod));
+  _buses = busesMatch.map(cod => {
+    return _buses.find(bus => bus.cod === cod);
+  });
+
+  const writeTravel = (codBus = null) => {
+    const rutas = RecorridosTest.map((value) => ({ cod: value.cod, nodos: value.nodos, paradas: value.paradas }));
+    let _colectivos = rutas.filter((bus) => busesMatch.includes(bus.cod));
+    _colectivos = busesMatch.map(cod => {
+      return _colectivos.find(bus => bus.cod === cod);
+    })
+    if (_colectivos.length > 0) {
+      let findBus = {};
+      if (codBus) {
+        findBus = _colectivos.find(colectivo => colectivo.cod == codBus);
+      } else {
+        findBus = _colectivos[0];
+      }
+      const { nodos, paradas, cod } = findBus;
+      setRoute(nodos);
+      setParadas(paradas);
+      setBusActive(cod);
+    } else {
+      setRoute(null);
+      setParadas([]);
+      setBusActive(null);
+    }
+  }
+  useEffect(() => {
+    writeTravel();
+  }, [busesMatch])
+
   return (
     <div className="p-3">
       <div className="card mb-3">
@@ -18,7 +52,7 @@ export default function BusesLists({ busesMatch }) {
         <div className="px-2">
           {_buses.map((value, index) => (
             <div className="col" key={index}>
-              <BusList bus={value}></BusList>
+              <BusList bus={value} busActive={busActive} writeTravel={writeTravel}></BusList>
             </div>
           ))}
         </div>

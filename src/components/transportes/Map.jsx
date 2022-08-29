@@ -2,7 +2,7 @@ import { MapContainer, TileLayer, Marker, Popup, ZoomControl, Polyline } from 'r
 import 'leaflet/dist/leaflet.css'
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css';
 import "leaflet-defaulticon-compatibility";
-import { useMemo, useState, useRef, useEffect, useCallback } from 'react';
+import { useMemo, useState, useRef, useEffect } from 'react';
 import BusesLists from './BusesList';
 
 export default function Map({ origen, destino, recorridos }) {
@@ -11,6 +11,7 @@ export default function Map({ origen, destino, recorridos }) {
   const [reloadMap, setReloadMap] = useState(true);
   const [position, setPosition] = useState(destino);
   const [route, setRoute] = useState(null);
+  const [paradas, setParadas] = useState([]);
 
   /* FALTA QUE SE ACTUALICE LAS VARAIBLES Y ASI PODER DIBUJAR LA RUTA */
 
@@ -21,12 +22,6 @@ export default function Map({ origen, destino, recorridos }) {
         if (marker != null) {
           const { lat, lng } = marker.getLatLng();
           setPosition([lat, lng]);
-          
-          setRoute([
-            [-26.8307333, -65.2057426],
-            [-26.8311024, -65.203906],
-            [-26.8316938, -65.2013321],
-          ]);
           setReloadMap(true);
         }
       },
@@ -91,7 +86,6 @@ export default function Map({ origen, destino, recorridos }) {
 
   useEffect(() => {
     if (reloadMap) {
-      console.log(findBusTravel());
       setBusesMatch(findBusTravel());
       setReloadMap(false);
     }
@@ -113,9 +107,15 @@ export default function Map({ origen, destino, recorridos }) {
     iconAnchor: [7, 42],
   });
 
+  const paradaIcon = L.icon({
+    iconUrl: '/img/transportes/bus-stop.png',
+    iconSize: [15, 15],
+    iconAnchor: [0, 1],
+  });
+
   return (
     <>
-      <div className="mb-4" style={{ height: "70vh" }}>
+      <div className="mb-4" style={{ height: "51vh" }}>
         <MapContainer
           center={origen}
           zoom={14}
@@ -144,11 +144,20 @@ export default function Map({ origen, destino, recorridos }) {
           >
           </Marker>
           {route && <Polyline pathOptions={{ color: 'lime' }} positions={route} />}
+          {paradas.map(({ description, latitude, longitude }) => (
+            <Marker
+              position={[latitude, longitude]}
+              animate={true}
+              icon={paradaIcon}
+            >
+              <Popup offset={[8, 7]} >{description}</Popup>
+            </Marker>
+          ))}
           <ZoomControl zoom position="bottomright"></ZoomControl>
         </MapContainer>
       </div>
       <div>
-        <BusesLists busesMatch={busesMatch}></BusesLists>
+        <BusesLists busesMatch={busesMatch} setRoute={setRoute} setParadas={setParadas}></BusesLists>
       </div>
     </>
   )
