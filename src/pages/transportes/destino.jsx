@@ -16,11 +16,8 @@ export default function transportes() {
     return (
         <div>
             <HeaderSecc title="alojamiento" icon="trans" color="#C4007A"></HeaderSecc>
-            <div className="mb-4" style={{ height: "70vh" }}>
-                <MapWithNoSSR origen={origen} destino={destino}></MapWithNoSSR>
-            </div>
             <div>
-                <BusesList busesMatch={busesMatch}></BusesList>
+                <MapWithNoSSR origen={origen} destino={destino} recorridos={RecorridosTest} setBusesMatch={setBusesMatch}></MapWithNoSSR>
             </div>
         </div>
     )

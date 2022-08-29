@@ -16,9 +16,11 @@ export default function BusesLists({ busesMatch }) {
           </h1>
         </div>
         <div className="px-2">
-        {_buses.map((value)=>(
-          <BusList bus={value}></BusList>
-        ))}
+          {_buses.map((value, index) => (
+            <div className="col" key={index}>
+              <BusList bus={value}></BusList>
+            </div>
+          ))}
         </div>
       </div>
     </div>

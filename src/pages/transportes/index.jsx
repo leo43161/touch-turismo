@@ -3,7 +3,7 @@ import { FaRoute } from 'react-icons/fa';
 import { useRouter } from 'next/router';
 
 export default function index() {
-  const router = useRouter()
+  const router = useRouter();
   return (
     <div>
       <HeaderSecc title="Transportes" icon="trans" color="#C4007A"></HeaderSecc>
