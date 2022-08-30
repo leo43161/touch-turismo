@@ -5,16 +5,13 @@ import "leaflet-defaulticon-compatibility";
 import { useMemo, useState, useRef, useEffect } from 'react';
 import BusesLists from './BusesList';
 
-export default function Map({ origen, destino, recorridos }) {
+export default function Map({ origen, recorridos, getDistance }) {
   const markerRef = useRef(null);
   const [busesMatch, setBusesMatch] = useState([]);
   const [reloadMap, setReloadMap] = useState(true);
-  const [position, setPosition] = useState(destino);
+  const [destino, setDestino] = useState([-26.816810, -65.196848]);
   const [route, setRoute] = useState(null);
   const [paradas, setParadas] = useState([]);
-
-
-  /* FALTA QUE SE ACTUALICE LAS VARAIBLES Y ASI PODER DIBUJAR LA RUTA */
 
   const eventHandlers = useMemo(
     () => ({
@@ -22,7 +19,7 @@ export default function Map({ origen, destino, recorridos }) {
         const marker = markerRef.current
         if (marker != null) {
           const { lat, lng } = marker.getLatLng();
-          setPosition([lat, lng]);
+          setDestino([lat, lng]);
           setReloadMap(true);
         }
       },
@@ -30,27 +27,6 @@ export default function Map({ origen, destino, recorridos }) {
     [],
   )
 
-  const getDistance = (lat1, lon1, lat2, lon2, unit) => {
-    if ((lat1 == lat2) && (lon1 == lon2)) {
-      return 0;
-    }
-    else {
-      const radlat1 = Math.PI * lat1 / 180;
-      const radlat2 = Math.PI * lat2 / 180;
-      const theta = lon1 - lon2;
-      const radtheta = Math.PI * theta / 180;
-      let dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-      if (dist > 1) {
-        dist = 1;
-      }
-      dist = Math.acos(dist);
-      dist = dist * 180 / Math.PI;
-      dist = dist * 60 * 1.1515;
-      if (unit == "K") { dist = dist * 1.609344 }
-      if (unit == "N") { dist = dist * 0.8684 }
-      return dist;
-    }
-  }
 
   const findBusTravel = () => {
     let colectivos = [];
@@ -61,7 +37,7 @@ export default function Map({ origen, destino, recorridos }) {
       let bestCoord = [];
       let best = [];
       bus.nodos.forEach(coord => {
-        const distDestino = getDistance(coord[0], coord[1], position[0], position[1], "K");
+        const distDestino = getDistance(coord[0], coord[1], destino[0], destino[1], "K");
         const distOrigen = getDistance(coord[0], coord[1], origen[0], origen[1], "K");
         if (distOrigen < 0.7) {
           matchOrigen = true;
@@ -80,7 +56,6 @@ export default function Map({ origen, destino, recorridos }) {
     });
     colectivos.sort(((a, b) => a.best - b.best))
     colectivos = colectivos.slice(0, 7);
-    console.log(colectivos);
     colectivos = colectivos.map(colectivo => colectivo.cod);
     return colectivos;
   };
@@ -144,11 +119,12 @@ export default function Map({ origen, destino, recorridos }) {
           >
           </Marker>
           {route && <Polyline pathOptions={{ color: '#C4007A' }} positions={route} />}
-          {paradas.map(({ description, latitude, longitude }) => (
+          {paradas.map(({ description, latitude, longitude }, index) => (
             <Marker
               position={[latitude, longitude]}
               animate={true}
               icon={paradaIcon}
+              key={index}
             >
               <Popup offset={[8, 7]} >{description}</Popup>
             </Marker>

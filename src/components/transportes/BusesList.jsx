@@ -1,6 +1,6 @@
 import BusList from './BusList'
 import Buses from "../../data/Buses";
-import RecorridosTest from '../../data/RecorridosTest';
+import RecorridosTest from '../../data/Recorridos';
 import { useEffect, useState } from 'react';
 
 export default function BusesLists({ busesMatch, setRoute, setParadas }) {
