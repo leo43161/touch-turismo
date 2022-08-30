@@ -1,4 +1,4 @@
-import { MapContainer, TileLayer, Marker, Popup, ZoomControl, Polyline } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Popup, ZoomControl, Polyline, useMap } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css';
 import "leaflet-defaulticon-compatibility";
@@ -12,6 +12,7 @@ export default function Map({ origen, destino, recorridos }) {
   const [position, setPosition] = useState(destino);
   const [route, setRoute] = useState(null);
   const [paradas, setParadas] = useState([]);
+
 
   /* FALTA QUE SE ACTUALICE LAS VARAIBLES Y ASI PODER DIBUJAR LA RUTA */
 
@@ -93,7 +94,7 @@ export default function Map({ origen, destino, recorridos }) {
 
   const corner1 = L.latLng(-26.658483, -65.348965),
     corner2 = L.latLng(-26.980421, -65.052577),
-    bounds = L.latLngBounds(corner1, corner2);
+    maxBounds = L.latLngBounds(corner1, corner2);
 
   const inicioIcon = L.icon({
     iconUrl: '/img/transportes/icon-inicio.png',
@@ -112,17 +113,16 @@ export default function Map({ origen, destino, recorridos }) {
     iconSize: [15, 15],
     iconAnchor: [0, 1],
   });
-
   return (
     <>
       <div className="mb-4" style={{ height: "51vh" }}>
         <MapContainer
           center={origen}
-          zoom={14}
+          zoom={13}
           minZoom={12.8}
           style={{ height: "100%", width: "100%" }}
           zoomControl={false}
-          maxBounds={bounds}
+          maxBounds={maxBounds}
         >
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
           {/* Marcador del origen */}
@@ -143,7 +143,7 @@ export default function Map({ origen, destino, recorridos }) {
             ref={markerRef}
           >
           </Marker>
-          {route && <Polyline pathOptions={{ color: 'lime' }} positions={route} />}
+          {route && <Polyline pathOptions={{ color: '#C4007A' }} positions={route} />}
           {paradas.map(({ description, latitude, longitude }) => (
             <Marker
               position={[latitude, longitude]}
