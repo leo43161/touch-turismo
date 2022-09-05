@@ -1,9 +1,9 @@
 import HeaderSecc from "../components/HeaderSecc";
 import Agencias from "../data/Agencias";
-import { useState} from "react";
+import { useState } from "react";
 import CardAgen from "../components/agencias/CardAgen";
 import Col from 'react-bootstrap/Col';
-import ModalAlojamiento from "../components/alojamientos/ModalAlojamiento";
+import ModalAgen from "../components/agencias/ModalAgen";
 
 export default function agencias() {
     //Modal
@@ -26,13 +26,13 @@ export default function agencias() {
                     <div className="row row-cols-1 row-cols-md-4 g-3">
                         {agencias.map((value, index) =>
                         (<Col key={index}>
-                            <CardAgen restaurante={value} setModal={setModal} handleShow={handleShow}></CardAgen>
+                            <CardAgen agencia={value} setModal={setModal} handleShow={handleShow}></CardAgen>
                         </Col>)
                         )}
                     </div>
                 </div>
             </main>
-            <ModalAlojamiento show={show} handleClose={handleClose} modal={modal}></ModalAlojamiento>
+            <ModalAgen show={show} handleClose={handleClose} modal={modal}></ModalAgen>
         </div>
     )
 }
