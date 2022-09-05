@@ -53,25 +53,29 @@ body {
     border-width: 3px;
 }
 
-.icon-size-1{
+.icon-size-1 {
     font-size: 6.5em;
 }
-.icon-size-2{
+
+.icon-size-2 {
     font-size: 4.5em;
 }
-.icon-size-3{
+
+.icon-size-3 {
     font-size: 3.5em;
 }
-.icon-size-4{
+
+.icon-size-4 {
     font-size: 2.5em;
 }
-.icon-size-5{
+
+.icon-size-5 {
     font-size: 1.5em;
 }
 
 /*  */
 
-.articulos-list{
+.articulos-list {
     height: 1100px;
     overflow: hidden;
 }
@@ -129,34 +133,40 @@ body {
     background-color: var(--mapas-color);
 }
 
-.text-aloj {
+.text-aloj,
+.text-aloj a {
     color: var(--aloj-color);
 }
 
-.text-trans {
+.text-trans,
+.text-trans a {
     color: var(--trans-color);
 }
 
-.text-rest {
+.text-rest,
+.text-rest a {
     color: var(--rest-color);
 }
 
-.text-agen {
+.text-agen,
+.text-agen a {
     color: var(--agen-color);
 }
 
-.text-acti {
+.text-acti,
+.text-acti a {
     color: var(--acti-color);
 }
 
-.text-mapas {
+.text-mapas,
+.text-mapas a {
     color: var(--mapas-color);
 }
 
 /* BORDES */
 
 .border-aloj {
-   border-color: var(--aloj-color);
+    border-color: var(--aloj-color);
 }
 
 .border-trans {
@@ -177,4 +187,79 @@ body {
 
 .border-mapas {
     border-color: var(--mapas-color);
+}
+
+/* Estilos de colores generales para el paginator */
+
+.pagination-aloj a, .pagination-aloj a:hover{
+    color: var(--aloj-color);
+}
+
+.pagination-trans a, .pagination-trans a:hover{
+    color: var(--trans-color);
+}
+
+.pagination-rest a, .pagination-rest a:hover{
+    color: var(--rest-color);
+}
+
+.pagination-agen a, .pagination-agen a:hover{
+    color: var(--agen-color);
+}
+
+.pagination-acti a, .pagination-acti a:hover{
+    color: var(--acti-color);
+}
+
+.pagination-mapas a, .pagination-mapas a:hover{
+    color: var(--mapas-color);
+}
+
+
+.pagination-aloj .page-link.active,
+.pagination-aloj .active>.page-link {
+    z-index: 3;
+    color: #fff;
+    border-color: var(--aloj-color);
+    background-color: var(--aloj-color);
+}
+
+.pagination-trans .page-link.active,
+.pagination-trans .active>.page-link {
+    z-index: 3;
+    color: #fff;
+    border-color: var(--trans-color);
+    background-color: var(--trans-color);
+}
+
+.pagination-rest .page-link.active,
+.pagination-rest .active>.page-link {
+    z-index: 3;
+    color: #fff;
+    border-color: var(--rest-color);
+    background-color: var(--rest-color);
+}
+
+.pagination-agen .page-link.active,
+.pagination-agen .active>.page-link {
+    z-index: 3;
+    color: #fff;
+    border-color: var(--agen-color);
+    background-color: var(--agen-color);
+}
+
+.pagination-acti .page-link.active,
+.pagination-mapas .active>.page-link {
+    z-index: 3;
+    color: #fff;
+    border-color: var(--acti-color);
+    background-color: var(--acti-color);
+}
+
+.pagination-mapas .page-link.active,
+.pagination-mapas .active>.page-link {
+    z-index: 3;
+    color: #fff;
+    border-color: var(--mapas-color);
+    background-color: var(--mapas-color);
 }
