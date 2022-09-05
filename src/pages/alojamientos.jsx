@@ -110,7 +110,7 @@ export default function alojamientos() {
                 </div>
             </main>
             <div className="d-flex justify-content-center">
-                <PaginationTouch total={total} paginate={paginate} perPages={perPage} page={currentPage}></PaginationTouch>
+                <PaginationTouch total={total} paginate={paginate} perPages={perPage} page={currentPage} type="aloj"></PaginationTouch>
             </div>
             <ModalAlojamiento show={show} handleClose={handleClose} modal={modal}></ModalAlojamiento>
         </div>
