@@ -13,7 +13,7 @@ export default function CardAgen({ agencia, handleShow, setModal }) {
                 <div className="col-12 px-4 py-3 d-flex flex-column justify-content-around h-100">
                     <div className="d-flex justify-content-between">
                         <div className="col-12">
-                            <h3 className="text-rest bold-text mb-0">{titulo}</h3>
+                            <h3 className="text-agen bold-text mb-0">{titulo}</h3>
                         </div>
                     </div>
                     <div>

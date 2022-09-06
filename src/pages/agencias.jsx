@@ -16,7 +16,7 @@ export default function agencias() {
 
     return (
         <div>
-            <HeaderSecc title="agencias" icon="rest" color="#63367B"></HeaderSecc>
+            <HeaderSecc title="agencias" icon="agen" color="#DE9520"></HeaderSecc>
             <main className="container articulos-list mb-5 mt-4">
                 <div className="text-center">
                     <h2 className="text-agen">AGENCIAS DE VIAJES - MODALIDAD TURISMO RECEPTIVO</h2>
