@@ -62,8 +62,8 @@ export default function actividades() {
                         )}
                     </div>
                 </div>
-            </main >
+            </main>
             <ModalAgen show={show} handleClose={handleClose} modal={modal}></ModalAgen>
-        </div >
+        </div>
     )
 }
