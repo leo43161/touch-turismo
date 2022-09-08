@@ -1,13 +1,17 @@
-import React from 'react'
 import helpers from '../helpers/index';
 import { FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa";
 
-export default function HomeEventoCard({ evento }) {
+export default function HomeEventoCard({ evento, setModal, handleShow }) {
+
+    const handleModal = () =>{
+        handleShow()
+        setModal(evento)
+    }
 
     const { archivo, titulo, fechafin, fechainicio, contenido, direccion, nombre } = evento;
     const { htmlParse, dateConverter } = helpers;
     return (
-        <div className="d-flex justify-content-center col bg-white mx-auto">
+        <div className="d-flex justify-content-center col bg-white mx-auto" onClick={handleModal}>
             <div className="col-12 card-evento-slider">
                 <div className="d-flex align-items-center event-slider">
                     <div className="evento-card-img card-img-top d-flex h-100">

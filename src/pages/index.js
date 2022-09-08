@@ -4,14 +4,22 @@ import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
 import Carousel from 'react-bootstrap/Carousel';
 import SectionsButton from '../components/SectionsButton';
 import axios from 'axios';
+import { useState } from 'react';
+import ModalEvento from '../components/eventos/ModalEvento';
 
 export default function Home({ eventos = [] }) {
+
+  //Modal
+  const [show, setShow] = useState(false);
+  const [modal, setModal] = useState({});
+  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
 
   const listarEvents = () => {
     if (eventos.length === 0) return <h1>No Products</h1>;
     return eventos.map((evento, index) => (
       <Carousel.Item key={index}>
-        <HomeEventoCard evento={evento} />
+        <HomeEventoCard evento={evento} setModal={setModal} handleShow={handleShow} />
       </Carousel.Item>
     ));
   };
@@ -43,7 +51,7 @@ export default function Home({ eventos = [] }) {
               </span>
             }
           >
-          {listarEvents()}
+            {listarEvents()}
           </Carousel>
         </div>
       </header>
@@ -92,6 +100,7 @@ export default function Home({ eventos = [] }) {
           </div>
         </div>
       </main>
+      <ModalEvento show={show} handleClose={handleClose} modal={modal}></ModalEvento>
     </div>
   )
 }

@@ -36,4 +36,12 @@ DataConverter.dateConverter = (date) => {
     }
 }
 
+DataConverter.dayConverter = (date) => {
+    const _date = new Date(date);
+    const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+    let day = _date.getDate()
+    let month = _date.getMonth()
+    return `${day} ${meses[month]}`;
+}
+
 export default DataConverter;
