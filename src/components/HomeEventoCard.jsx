@@ -1,11 +1,11 @@
 import React from 'react'
-import { FaMapMarkerAlt, FaClock } from "react-icons/fa";
+import helpers from '../helpers/index';
+import { FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa";
 
 export default function HomeEventoCard({ evento }) {
 
-    const { archivo, titulo, lugar, horario, contenido } = evento;
-    const removeHTML = (_contenido) => _contenido.replace(/<[^>]*>?/g, '');
-
+    const { archivo, titulo, fechafin, fechainicio, contenido, direccion, nombre } = evento;
+    const { htmlParse, dateConverter } = helpers;
     return (
         <div className="d-flex justify-content-center col bg-white mx-auto">
             <div className="col-12 card-evento-slider">
@@ -19,18 +19,18 @@ export default function HomeEventoCard({ evento }) {
                             <div className="d-flex align-items-center mb-2">
                                 <FaMapMarkerAlt className="fs-4 me-1 secondary-text"></FaMapMarkerAlt>
                                 <h5 className="secondary-text m-0">
-                                    {lugar}
+                                    {direccion} {direccion ? "-" : null} {nombre}
                                 </h5>
                             </div>
                             <div className="d-flex align-items-center mb-2">
-                                <FaClock className="fs-4 me-1 secondary-text"></FaClock>
+                                <FaCalendarAlt className="fs-4 me-1 secondary-text"></FaCalendarAlt>
                                 <h5 className="secondary-text mb-0">
-                                    {horario}
+                                    {dateConverter(fechainicio)} - {dateConverter(fechafin)}
                                 </h5>
                             </div>
                         </div>
                         <h4 className="text-justify">
-                            {removeHTML(contenido)}
+                            {htmlParse(contenido)}
                         </h4>
                     </div>
                 </div>

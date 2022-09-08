@@ -6,13 +6,11 @@ import SectionsButton from '../components/SectionsButton';
 import axios from 'axios';
 
 export default function Home({ eventos = [] }) {
-  console.log(eventos);
-  console.log(process.env.URL);
 
   const listarEvents = () => {
     if (eventos.length === 0) return <h1>No Products</h1>;
-    return eventos.map((evento) => (
-      <Carousel.Item key={evento.id}>
+    return eventos.map((evento, index) => (
+      <Carousel.Item key={index}>
         <HomeEventoCard evento={evento} />
       </Carousel.Item>
     ));
@@ -46,24 +44,6 @@ export default function Home({ eventos = [] }) {
             }
           >
           {listarEvents()}
-            {/* <Carousel.Item>
-              <HomeEventoCard
-                img={"/img/eventos/evento-1.jpg"}
-                titulo={"XK Race Tucumán 2022"}
-                lugar={"Hotel Howard Johnson Yerba Buena - El Cadillal"}
-                horario={"09:00 a 13:00 hs"}
-                descripcion={"Carrera de aventura multi-disciplina de larga distancia, que desde el año 2006 se ha posicionado en Argentina y países vecinos como el circuito de aventura más desafiante en su tipo."}
-              ></HomeEventoCard>
-            </Carousel.Item>
-            <Carousel.Item>
-              <HomeEventoCard
-                img={"/img/eventos/evento-2.jpg"}
-                titulo={"XK Race Tucumán 2022"}
-                lugar={"Hotel Howard Johnson Yerba Buena - El Cadillal"}
-                horario={"09:00 a 13:00 hs"}
-                descripcion={"Carrera de aventura multi-disciplina de larga distancia, que desde el año 2006 se ha posicionado en Argentina y países vecinos como el circuito de aventura más desafiante en su tipo."}
-              ></HomeEventoCard>
-            </Carousel.Item> */}
           </Carousel>
         </div>
       </header>
