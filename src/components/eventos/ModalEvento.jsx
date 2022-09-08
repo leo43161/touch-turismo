@@ -1,21 +1,40 @@
 import Modal from 'react-bootstrap/Modal';
 import helpers from '../../helpers/index';
 import Button from 'react-bootstrap/Button';
-import { FaMapMarkerAlt, FaPhoneAlt, FaGlobeAmericas, FaUserAlt } from "react-icons/fa";
+import { FaMapMarkerAlt, FaCalendarAlt, FaGlobeAmericas, FaUserAlt } from "react-icons/fa";
 
 
 export default function ModalEvento({ show, handleClose, modal }) {
     const { archivo, titulo, fechafin, fechainicio, contenido, direccion, nombre } = modal;
-    const { htmlParse, dateConverter } = helpers;
+    const { htmlParse, dateConverter, dayConverter } = helpers;
     return (
         <Modal className="modal-center" show={show} onHide={handleClose} size="lg" >
-            <Modal.Header>
-                <h2 className="modal-title text-agen">{titulo}</h2>
+            <Modal.Header closeButton>
+                <h2 className="modal-title primary-text text-uppercase">{dayConverter(fechainicio)}</h2>
             </Modal.Header>
             <Modal.Body>
                 <div>
-                    <div className="">
-                        <h1 className="primary-text bold-text">{titulo}</h1>
+                    <div>
+                        <h1 className="primary-text bold-text text-center mb-3">{titulo}</h1>
+                        <div className="d-flex justify-content-around">
+                            <div className="d-flex align-items-center mb-2">
+                                <FaMapMarkerAlt className="fs-4 me-1 secondary-text"></FaMapMarkerAlt>
+                                <h5 className="secondary-text m-0">
+                                    {direccion} {direccion ? "-" : null} {nombre}
+                                </h5>
+                            </div>
+                            <div className="d-flex align-items-center mb-2">
+                                <FaCalendarAlt className="fs-4 me-1 secondary-text"></FaCalendarAlt>
+                                <h5 className="secondary-text mb-0">
+                                    {dateConverter(fechainicio)} - {dateConverter(fechafin)}
+                                </h5>
+                            </div>
+                        </div>
+                        <div className="mt-3">
+                            <h4 className="text-center">
+                                {htmlParse(contenido)}
+                            </h4>
+                        </div>
                     </div>
                     <div className="d-flex flex-column align-items-center col py-3">
                         <div className="col">
