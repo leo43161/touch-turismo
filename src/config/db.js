@@ -5,7 +5,7 @@ const pool = mysql({
         host: '23.229.233.154',
         user: "touch",
         password: "ToUcH050",
-        database: "eatt2021",
+        database: "turismo2016",
     },
 });
 
