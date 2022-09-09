@@ -14,9 +14,8 @@ export default function Home({ eventos = [] }) {
   const [modal, setModal] = useState({});
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
-
   const listarEvents = () => {
-    if (eventos.length === 0) return <h1>No Products</h1>;
+    if (eventos.length === 0) return <h1>No se encontraron eventos</h1>;
     return eventos.map((evento, index) => (
       <Carousel.Item key={index}>
         <HomeEventoCard evento={evento} setModal={setModal} handleShow={handleShow} />

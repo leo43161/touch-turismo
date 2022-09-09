@@ -1,11 +1,11 @@
 import Modal from 'react-bootstrap/Modal';
 import helpers from '../../helpers/index';
 import Button from 'react-bootstrap/Button';
-import { FaMapMarkerAlt, FaCalendarAlt, FaGlobeAmericas, FaUserAlt } from "react-icons/fa";
+import { FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa";
 
 
 export default function ModalEvento({ show, handleClose, modal }) {
-    const { archivo, titulo, fechafin, fechainicio, contenido, direccion, nombre } = modal;
+    const { archivo, titulo, fechafin, fechainicio, contenido, direccion, nombre, copete } = modal;
     const { htmlParse, dateConverter, dayConverter } = helpers;
     return (
         <Modal className="modal-center" show={show} onHide={handleClose} size="lg" >
@@ -31,8 +31,11 @@ export default function ModalEvento({ show, handleClose, modal }) {
                             </div>
                         </div>
                         <div className="mt-3">
-                            <h4 className="text-center">
+                            <h3 className="text-center">
                                 {htmlParse(contenido)}
+                            </h3>
+                            <h4 className="text-center">
+                                {copete}
                             </h4>
                         </div>
                     </div>
