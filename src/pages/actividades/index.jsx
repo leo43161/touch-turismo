@@ -1,24 +1,23 @@
+import axios from 'axios';
 import HeaderSecc from "../../components/HeaderSecc";
-import Agencias from "../../data/Agencias";
 import { useState } from "react";
-import CardAgen from "../../components/agencias/CardAgen";
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import ModalAgen from "../../components/agencias/ModalAgen";
+import CardAct from '../../components/actividades/CardAct';
 
-export default function actividades() {
+export default function actividades({ actividades }) {
     //Modal
     const [show, setShow] = useState(false);
     const [modal, setModal] = useState({});
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
     //Agencias
-    const [agencias] = useState(Agencias);
 
     return (
         <div>
             <HeaderSecc title="actividades" icon="act" color="#A0BF37"></HeaderSecc>
-            <main className="container">
+            <main className="container mt-3">
                 <div className="mb-3 text-center">
                     <h1>RUTAS</h1>
                 </div>
@@ -54,10 +53,10 @@ export default function actividades() {
                 </div>
 
                 <div className="mt-3">
-                    <div className="row row-cols-1 row-cols-md-4 g-3">
-                        {agencias.map((value, index) =>
+                    <div className="row row-cols-1 row-cols-md-3 g-3">
+                        {actividades.map((value, index) =>
                         (<Col key={index}>
-                            <CardAgen agencia={value} setModal={setModal} handleShow={handleShow}></CardAgen>
+                            <CardAct actividad={value}></CardAct>
                         </Col>)
                         )}
                     </div>
@@ -67,3 +66,15 @@ export default function actividades() {
         </div>
     )
 }
+
+export const getServerSideProps = async () => {
+    const { data: actividades } = await axios.get(
+        "http://localhost:3000/api/actividades"
+    );
+
+    return {
+        props: {
+            actividades,
+        },
+    };
+};
