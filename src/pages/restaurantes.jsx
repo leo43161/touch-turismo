@@ -1,19 +1,23 @@
+import axios from 'axios';
 import HeaderSecc from "../components/HeaderSecc";
-import Restaurantes from "../data/Restaurantes";
+/* import Restaurantes from "../data/Restaurantes"; */
 import Form from 'react-bootstrap/Form';
 import { useState, useEffect } from "react";
 import CardRest from "../components/restaurantes/CardRest";
 import PaginationTouch from "../components/Pagination";
 import Col from 'react-bootstrap/Col';
 
-export default function restaurantes() {
+export default function restaurantes({ restaurantesSQL }) {
+    /* ADAPTAR EL PAGINADO A LA MANERA DE RENDERIZAR */
+    console.log(restaurantesSQL.length);
+    const Restaurantes = restaurantesSQL;
     //Restaurantes
     const [restaurantes, setAlojamientos] = useState(Restaurantes);
     const [reload, setReload] = useState(true);
     const [filters, setfilters] = useState({ categoria: "", estrellas: "", localidad: "" });
     //Pagination
     const [currentPage, setCurrentPage] = useState(1);
-    const [perPage] = useState(2);
+    const [perPage] = useState(16);
     const [total, setTotal] = useState(Restaurantes.length);
 
     const paginate = pageNumber => {
@@ -95,13 +99,25 @@ export default function restaurantes() {
             </main>
             <div className="d-flex justify-content-center">
                 <PaginationTouch
-                type="rest"
-                total={total}
-                paginate={paginate}
-                perPages={perPage}
-                page={currentPage}
+                    type="rest"
+                    total={total}
+                    paginate={paginate}
+                    perPages={perPage}
+                    page={currentPage}
                 ></PaginationTouch>
             </div>
         </div>
     )
 }
+
+export const getServerSideProps = async () => {
+    const { data: restaurantesSQL } = await axios.get(
+        "http://localhost:3000/api/restaurantes"
+    );
+
+    return {
+        props: {
+            restaurantesSQL,
+        },
+    };
+};
