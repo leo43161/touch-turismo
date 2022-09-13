@@ -1,12 +1,8 @@
 import Pagination from 'react-bootstrap/Pagination';
 
-export default function PaginationTouch({ perPages, total, paginate, type }) {
+export default function PaginationTouch({ perPages, total, page, paginate, type }) {
     /*  */
     const lastPage = Math.ceil(total / perPages);
-    console.log(lastPage)
-    console.log("lastPage")
-    const page = 41;
-    console.log(total);
     const delta = 2;
     const range = [];
 
@@ -39,14 +35,17 @@ export default function PaginationTouch({ perPages, total, paginate, type }) {
         <Pagination className={"pagination-" + type} size="lg">
             <Pagination.Item
                 onClick={() => paginate(page - 1)}
-                disabled={pageNumbers[0] === page}>
+                disabled={page === 1}>
                 Anterior
             </Pagination.Item>
-            {pageNumbers.map(number => (
-                <Pagination.Item onClick={() => paginate(number)} key={number} active={number === page}>
-                    {number}
-                </Pagination.Item>
-            ))}
+            {range.map((number, index) =>
+                !isNaN(number) ?
+                    <Pagination.Item onClick={() => paginate(number)} key={index} active={number === page}>
+                        {number}
+                    </Pagination.Item>
+                    :
+                    <Pagination.Ellipsis onClick={() => paginate(index === 1 ? page - 3 : page + 3)} />
+            )}
             <Pagination.Item
                 onClick={() => paginate(page + 1)}
                 disabled={pageNumbers.length === page}>
