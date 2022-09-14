@@ -44,7 +44,7 @@ export default function PaginationTouch({ perPages, total, page, paginate, type 
                         {number}
                     </Pagination.Item>
                     :
-                    <Pagination.Ellipsis onClick={() => paginate(index === 1 ? page - 3 : page + 3)} />
+                    <Pagination.Ellipsis key={index} onClick={() => paginate(index === 1 ? page - 3 : page + 3)} />
             )}
             <Pagination.Item
                 onClick={() => paginate(page + 1)}

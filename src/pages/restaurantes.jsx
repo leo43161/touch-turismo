@@ -1,15 +1,14 @@
 import axios from 'axios';
 import HeaderSecc from "../components/HeaderSecc";
-/* import Restaurantes from "../data/Restaurantes"; */
 import Form from 'react-bootstrap/Form';
 import { useState, useEffect } from "react";
 import CardRest from "../components/restaurantes/CardRest";
 import PaginationTouch from "../components/Pagination";
 import Col from 'react-bootstrap/Col';
 
-export default function restaurantes({ restaurantesSQL }) {
+export default function restaurantes({ restaurantesSQL, filtrosSQL }) {
     /* ADAPTAR EL PAGINADO A LA MANERA DE RENDERIZAR */
-    console.log(restaurantesSQL.length);
+    console.log(filtrosSQL);
     const Restaurantes = restaurantesSQL;
     //Restaurantes
     const [restaurantes, setAlojamientos] = useState(Restaurantes);
@@ -115,9 +114,13 @@ export const getServerSideProps = async () => {
         "http://localhost:3000/api/restaurantes"
     );
 
+    /* const { data: filtrosSQL } = await axios.get(
+        "http://localhost:3000/api/restaurantes/filtros"
+    ); */
+
     return {
         props: {
-            restaurantesSQL,
+            restaurantesSQL
         },
     };
 };
