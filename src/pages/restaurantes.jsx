@@ -5,15 +5,18 @@ import { useState, useEffect } from "react";
 import CardRest from "../components/restaurantes/CardRest";
 import PaginationTouch from "../components/Pagination";
 import Col from 'react-bootstrap/Col';
+import helpers from '../helpers'
 
 export default function restaurantes({ restaurantesSQL, filtrosSQL }) {
-    /* ADAPTAR EL PAGINADO A LA MANERA DE RENDERIZAR */
-    console.log(filtrosSQL);
+    //Helpers
+    const { htmlParse } = helpers;
+    /* Datos que devuelven las consultas a la base de datos */
+    const { localidades, categorias } = filtrosSQL;
     const Restaurantes = restaurantesSQL;
     //Restaurantes
     const [restaurantes, setAlojamientos] = useState(Restaurantes);
     const [reload, setReload] = useState(true);
-    const [filters, setfilters] = useState({ categoria: "", estrellas: "", localidad: "" });
+    const [filters, setfilters] = useState({ categoria: "", localidad: "" });
     //Pagination
     const [currentPage, setCurrentPage] = useState(1);
     const [perPage] = useState(16);
@@ -70,18 +73,18 @@ export default function restaurantes({ restaurantesSQL, filtrosSQL }) {
                         <Form.Select size="lg" onChange={handleSelect} name="categoria">
                             <option value="">Seleccione una categoria</option>
                             <option value="">Todas</option>
-                            <option value="restaurantes">Restaurantes</option>
-                            <option value="bar">Bar</option>
-                            <option value="cafeterias">Cafeterias</option>
+                            {categorias.map(categoria => (
+                                <option value={categoria}>{htmlParse(categoria)}</option>
+                            ))}
                         </Form.Select>
                     </div>
                     <div>
                         <Form.Select size="lg" onChange={handleSelect} name="localidad">
                             <option value="">Seleccione una localidad</option>
                             <option value="">Todas</option>
-                            <option value="san miguel de tucuman">San miguel de tucuman</option>
-                            <option value="simoca">Simoca</option>
-                            <option value="monteros">Monteros</option>
+                            {localidades.map(localidad => (
+                                <option value={localidad}>{localidad}</option>
+                            ))}
                         </Form.Select>
                     </div>
                 </div>
@@ -114,13 +117,13 @@ export const getServerSideProps = async () => {
         "http://localhost:3000/api/restaurantes"
     );
 
-    /* const { data: filtrosSQL } = await axios.get(
+    const { data: filtrosSQL } = await axios.get(
         "http://localhost:3000/api/restaurantes/filtros"
-    ); */
+    );
 
     return {
         props: {
-            restaurantesSQL
+            restaurantesSQL, filtrosSQL
         },
     };
 };

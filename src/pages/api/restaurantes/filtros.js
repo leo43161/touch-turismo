@@ -45,7 +45,6 @@ const getRestFiltros = async (req, res) => {
         const resultLoc = await pool.query(queryGetLocalidades);
         const localidades = resultLoc.map(value => value.nombre);
         const categorias = resultCat.map(value => value.nombre);
-        console.log(categorias);
         return res.status(200).json({ localidades, categorias });
     } catch (error) {
         return res.status(500).json({ error });
