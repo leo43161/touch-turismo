@@ -17,12 +17,12 @@ export default function agencias() {
     return (
         <div>
             <HeaderSecc title="agencias" icon="agen" color="#DE9520"></HeaderSecc>
-            <main className="container articulos-list mb-5 mt-4">
+            <main className="container mb-5 mt-4">
                 <div className="text-center">
                     <h2 className="text-agen">AGENCIAS DE VIAJES - MODALIDAD TURISMO RECEPTIVO</h2>
                     <h2>RESOLUCION Nº 1344/9-(EATT)</h2>
                 </div>
-                <div className="mt-3">
+                <div className="mt-3 articulos-list px-2">
                     <div className="row row-cols-1 row-cols-md-4 g-3">
                         {agencias.map((value, index) =>
                         (<Col key={index}>

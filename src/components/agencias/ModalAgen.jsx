@@ -42,7 +42,7 @@ export default function ModalAgen({ show, handleClose, modal }) {
                     </div>
                     <div className="d-flex flex-column align-items-center col-6 py-3">
                         <h4 className="text-agen mb-3">Descarga el contacto en tu celular</h4>
-                        <div className="col-8">
+                        <div className="col-8 d-flex justify-content-center">
                             <img src={"img/agencias/" + qr} className="img-fluid" alt="" />
                         </div>
                     </div>

@@ -77,7 +77,8 @@ body {
 
 .articulos-list {
     height: 1100px;
-    overflow: hidden;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .z-100 {
@@ -191,27 +192,33 @@ body {
 
 /* Estilos de colores generales para el paginator */
 
-.pagination-aloj a, .pagination-aloj a:hover{
+.pagination-aloj a,
+.pagination-aloj a:hover {
     color: var(--aloj-color);
 }
 
-.pagination-trans a, .pagination-trans a:hover{
+.pagination-trans a,
+.pagination-trans a:hover {
     color: var(--trans-color);
 }
 
-.pagination-rest a, .pagination-rest a:hover{
+.pagination-rest a,
+.pagination-rest a:hover {
     color: var(--rest-color);
 }
 
-.pagination-agen a, .pagination-agen a:hover{
+.pagination-agen a,
+.pagination-agen a:hover {
     color: var(--agen-color);
 }
 
-.pagination-acti a, .pagination-acti a:hover{
+.pagination-acti a,
+.pagination-acti a:hover {
     color: var(--acti-color);
 }
 
-.pagination-mapas a, .pagination-mapas a:hover{
+.pagination-mapas a,
+.pagination-mapas a:hover {
     color: var(--mapas-color);
 }
 
