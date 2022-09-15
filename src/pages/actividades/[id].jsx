@@ -1,22 +1,16 @@
-import { useRouter } from 'next/router'
 import HeaderSecc from "../../components/HeaderSecc";
-import Agencias from "../../data/Agencias";
 import { useState } from "react";
-import CardAgen from "../../components/agencias/CardAgen";
+import axios from "axios";
+import CardPrest from "../../components/actividades/CardPrest";
 import Col from 'react-bootstrap/Col';
 import ModalAgen from "../../components/agencias/ModalAgen";
 
-export default function actividad() {
-    const router = useRouter()
-    const { id } = router.query
+export default function actividad({ prestadoresSQL }) {
     //Modal
     const [show, setShow] = useState(false);
     const [modal, setModal] = useState({});
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
-    //Agencias
-    const [agencias] = useState(Agencias);
-
     return (
         <div>
             <HeaderSecc title="actividades" icon="act" color="#A0BF37"></HeaderSecc>
@@ -32,9 +26,9 @@ export default function actividad() {
                 </div>
                 <div className="mt-3 articulos-list px-2">
                     <div className="row row-cols-1 row-cols-md-4 g-3">
-                        {agencias.map((value, index) =>
+                        {prestadoresSQL.map((value, index) =>
                         (<Col key={index}>
-                            <CardAgen agencia={value} setModal={setModal} handleShow={handleShow}></CardAgen>
+                            <CardPrest prestador={value} setModal={setModal} handleShow={handleShow}></CardPrest>
                         </Col>)
                         )}
                     </div>
@@ -44,3 +38,16 @@ export default function actividad() {
         </div>
     )
 }
+
+export const getServerSideProps = async ({ query }) => {
+    const { id } = query;
+    const { data: prestadoresSQL } = await axios.get(
+        "http://localhost:3000/api/actividades/" + id
+    );
+
+    return {
+        props: {
+            prestadoresSQL
+        },
+    };
+};
