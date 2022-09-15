@@ -26,6 +26,9 @@ body {
 .bg-color-2 {
     background-color: var(--secondary-bg-color);
 }
+.bg-color-3 {
+    background-color: var(--secondary-text-color);
+}
 
 /* Estilos generales de texto */
 

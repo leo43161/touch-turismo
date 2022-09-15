@@ -1,6 +1,5 @@
 import { pool } from "../../../config/db";
-const queryGetAct = `SELECT * FROM actividades
-WHERE estado = 1`;
+const queryGetAct = `SELECT Idactividades as 'idAct', Nombre as 'nombre', boton, imagen FROM actividades where estado=1`;
 
 export default async function handler(req, res) {
     switch (req.method) {
