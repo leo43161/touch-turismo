@@ -1,10 +1,12 @@
 import axios from 'axios';
+import { useRouter } from 'next/router'
 import HeaderSecc from "../../components/HeaderSecc";
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import CardAct from '../../components/actividades/CardAct';
 
 export default function actividades({ actividades }) {
+    const router = useRouter()
     return (
         <div>
             <HeaderSecc title="actividades" icon="act" color="#A0BF37"></HeaderSecc>
@@ -13,7 +15,7 @@ export default function actividades({ actividades }) {
                     <h1>RUTAS</h1>
                 </div>
                 <div className="container d-flex flex-column">
-                    <Card className="col mb-3 shadow-sm">
+                    <Card className="col mb-3 shadow-sm" onClick={() => router.push("/actividades/rutavino")}>
                         <Card.Body className="p-0 d-flex">
                             <div className="col-7 d-flex align-items-center">
                                 <div className="rounded-start h-100" style={{ width: '23px', backgroundColor: '#701B46' }}>
