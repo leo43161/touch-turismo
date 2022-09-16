@@ -1,8 +1,10 @@
 import React from 'react';
+import { useRouter } from 'next/router'
 import { FaHotel, FaBusAlt, FaUtensils, FaBriefcase, FaClipboardList, FaMap, FaExclamationCircle, FaReply } from "react-icons/fa";
 
 
 export default function HeaderSecc({ icon, title, color }) {
+    const router = useRouter()
     const Icons = {
         aloj: FaHotel,
         trans: FaBusAlt,
@@ -22,12 +24,12 @@ export default function HeaderSecc({ icon, title, color }) {
                     </div>
                     <h1 className="fw-bold text-uppercase ms-4 mb-0">{title}</h1>
                 </div>
-                <a href="/" className="d-flex align-items-center text-decoration-none" style={{ color: color }}>
+                <div onClick={() => router.back()} className="d-flex align-items-center text-decoration-none" style={{ color: color }}>
                     <div className="text-white rounded py-1 px-3 d-flex align-items-center flex-column">
                         <FaReply className="icon-size-3"></FaReply>
                         <span style={{ fontSize: "20px" }}>Regresar</span>
                     </div>
-                </a>
+                </div>
             </div>
         </header>
     )

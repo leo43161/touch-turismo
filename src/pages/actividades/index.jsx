@@ -1,19 +1,10 @@
 import axios from 'axios';
 import HeaderSecc from "../../components/HeaderSecc";
-import { useState } from "react";
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-import ModalAgen from "../../components/agencias/ModalAgen";
 import CardAct from '../../components/actividades/CardAct';
 
 export default function actividades({ actividades }) {
-    //Modal
-    const [show, setShow] = useState(false);
-    const [modal, setModal] = useState({});
-    const handleShow = () => setShow(true);
-    const handleClose = () => setShow(false);
-    //Agencias
-
     return (
         <div>
             <HeaderSecc title="actividades" icon="act" color="#A0BF37"></HeaderSecc>
@@ -62,7 +53,6 @@ export default function actividades({ actividades }) {
                     </div>
                 </div>
             </main>
-            <ModalAgen show={show} handleClose={handleClose} modal={modal}></ModalAgen>
         </div>
     )
 }

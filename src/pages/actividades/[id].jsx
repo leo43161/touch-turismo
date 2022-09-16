@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col';
 import ModalPresta from "../../components/actividades/ModalPresta";
 
 export default function actividad({ prestadoresSQL }) {
+    const { prestadores, actividad } = prestadoresSQL;
     //Modal
     const [show, setShow] = useState(false);
     const [modal, setModal] = useState({});
@@ -15,10 +16,10 @@ export default function actividad({ prestadoresSQL }) {
         <div>
             <HeaderSecc title="actividades" icon="act" color="#A0BF37"></HeaderSecc>
             <div className="d-flex justify-content-center py-4 bg-color-3">
-                <h2 className="mb-0 text-white">TREKKING</h2>
+                <h2 className="mb-0 text-white">{actividad.Nombre}</h2>
             </div>
             <div className='text-center bg-color-1'>
-                <img className="img-fluid" src="/img/actividades/ba_kayak.jpg" alt="" />
+                <img className="img-fluid" src={"/img/actividades/" + actividad.imagen} alt="" />
             </div>
             <main className="container mb-5 mt-4">
                 <div className="secondary-text">
@@ -26,7 +27,7 @@ export default function actividad({ prestadoresSQL }) {
                 </div>
                 <div className="mt-3 articulos-list px-2">
                     <div className="row row-cols-1 row-cols-md-4 g-3">
-                        {prestadoresSQL.map((value, index) =>
+                        {prestadores.map((value, index) =>
                         (<Col key={index}>
                             <CardPrest prestador={value} setModal={setModal} handleShow={handleShow}></CardPrest>
                         </Col>)

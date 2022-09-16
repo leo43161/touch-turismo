@@ -9,6 +9,7 @@ INNER JOIN prestadores AS pres ON presta.Idprestadores = pres.Idprestadores
 
 WHERE act.Idactividades=${id} AND pres.Estado=1
 `;
+const queryGetActiv = (id) => `SELECT Nombre, contenido, imagen FROM actividades where Idactividades=${id}`;
 
 export default async function handler(req, res) {
     switch (req.method) {
@@ -24,8 +25,9 @@ export default async function handler(req, res) {
 const getPrestadores = async (req, res) => {
     const { id } = req.query
     try {
-        const results = await pool.query(queryGetPrest(id));
-        return res.status(200).json(results);
+        const resultsPrest = await pool.query(queryGetPrest(id));
+        const resultsActiv = await pool.query(queryGetActiv(id));
+        return res.status(200).json({ prestadores: resultsPrest, actividad: resultsActiv[0] });
     } catch (error) {
         return res.status(500).json({ error });
     }
