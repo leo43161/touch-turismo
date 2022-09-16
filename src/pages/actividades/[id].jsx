@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import CardPrest from "../../components/actividades/CardPrest";
 import Col from 'react-bootstrap/Col';
-import ModalAgen from "../../components/agencias/ModalAgen";
+import ModalPresta from "../../components/actividades/ModalPresta";
 
 export default function actividad({ prestadoresSQL }) {
     //Modal
@@ -34,7 +34,7 @@ export default function actividad({ prestadoresSQL }) {
                     </div>
                 </div>
             </main>
-            <ModalAgen show={show} handleClose={handleClose} modal={modal}></ModalAgen>
+            <ModalPresta show={show} handleClose={handleClose} modal={modal}></ModalPresta>
         </div>
     )
 }

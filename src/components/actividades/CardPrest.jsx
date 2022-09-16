@@ -2,6 +2,7 @@ import { FaPhoneAlt } from "react-icons/fa";
 
 
 export default function CardPrest({ prestador, handleShow, setModal }) {
+    console.log(prestador);
     const { Nombre, Telefono } = prestador;
     const handleModal = () => {
         handleShow()
