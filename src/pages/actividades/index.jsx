@@ -29,7 +29,7 @@ export default function actividades({ actividades }) {
                             </div>
                         </Card.Body>
                     </Card>
-                    <Card className="col mb-3 shadow-sm">
+                    <Card className="col mb-3 shadow-sm" onClick={() => router.push("/actividades/artesanoruta")}>
                         <Card.Body className="p-0 d-flex">
                             <div className="col-7 d-flex align-items-center">
                                 <div className="rounded-start h-100" style={{ width: '23px', backgroundColor: '#6E1415' }}>
