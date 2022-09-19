@@ -8,7 +8,7 @@ export default function ModalAgen({ show, handleClose, modal }) {
     return (
         <Modal className="modal-center" show={show} onHide={handleClose} size="lg" >
             <Modal.Header className="text-center flex-column">
-                <h3 className="modal-title text-agen">{Nombre}</h3>
+                <h3 className="modal-title text-acti">{Nombre}</h3>
             </Modal.Header>
             <Modal.Body>
                 <div className="d-flex">
@@ -34,7 +34,7 @@ export default function ModalAgen({ show, handleClose, modal }) {
 
                     </div>
                     <div className="d-flex flex-column align-items-center col-6 py-3">
-                        <h4 className="text-agen mb-3">Descarga el contacto en tu celular</h4>
+                        <h4 className="text-acti mb-3">Descarga el contacto en tu celular</h4>
                         <div className="col-8 d-flex justify-content-center">
                             <img src={"/img/actividades/qr/prestadores" + Idprestadores + ".png"} className="img-fluid" alt="" />
                         </div>
