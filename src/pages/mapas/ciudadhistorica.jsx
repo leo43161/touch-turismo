@@ -4,7 +4,7 @@ import NavMaps from "../../components/mapas/NavMaps";
 export default function ciudadhistorica() {
     return (
         <div style={{ backgroundColor: "#ABA693" }}>
-            <HeaderSecc title="Mapas" icon="map" color="#E51E21"></HeaderSecc>
+            <HeaderSecc title="Mapas" icon="map" color="#E51E21" home={true} url={"/mapas"}></HeaderSecc>
             <div className="text-center pt-3 text-black d-flex px-4">
                 <div className="py-2 px-3" style={{ backgroundColor: "#0088BA" }}>
                     <h2 className="mb-0 text-white">CIRCUITO CIUDAD HISTORICA</h2>

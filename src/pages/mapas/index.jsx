@@ -4,7 +4,7 @@ import NavMaps from "../../components/mapas/NavMaps";
 export default function Mapas() {
     return (
         <div>
-            <HeaderSecc title="Mapas" icon="map" color="#E51E21"></HeaderSecc>
+            <HeaderSecc title="Mapas" icon="map" color="#E51E21" url={"/"}></HeaderSecc>
             <div className="text-center py-3 text-black border-bottom" style={{ backgroundColor: "#ABA693" }}>
                 <h1 className="mb-0 fw-bold">Recorré los 5 circuitos que tenemos para vos</h1>
             </div>
