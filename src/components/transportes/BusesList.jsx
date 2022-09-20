@@ -49,7 +49,7 @@ export default function BusesLists({ busesMatch, setRoute, setParadas }) {
             destino
           </h1>
         </div>
-        <div className="px-2">
+        <div className="px-2 border overflow-auto pt-3" style={{ height: "32vh" }}>
           {_buses.map((value, index) => (
             <div className="col" key={index}>
               <BusList bus={value} busActive={busActive} writeTravel={writeTravel}></BusList>
