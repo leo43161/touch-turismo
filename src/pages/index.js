@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Head from 'next/head'
 import HomeEventoCard from '../components/HomeEventoCard';
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
@@ -33,9 +34,11 @@ export default function Home({ eventos = [] }) {
       <header>
         <div className="px-5 py-4 bg-color-2 text-light d-flex justify-content-between">
           <h1 className="fw-bold">CONOCÉ NUESTROS ULTIMOS EVENTOS</h1>
-          <a className="btn-touch bg-color-1 d-flex text-light align-items-center justify-content-center col-2 rounded-0 text-decoration-none">
-            Ver Todos
-          </a>
+          <Link href={"/eventos"}>
+            <div className="btn-touch bg-color-1 d-flex text-light align-items-center justify-content-center col-2 rounded-0 text-decoration-none">
+              Ver Todos
+            </div>
+          </Link>
         </div>
         <div>
           <Carousel className="d-flex carousel-home"
@@ -106,7 +109,9 @@ export default function Home({ eventos = [] }) {
 
 export const getServerSideProps = async () => {
   const { data: eventos } = await axios.get(
-    "http://localhost:3000/api/eventos"
+    "http://localhost:3000/api/eventos", {
+    params: { limit: 5 }
+  }
   );
 
   return {

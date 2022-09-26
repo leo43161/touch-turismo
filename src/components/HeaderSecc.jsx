@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router'
-import { FaHotel, FaBusAlt, FaUtensils, FaBriefcase, FaClipboardList, FaMap, FaExclamationCircle, FaReply, FaHome } from "react-icons/fa";
+import { FaHotel, FaBusAlt, FaUtensils, FaBriefcase, FaClipboardList, FaMap, FaExclamationCircle, FaReply, FaHome, FaTicketAlt } from "react-icons/fa";
 
 
 export default function HeaderSecc({ icon, title, color, home, url }) {
@@ -12,6 +12,7 @@ export default function HeaderSecc({ icon, title, color, home, url }) {
         agen: FaBriefcase,
         act: FaClipboardList,
         map: FaMap,
+        event: FaTicketAlt,
         err: FaExclamationCircle
     }
     const Icon = Icons[icon] ? Icons[icon] : Icons.err;
