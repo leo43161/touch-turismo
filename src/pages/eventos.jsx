@@ -13,30 +13,31 @@ export default function eventos() {
     //Eventos
     const [eventos, setEventos] = useState([]);
     const [reload, setReload] = useState(true);
-    const [filters, setfilters] = useState({ hoy: true, mañana: false, eventos: false });
+    const [filters, setfilters] = useState("hoy");
     //Pagination
     const [currentPage, setCurrentPage] = useState(1);
     const [perPage] = useState(2);
     const [total, setTotal] = useState([]);
-    const handleSelect = () => {
-
+    const handleSelect = (e) => {
+        const value = e.currentTarget.value;
+        setfilters(value);
+        setReload(true);
     }
 
     useEffect(() => {
         if (reload) {
             getEventos();
-            console.log(eventos);
             setReload(false);
         }
     }, [reload, setEventos])
 
     const getEventos = async () => {
+        setEventos([]);
         const { data: eventos } = await axios.get(
             "http://localhost:3000/api/eventos", {
-            params: { limit: 5, filters }
+            params: { filters }
         }
         );
-        console.log(eventos);
         setEventos(eventos);
     }
 
@@ -47,35 +48,38 @@ export default function eventos() {
                 <div className="d-flex justify-content-around align-items-center bg-color-1 p-2 rounded">
                     <h2 className="m-0 text-white">Filtros:</h2>
                     <ToggleButton
+                        id="hoy"
                         size="lg"
                         name="hoy"
                         type="checkbox"
                         variant="outline-light"
-                        checked={true}
+                        checked={filters == "hoy"}
                         value="hoy"
-                        onChange={(e) => { }}
+                        onChange={handleSelect}
                     >
                         Eventos para Hoy
                     </ToggleButton>
                     <ToggleButton
+                        id="mañana"
                         size="lg"
                         name="mañana"
                         type="checkbox"
                         variant="outline-light"
-                        checked={false}
-                        value="1"
-                        onChange={(e) => { }}
+                        checked={filters == "mañana"}
+                        value="mañana"
+                        onChange={handleSelect}
                     >
                         Eventos para Mañana
                     </ToggleButton>
                     <ToggleButton
+                        id="todos"
                         size="lg"
                         name="eventos"
                         type="checkbox"
                         variant="outline-light"
-                        checked={false}
-                        value="1"
-                        onChange={(e) => { }}
+                        checked={filters == "todos"}
+                        value="todos"
+                        onChange={handleSelect}
                     >
                         Todos los eventos
                     </ToggleButton>
@@ -89,21 +93,7 @@ export default function eventos() {
                         )}
                     </div>
                 </div>
-            </main>
-        </div>
+            </main >
+        </div >
     )
 }
-
-export const getServerSideProps = async () => {
-    const { data: eventos } = await axios.get(
-        "http://localhost:3000/api/eventos", {
-        params: { limit: 5 }
-    }
-    );
-
-    return {
-        props: {
-            eventos,
-        },
-    };
-};

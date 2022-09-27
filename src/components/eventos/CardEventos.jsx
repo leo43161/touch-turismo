@@ -5,7 +5,6 @@ import { FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa";
 
 export default function CardEventos({ handleShow, alojamiento }) {
     const { archivo, titulo, contenido, direccion, fechafin, fechainicio, nombre } = alojamiento;
-    let _estrellas = [];
     const { htmlParse, dateConverter } = helpers;
     return (
         <div className="col-12 card-aloj border rounded shadow-sm border-aloj mb-3" style={{ overflow: 'hidden' }} onClick={handleShow}>
@@ -17,7 +16,7 @@ export default function CardEventos({ handleShow, alojamiento }) {
                     <div className="d-flex justify-content-between">
                         <h2 className="primary-text bold-text mb-0">{titulo}</h2>
                     </div>
-                    <div>
+                    <div className="my-2">
                         <h5 className="secondary-text">
                             <FaMapMarkerAlt className="secondary-text me-2"></FaMapMarkerAlt>
                             {direccion + " - " + nombre}
@@ -28,7 +27,9 @@ export default function CardEventos({ handleShow, alojamiento }) {
                                 {dateConverter(fechainicio)} - {dateConverter(fechafin)}
                             </h5>
                         </div>
-                        <h4>
+                    </div>
+                    <div>
+                        <h4 className="mb-0">
                             {htmlParse(contenido)}
                         </h4>
                     </div>
