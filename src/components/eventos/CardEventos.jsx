@@ -3,11 +3,15 @@ import helpers from '../../helpers'
 import { FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa";
 
 
-export default function CardEventos({ handleShow, alojamiento }) {
-    const { archivo, titulo, contenido, direccion, fechafin, fechainicio, nombre } = alojamiento;
+export default function CardEventos({ evento, setModal, handleShow }) {
+    const handleModal = () =>{
+        handleShow()
+        setModal(evento)
+    }
+    const { archivo, titulo, contenido, direccion, fechafin, fechainicio, nombre } = evento;
     const { htmlParse, dateConverter } = helpers;
     return (
-        <div className="col-12 card-aloj border rounded shadow-sm border-aloj mb-3" style={{ overflow: 'hidden' }} onClick={handleShow}>
+        <div className="col-12 card-aloj border rounded shadow-sm border-aloj mb-3" style={{ overflow: 'hidden' }} onClick={handleModal}>
             <div className="d-flex align-items-center aloj-slider">
                 <div className="aloj-card-img card-img-top d-flex h-100">
                     <img src={process.env.URL + 'carga/image/' + archivo} className="w-100" alt="..." />

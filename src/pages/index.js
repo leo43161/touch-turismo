@@ -16,7 +16,9 @@ export default function Home({ eventos = [] }) {
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
   const listarEvents = () => {
-    if (eventos.length === 0) return <h1>No se encontraron eventos</h1>;
+    if (eventos.length === 0) return (<div className="d-flex justify-content-center align-items-center" style={{ height: "300px" }}>
+        <h1>No hay eventos durante la semana</h1>
+      </div>);
     return eventos.map((evento, index) => (
       <Carousel.Item key={index}>
         <HomeEventoCard evento={evento} setModal={setModal} handleShow={handleShow} />

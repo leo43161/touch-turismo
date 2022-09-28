@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import HeaderSecc from '../components/HeaderSecc'
 import ToggleButton from "react-bootstrap/ToggleButton";
 import CardEventos from '../components/eventos/CardEventos';
+import ModalEvento from '../components/eventos/ModalEvento';
 
 export default function eventos() {
     //Modal
@@ -13,7 +14,7 @@ export default function eventos() {
     //Eventos
     const [eventos, setEventos] = useState([]);
     const [reload, setReload] = useState(true);
-    const [filters, setfilters] = useState("hoy");
+    const [filters, setfilters] = useState("todos");
     //Pagination
     const [currentPage, setCurrentPage] = useState(1);
     const [perPage] = useState(2);
@@ -88,12 +89,13 @@ export default function eventos() {
                     <div className="d-flex flex-column">
                         {eventos.map((value, index) =>
                         (<div key={index}>
-                            <CardEventos setModal={setModal} alojamiento={value} handleShow={handleShow}></CardEventos>
+                            <CardEventos setModal={setModal} evento={value} handleShow={handleShow}></CardEventos>
                         </div>)
                         )}
                     </div>
                 </div>
-            </main >
-        </div >
+            </main>
+            <ModalEvento show={show} handleClose={handleClose} modal={modal}></ModalEvento>
+        </div>
     )
 }
