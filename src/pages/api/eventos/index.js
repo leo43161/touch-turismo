@@ -8,8 +8,6 @@ LEFT JOIN localidades AS lol ON datcon.localidades_id=lol.id
 ${filter ? filter : "WHERE(fechainicio >= CURDATE() OR fechafin >= CURDATE()) AND eventos.estado = 1"} 
 ORDER BY fechainicio ASC ${limit ? "LIMIT " + limit : ""}`;
 
-/////////////////////Falta la query de los eventos de mañana/////////////////////////
-
 export default async function handler(req, res) {
     switch (req.method) {
         case "GET":
