@@ -4,6 +4,7 @@ import HeaderSecc from '../components/HeaderSecc'
 import ToggleButton from "react-bootstrap/ToggleButton";
 import CardEventos from '../components/eventos/CardEventos';
 import ModalEvento from '../components/eventos/ModalEvento';
+import PaginationTouch from "../components/Pagination";
 
 export default function eventos() {
     //Modal
@@ -19,6 +20,19 @@ export default function eventos() {
     const [currentPage, setCurrentPage] = useState(1);
     const [perPage] = useState(2);
     const [total, setTotal] = useState([]);
+
+    const paginate = pageNumber => {
+        setCurrentPage(pageNumber);
+        setReload(true);
+    };
+
+    const handlePagination = (_eventos) => {
+        const indexLast = currentPage * perPage;
+        const indexFirst = indexLast - perPage;
+        const currentPosts = _eventos.slice(indexFirst, indexLast);
+        return currentPosts;
+    };
+
     const handleSelect = (e) => {
         const value = e.currentTarget.value;
         setfilters(value);
@@ -39,7 +53,9 @@ export default function eventos() {
             params: { filters }
         }
         );
-        setEventos(eventos);
+        const _eventos = handlePagination(eventos);
+        setEventos(_eventos);
+        setTotal(eventos.length);
     }
 
     return (
@@ -95,6 +111,9 @@ export default function eventos() {
                     </div>
                 </div>
             </main>
+            <div className="d-flex justify-content-center">
+                <PaginationTouch total={total} paginate={paginate} perPages={perPage} page={currentPage} type="aloj"></PaginationTouch>
+            </div>
             <ModalEvento show={show} handleClose={handleClose} modal={modal}></ModalEvento>
         </div>
     )
