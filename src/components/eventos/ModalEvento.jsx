@@ -35,7 +35,7 @@ export default function ModalEvento({ show, handleClose, modal }) {
                                 {htmlParse(contenido)}
                             </h3>
                             <h4 className="text-center">
-                                {copete}
+                                {htmlParse(copete)}
                             </h4>
                         </div>
                     </div>

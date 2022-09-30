@@ -26,11 +26,29 @@ body {
 .bg-color-2 {
     background-color: var(--secondary-bg-color);
 }
+
 .bg-color-3 {
     background-color: var(--secondary-text-color);
 }
 
 /* Estilos generales de texto */
+
+.truncate-text-2 {
+    color: var(--main-text-color);
+}
+
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
 
 .primary-text {
     color: var(--main-text-color);

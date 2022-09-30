@@ -4,7 +4,7 @@ import { FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa";
 
 
 export default function CardEventos({ evento, setModal, handleShow }) {
-    const handleModal = () =>{
+    const handleModal = () => {
         handleShow()
         setModal(evento)
     }
@@ -16,7 +16,7 @@ export default function CardEventos({ evento, setModal, handleShow }) {
                 <div className="aloj-card-img card-img-top d-flex h-100">
                     <img src={process.env.URL + 'carga/image/' + archivo} className="w-100" alt="..." />
                 </div>
-                <div className="col-9 px-4 py-3 d-flex flex-column justify-content-around h-100">
+                <div className="col-9 px-4 py-4 d-flex flex-column justify-content-around h-100">
                     <div className="d-flex justify-content-between">
                         <h2 className="primary-text bold-text mb-0">{titulo}</h2>
                     </div>
@@ -33,7 +33,7 @@ export default function CardEventos({ evento, setModal, handleShow }) {
                         </div>
                     </div>
                     <div>
-                        <h4 className="mb-0">
+                        <h4 className="mb-0 line-clamp-2" style={{ maxHeight: '100px' }}>
                             {htmlParse(contenido)}
                         </h4>
                     </div>

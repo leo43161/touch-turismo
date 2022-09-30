@@ -33,7 +33,7 @@ export default function HomeEventoCard({ evento, setModal, handleShow }) {
                                 </h5>
                             </div>
                         </div>
-                        <h4 className="text-justify">
+                        <h4 className="text-justify line-clamp-3">
                             {htmlParse(contenido)}
                         </h4>
                     </div>
