@@ -111,7 +111,7 @@ export default function Map({ origen, recorridos, getDistance }) {
         </div>
       </div>
       <div className="card p-3 mb-4 m-3 shadow-sm">
-        <div className="rounded overflow-hidden border" style={{ height: "46vh" }}>
+        <div className="rounded overflow-hidden border" style={{ height: "45vh" }}>
           <MapContainer
             center={origen}
             zoom={13}
