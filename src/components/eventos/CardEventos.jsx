@@ -23,7 +23,7 @@ export default function CardEventos({ evento, setModal, handleShow }) {
                     <div className="my-2">
                         <h5 className="secondary-text">
                             <FaMapMarkerAlt className="secondary-text me-2"></FaMapMarkerAlt>
-                            {direccion + " - " + nombre}
+                            {direccion} {direccion ? "-" : null} {nombre}
                         </h5>
                         <div className="d-flex align-items-center mb-2">
                             <FaCalendarAlt className="fs-4 me-1 secondary-text"></FaCalendarAlt>

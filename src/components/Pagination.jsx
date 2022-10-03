@@ -9,6 +9,7 @@ export default function PaginationTouch({ perPages, total, page, paginate, type 
 
     for (let i = Math.max(2, (page - delta)); i <= Math.min((lastPage - 1), (page + delta)); i += 1) {
         range.push(i);
+        console.log(total)
     }
 
     if ((page - delta) > 2) {
@@ -32,7 +33,7 @@ export default function PaginationTouch({ perPages, total, page, paginate, type 
         pageNumbers.push(i);
     }
 
-    return (
+    return total > 0 ? (
         <Pagination className={"pagination-" + type} size="lg">
             <Pagination.Item
                 onClick={() => paginate(page - 1)}
@@ -53,5 +54,5 @@ export default function PaginationTouch({ perPages, total, page, paginate, type 
                 Siguiente
             </Pagination.Item>
         </Pagination>
-    )
+    ) : (<div></div>)
 }

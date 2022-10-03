@@ -37,6 +37,7 @@ export default function eventos() {
         const value = e.currentTarget.value;
         setfilters(value);
         setReload(true);
+        paginate(1)
     }
 
     useEffect(() => {
@@ -103,11 +104,16 @@ export default function eventos() {
                 </div>
                 <div className="mt-3">
                     <div className="d-flex flex-column">
-                        {eventos.map((value, index) =>
+                        {eventos.length > 0 ? eventos.map((value, index) =>
                         (<div key={index}>
                             <CardEventos setModal={setModal} evento={value} handleShow={handleShow}></CardEventos>
                         </div>)
-                        )}
+                        ) :
+                            <div className="col-12 card-aloj border rounded shadow-sm border-aloj mb-3">
+                                <div className="d-flex justify-content-center py-4">
+                                    <h3>No se cargaron eventos</h3>
+                                </div>
+                            </div>}
                     </div>
                 </div>
             </main>
