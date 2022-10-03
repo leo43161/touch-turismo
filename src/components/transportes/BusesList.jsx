@@ -40,16 +40,13 @@ export default function BusesLists({ busesMatch, setRoute, setParadas }) {
 
   return (
     <div className="p-3">
-      <div className="card mb-3">
+      <div className="card shadow-sm">
         <div className="card-body d-flex justify-content-center align-items-center">
           <h1 className="text-center mb-0 d-flex align-items-center">
-            Arrastre
-            <span className="mx-2"><img src="/img/transportes/icon-destino.png" style={{ width: "40px" }} alt="" /></span>
-            al lugar de
-            destino
+            Colectivos encontrados
           </h1>
         </div>
-        <div className="px-2 border overflow-auto pt-3" style={{ height: "32vh" }}>
+        <div className="px-2 border overflow-auto pt-3" style={{ height: "30vh" }}>
           {_buses.map((value, index) => (
             <div className="col" key={index}>
               <BusList bus={value} busActive={busActive} writeTravel={writeTravel}></BusList>

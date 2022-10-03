@@ -90,47 +90,69 @@ export default function Map({ origen, recorridos, getDistance }) {
   });
   return (
     <>
-      <div className="mb-4" style={{ height: "51vh" }}>
-        <MapContainer
-          center={origen}
-          zoom={13}
-          minZoom={12.8}
-          style={{ height: "100%", width: "100%" }}
-          zoomControl={false}
-          maxBounds={maxBounds}
-        >
-          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-          {/* Marcador del origen */}
-          <Marker
-            position={origen}
-            animate={true}
-            icon={inicioIcon}
+      <div className="d-flex mb-3 justify-content-around">
+        <div className="card px-4 py-3 d-flex align-items-center">
+          <h4 className="text-center mb-0 d-flex align-items-center h-100">
+            <span className="me-2"><img src="/img/transportes/icon-inicio.png" style={{ width: "25px" }} alt="" /></span>
+            Origen
+          </h4>
+        </div>
+        <div className="card px-4 py-3 d-flex align-items-center">
+          <h4 className="text-center mb-0 d-flex align-items-center h-100">
+            <span className="me-2"><img src="/img/transportes/icon-destino.png" style={{ width: "25px" }} alt="" /></span>
+            Destino
+          </h4>
+        </div>
+        <div className="card px-4 py-3 d-flex align-items-center">
+          <h4 className="text-center mb-0 d-flex align-items-center h-100">
+            <span className="me-2"><img src="/img/transportes/bus-stop.png" style={{ width: "25px" }} alt="" /></span>
+            Paradas
+          </h4>
+        </div>
+      </div>
+      <div className="card p-3 mb-4 m-3 shadow-sm">
+        <div className="rounded overflow-hidden border" style={{ height: "46vh" }}>
+          <MapContainer
+            center={origen}
+            zoom={13}
+            minZoom={12.8}
+            style={{ height: "100%", width: "100%" }}
+            zoomControl={false}
+            maxBounds={maxBounds}
           >
-            <Popup offset={[8, 40]} >Usted esta aqui</Popup>
-          </Marker>
-          {/* Marcador del destino */}
-          <Marker
-            eventHandlers={eventHandlers}
-            position={destino}
-            animate={true}
-            draggable={true}
-            icon={destinoIcon}
-            ref={markerRef}
-          >
-          </Marker>
-          {route && <Polyline pathOptions={{ color: '#C4007A' }} positions={route} />}
-          {paradas.map(({ description, latitude, longitude }, index) => (
+            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+            {/* Marcador del origen */}
             <Marker
-              position={[latitude, longitude]}
+              position={origen}
               animate={true}
-              icon={paradaIcon}
-              key={index}
+              icon={inicioIcon}
             >
-              <Popup offset={[8, 7]} >{description}</Popup>
+              <Popup offset={[8, 40]} >Usted esta aqui</Popup>
             </Marker>
-          ))}
-          <ZoomControl zoom position="bottomright"></ZoomControl>
-        </MapContainer>
+            {/* Marcador del destino */}
+            <Marker
+              eventHandlers={eventHandlers}
+              position={destino}
+              animate={true}
+              draggable={true}
+              icon={destinoIcon}
+              ref={markerRef}
+            >
+            </Marker>
+            {route && <Polyline pathOptions={{ color: '#C4007A' }} positions={route} />}
+            {paradas.map(({ description, latitude, longitude }, index) => (
+              <Marker
+                position={[latitude, longitude]}
+                animate={true}
+                icon={paradaIcon}
+                key={index}
+              >
+                <Popup offset={[8, 7]} >{description}</Popup>
+              </Marker>
+            ))}
+            <ZoomControl zoom position="bottomright"></ZoomControl>
+          </MapContainer>
+        </div>
       </div>
       <div>
         <BusesLists busesMatch={busesMatch} setRoute={setRoute} setParadas={setParadas}></BusesLists>

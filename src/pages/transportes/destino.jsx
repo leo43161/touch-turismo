@@ -34,7 +34,7 @@ export default function transportes() {
     return (
         <div>
             <HeaderSecc title="alojamiento" icon="trans" color="#C4007A"></HeaderSecc>
-            <div>
+            <div className="py-3">
                 <MapWithNoSSR origen={origen} recorridos={Recorridos} getDistance={getDistance}></MapWithNoSSR>
             </div>
         </div>

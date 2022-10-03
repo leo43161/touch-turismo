@@ -50,7 +50,7 @@ export default function eventos() {
     const getEventos = async () => {
         setEventos([]);
         const { data: eventos } = await axios.get(
-            "http://localhost:3000/api/eventos", {
+            process.env.LOCALIP + "api/eventos", {
             params: { filters }
         }
         );
