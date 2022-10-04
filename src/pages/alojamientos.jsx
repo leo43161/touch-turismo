@@ -1,3 +1,4 @@
+import axios from 'axios';
 import HeaderSecc from "../components/HeaderSecc";
 import Alojamientos from "../data/Alojamientos";
 import Form from 'react-bootstrap/Form';
@@ -6,7 +7,9 @@ import { useState, useEffect } from "react";
 import ModalAlojamiento from "../components/alojamientos/ModalAlojamiento";
 import PaginationTouch from "../components/Pagination";
 
-export default function alojamientos() {
+export default function alojamientos({ restaurantesSQL, filtrosSQL }) {
+    console.log(filtrosSQL)
+    console.log(restaurantesSQL)
     //Modal
     const [show, setShow] = useState(false);
     const [modal, setModal] = useState({});
@@ -116,3 +119,19 @@ export default function alojamientos() {
         </div>
     )
 }
+
+export const getServerSideProps = async () => {
+    const { data: restaurantesSQL } = await axios.get(
+        "http://localhost:3000/api/restaurantes"
+    );
+
+    const { data: filtrosSQL } = await axios.get(
+        "http://localhost:3000/api/restaurantes/filtros"
+    );
+
+    return {
+        props: {
+            restaurantesSQL, filtrosSQL
+        },
+    };
+};
