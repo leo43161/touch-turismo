@@ -1,11 +1,12 @@
 import { pool } from "../../../config/db";
 const queryGetCategorias = `
 SELECT
+categ.id,
 categ.nombre
 
 FROM hoteles AS hot
 
-LEFT JOIN categorias_restos AS categ ON hot.id=catrest.restos_id
+LEFT JOIN categoria_hoteles AS categ ON hot.categoria_hoteles_id=categ.id
 
 WHERE categ.nombre IS NOT NULL
 GROUP BY categ.nombre
@@ -14,11 +15,12 @@ ORDER BY categ.nombre ASC
 
 const queryGetLocalidades = `
 SELECT
+loc.id,
 loc.nombre
 
-FROM restos AS rest
+FROM hoteles AS hot
 
-LEFT JOIN datos_contactos AS datcon ON datcon.id=rest.datos_contactos_id
+LEFT JOIN datos_contactos AS datcon ON datcon.id=hot.datos_contactos_id
 LEFT JOIN localidades AS loc ON datcon.localidades_id=loc.id
 
 
@@ -42,9 +44,7 @@ const getRestFiltros = async (req, res) => {
     try {
         const resultCat = await pool.query(queryGetCategorias);
         const resultLoc = await pool.query(queryGetLocalidades);
-        const localidades = resultLoc.map(value => value.nombre);
-        const categorias = resultCat.map(value => value.nombre);
-        return res.status(200).json({ localidades, categorias });
+        return res.status(200).json({ localidades: resultLoc, categorias: resultCat });
     } catch (error) {
         return res.status(500).json({ error });
     }

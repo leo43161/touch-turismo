@@ -4,7 +4,7 @@ import Alojamientos from "../data/Alojamientos";
 import Form from 'react-bootstrap/Form';
 import CardAlojamiento from "../components/alojamientos/CardAlojamiento";
 import { useState, useEffect } from "react";
-import ModalAlojamiento from "../components/alojamientos/ModalAlojamiento";
+import ModalAlojamiento from "../components/alojamientos/ModalAloj";
 import PaginationTouch from "../components/Pagination";
 
 export default function alojamientos({ restaurantesSQL, filtrosSQL }) {
@@ -122,11 +122,11 @@ export default function alojamientos({ restaurantesSQL, filtrosSQL }) {
 
 export const getServerSideProps = async () => {
     const { data: restaurantesSQL } = await axios.get(
-        "http://localhost:3000/api/restaurantes"
+        "http://localhost:3000/api/hoteles"
     );
 
     const { data: filtrosSQL } = await axios.get(
-        "http://localhost:3000/api/restaurantes/filtros"
+        "http://localhost:3000/api/hoteles/filtros"
     );
 
     return {

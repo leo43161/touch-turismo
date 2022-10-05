@@ -12,16 +12,19 @@ export default function CardAlojamiento({ handleShow, alojamiento }) {
                 <div className="aloj-card-img card-img-top d-flex h-100">
                     <img src={"/img/alojamientos/" + img} className="w-100" alt="..." />
                 </div>
-                <div className="col-9 px-4 py-3 d-flex flex-column justify-content-around h-100">
-                    <div className="d-flex justify-content-between">
-                        <h2 className="text-aloj bold-text mb-0">{titulo}</h2>
-                        <div className="d-flex text-aloj align-items-center">
-                            {
-                                _estrellas.map(() => (
-                                    <FaStar className="icon-size-5"></FaStar>
-                                ))
-                            }
+                <div className="col-9 px-4 py-3 d-flex flex-column justify-content-between h-100">
+                    <div>
+                        <div className="d-flex justify-content-between pt-1">
+                            <small class="text-muted text-uppercase">Hotel</small>
+                            <div className="d-flex text-aloj align-items-center">
+                                {
+                                    _estrellas.map(() => (
+                                        <FaStar className="icon-size-5"></FaStar>
+                                    ))
+                                }
+                            </div>
                         </div>
+                        <h2 className="text-aloj bold-text mb-0 d-flex align-items-center">{titulo}</h2>
                     </div>
                     <div>
                         <h5 className="secondary-text">

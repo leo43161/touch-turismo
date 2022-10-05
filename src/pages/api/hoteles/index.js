@@ -1,26 +1,31 @@
 import { pool } from "../../../config/db";
-const queryGetRest = `
-SELECT 
-rest.nombre,
+const queryGetHoteles = `
+SELECT
+
+hot.id as 'hotid',
+hot.nombre, hot.estrellas,
 datcon.direccion,
-loc.nombre as 'localidad',
-restcat.nombre as 'categoria'
+datcon.telefono, 
+datcon.mail,
+lol.id,
+datcon.web,
+lol.nombre as 'lolnombre',
+hot.categoria_hoteles_id,
+cat.nombre as 'catnombre',
+hot.archivo,
+hot.galerias_id
 
-FROM restos AS rest
-INNER JOIN datos_contactos AS datcon ON rest.datos_contactos_id=datcon.id
-INNER JOIN localidades AS loc ON datcon.localidades_id=loc.id
+FROM hoteles AS hot 
 
-LEFT JOIN categorias_restos AS catrest ON rest.id=catrest.restos_id 
-LEFT JOIN restos_categorias AS restcat ON catrest.restos_categorias_id=restcat.id
-
-WHERE 1  
-ORDER BY rest.nombre ASC
+INNER JOIN categoria_hoteles AS cat ON hot.categoria_hoteles_id=cat.id
+INNER JOIN datos_contactos AS datcon ON hot.datos_contactos_id=datcon.id
+INNER JOIN localidades AS lol ON datcon.localidades_id=lol.id
 `;
 
 export default async function handler(req, res) {
     switch (req.method) {
         case "GET":
-            return await getRestaurantes(req, res);
+            return await getHoteles(req, res);
         /* case "POST":
             return await saveProduct(req, res); */
         default:
@@ -28,9 +33,9 @@ export default async function handler(req, res) {
     }
 }
 
-const getRestaurantes = async (req, res) => {
+const getHoteles = async (req, res) => {
     try {
-        const results = await pool.query(queryGetRest);
+        const results = await pool.query(queryGetHoteles);
         return res.status(200).json(results);
     } catch (error) {
         return res.status(500).json({ error });

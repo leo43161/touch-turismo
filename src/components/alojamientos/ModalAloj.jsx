@@ -4,7 +4,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import { FaMapMarkerAlt, FaPhoneAlt, FaGlobeAmericas, FaStar, FaDog, FaWifi, FaCarAlt, FaSnowflake, FaMugHot, FaSpa } from "react-icons/fa";
 
 
-export default function ModalAlojamiento({ show, handleClose }) {
+export default function ModalAloj({ show, handleClose }) {
     return (
         <Modal show={show} onHide={handleClose} size="lg">
             <Modal.Header closeButton>
