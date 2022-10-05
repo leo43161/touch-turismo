@@ -9,7 +9,7 @@ import PaginationTouch from "../components/Pagination";
 
 export default function alojamientos({ restaurantesSQL, filtrosSQL }) {
     console.log(filtrosSQL)
-    console.log(restaurantesSQL)
+    console.log(restaurantesSQL[0])
     //Modal
     const [show, setShow] = useState(false);
     const [modal, setModal] = useState({});
@@ -103,7 +103,7 @@ export default function alojamientos({ restaurantesSQL, filtrosSQL }) {
                 </div>
                 <div className="mt-3">
                     <div className="d-flex flex-column">
-                        {alojamientos.map((value, index) =>
+                        {restaurantesSQL.map((value, index) =>
                         (<div key={index}>
                             <CardAlojamiento setModal={setModal} alojamiento={value} handleShow={handleShow}></CardAlojamiento>
                         </div>)

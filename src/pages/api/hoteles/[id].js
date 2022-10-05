@@ -1,15 +1,51 @@
 import { pool } from "../../../config/db";
-const queryGetPrest = (id) => `
-SELECT act.Idactividades, presta.Idprestadores, pres.Nombre, pres.Telefono, pres.Responsable, pres.Direccion, pres.Email, pres.Web, pres.Estado
+const queryGetAloj = (id) => `
+SELECT
+    h.id AS 'hotid',
+    h.nombre,
+    h.estrellas,
+    h.estado,
+    h.archivo,
+    h.booking,
+    h.tripadvisor,
+    h.fcreacion,
+    h.ubicacion,
+    h.descripcion,
+    h.habitaciones,
+    h.categoria_hoteles_id,
+    h.idiomas_id,
+    h.galerias_id,
+    h.datos_contactos_id,
+    categoria_hoteles.nombre AS 'catnombre',
+    datcon.direccion,
+    datcon.telefono,
+    datcon.mail,
+    datcon.web,
+    datcon.latitud,
+    datcon.longitud,
+    lol.nombre AS 'lolnombre'
+FROM hoteles AS h
 
-FROM actividades as act
+INNER JOIN categoria_hoteles ON h.categoria_hoteles_id = categoria_hoteles.id
+INNER JOIN datos_contactos AS datcon ON h.datos_contactos_id = datcon.id
+INNER JOIN localidades AS lol ON datcon.localidades_id = lol.id
 
-INNER JOIN presta AS presta ON act.Idactividades = presta.Idactividades
-INNER JOIN prestadores AS pres ON presta.Idprestadores = pres.Idprestadores
+WHERE h.estado = 1 AND h.id = ${id}
 
-WHERE act.Idactividades=${id} AND pres.Estado=1
+ORDER BY hotid ASC
 `;
-const queryGetActiv = (id) => `SELECT Nombre, contenido, imagen FROM actividades where Idactividades=${id}`;
+const queryGetGaleria = (idGaleria) => `
+SELECT
+    im.archivo,
+    gi.imagen_id,
+    im.id,
+    gi.galeria_id,
+    im.estado
+FROM galeria_imagen AS gi
+
+LEFT JOIN imagenes AS im ON gi.imagen_id = im.id
+
+WHERE gi.galeria_id = ${idGaleria} AND im.estado = 1`;
 
 export default async function handler(req, res) {
     switch (req.method) {
@@ -23,11 +59,11 @@ export default async function handler(req, res) {
 }
 
 const getPrestadores = async (req, res) => {
-    const { id } = req.query
+    const { id, galeria } = req.query
     try {
-        const resultsPrest = await pool.query(queryGetPrest(id));
-        const resultsActiv = await pool.query(queryGetActiv(id));
-        return res.status(200).json({ prestadores: resultsPrest, actividad: resultsActiv[0] });
+        const resultsHotel = await pool.query(queryGetAloj(id));
+        const resultsGaleria = await pool.query(queryGetGaleria(galeria));
+        return res.status(200).json({ hotel: resultsHotel, galeria: resultsGaleria });
     } catch (error) {
         return res.status(500).json({ error });
     }
