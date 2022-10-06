@@ -3,10 +3,10 @@ const queryGetHoteles = `
 SELECT
 
 hot.id as 'hotid',
-hot.nombre, hot.estrellas,
+hot.nombre, 
+hot.estrellas,
 datcon.direccion,
-datcon.telefono, 
-datcon.mail,
+datcon.telefono,
 lol.id,
 datcon.web,
 lol.nombre as 'lolnombre',
@@ -20,6 +20,8 @@ FROM hoteles AS hot
 INNER JOIN categoria_hoteles AS cat ON hot.categoria_hoteles_id=cat.id
 INNER JOIN datos_contactos AS datcon ON hot.datos_contactos_id=datcon.id
 INNER JOIN localidades AS lol ON datcon.localidades_id=lol.id
+
+WHERE hot.estado = 1
 `;
 
 export default async function handler(req, res) {

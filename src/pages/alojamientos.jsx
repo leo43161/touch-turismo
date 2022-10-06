@@ -8,8 +8,7 @@ import ModalAlojamiento from "../components/alojamientos/ModalAloj";
 import PaginationTouch from "../components/Pagination";
 
 export default function alojamientos({ restaurantesSQL, filtrosSQL }) {
-    console.log(filtrosSQL)
-    console.log(restaurantesSQL[0])
+    console.log(restaurantesSQL[2])
     //Modal
     const [show, setShow] = useState(false);
     const [modal, setModal] = useState({});

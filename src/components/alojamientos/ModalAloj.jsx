@@ -1,14 +1,40 @@
+import axios from 'axios';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Carousel from 'react-bootstrap/Carousel';
 import { FaMapMarkerAlt, FaPhoneAlt, FaGlobeAmericas, FaStar, FaDog, FaWifi, FaCarAlt, FaSnowflake, FaMugHot, FaSpa } from "react-icons/fa";
+import { useEffect, useState } from "react";
 
 
-export default function ModalAloj({ show, handleClose }) {
+export default function ModalAloj({ show, handleClose, modal: { id, idGaleria } }) {
+    const [alojamiento, setAlojamiento] = useState(true);
+    const [estrellas, setEstrellas] = useState([]);
+    const [galeria, setGaleria] = useState(null);
+    useEffect(() => {
+        console.log(idGaleria);
+        if (show) {
+            getAlojamiento(id, idGaleria)
+        }
+    }, [show])
+
+    const getAlojamiento = async (id, idGaleria) => {
+        setAlojamiento([]);
+        let _estrellas = [];
+        const { data: alojamiento } = await axios.get(
+            process.env.LOCALIP + "api/hoteles/" + id, {
+            params: { idGaleria }
+        }
+        );
+        for (let index = 0; index < alojamiento.hotel.estrellas; index++) _estrellas.push("");
+        setEstrellas(_estrellas);
+        setAlojamiento(alojamiento.hotel);
+        setGaleria(alojamiento);
+        console.log(alojamiento.hotel)
+    }
     return (
         <Modal show={show} onHide={handleClose} size="lg">
             <Modal.Header closeButton>
-                <h5>Sheraton Tucuman Hotel</h5>
+                <h5>{alojamiento.nombre}</h5>
             </Modal.Header>
             <Modal.Body>
                 <div className="d-flex mb-3">
@@ -17,23 +43,24 @@ export default function ModalAloj({ show, handleClose }) {
                     </div>
                     <div className="col px-4 py-3 d-flex flex-column justify-content-around">
                         <div className="d-flex justify-content-between mb-3">
-                            <h2 className="text-aloj bold-text mb-0">Sheraton Tucuman Hotel</h2>
+                            <h2 className="text-aloj bold-text mb-0">{alojamiento.nombre}</h2>
                             <div className="d-flex text-aloj align-items-center">
-                                <FaStar className="icon-size-5"></FaStar>
-                                <FaStar className="icon-size-5"></FaStar>
-                                <FaStar className="icon-size-5"></FaStar>
-                                <FaStar className="icon-size-5"></FaStar>
-                                <FaStar className="icon-size-5"></FaStar>
+                                {
+                                    estrellas.length > 1 ?
+                                    estrellas.map((value, index) => (
+                                            <FaStar key={index} className="icon-size-5">{value}</FaStar>
+                                        )) : null
+                                }
                             </div>
                         </div>
                         <div>
                             <div className="mb-3">
                                 <h5 className="secondary-text">
                                     <FaMapMarkerAlt className="secondary-text me-2"></FaMapMarkerAlt>
-                                    Av. Soldati y Calle Haití­ - Tucuman</h5>
+                                    {alojamiento.direccion}</h5>
                                 <h5 className="secondary-text">
                                     <FaPhoneAlt className="secondary-text me-2"></FaPhoneAlt>
-                                    <span>(381) 455-4700</span>
+                                    <span>{alojamiento.telefono}</span>
                                 </h5>
                                 <h5 className="secondary-text mb-2">
                                     <FaGlobeAmericas className="secondary-text me-2"></FaGlobeAmericas>

@@ -2,12 +2,16 @@ import React from 'react'
 import { FaMapMarkerAlt, FaPhoneAlt, FaGlobeAmericas, FaStar } from "react-icons/fa";
 
 
-export default function CardAlojamiento({ handleShow, alojamiento }) {
-    const { archivo, nombre, estrellas, direccion, lolnombre, telefono, web, catnombre } = alojamiento;
+export default function CardAlojamiento({ handleShow, alojamiento, setModal }) {
+    const { archivo, nombre, estrellas, direccion, lolnombre, telefono, web, catnombre, hotid, galerias_id } = alojamiento;
     let _estrellas = [];
     for (let index = 0; index < estrellas; index++) _estrellas.push("");
+    const handleAloj = () => {
+        setModal({ id: hotid, idGaleria: galerias_id });
+        handleShow();
+    }
     return (
-        <div className="col-12 card-aloj border rounded shadow-sm border-aloj mb-3" style={{ overflow: 'hidden' }} onClick={handleShow}>
+        <div className="col-12 card-aloj border rounded shadow-sm border-aloj mb-3" style={{ overflow: 'hidden' }} onClick={handleAloj}>
             <div className="d-flex align-items-center aloj-slider">
                 <div className="card-img-top d-flex justify-content-center h-100 col p-2">
                     <img src={process.env.URL + 'carga/image/' + archivo} className="img-fluid border rounded" alt="..." />
@@ -19,8 +23,8 @@ export default function CardAlojamiento({ handleShow, alojamiento }) {
                             <div className="d-flex text-aloj align-items-center">
                                 {
                                     _estrellas.length > 1 ?
-                                        _estrellas.map(() => (
-                                            <FaStar className="icon-size-5"></FaStar>
+                                        _estrellas.map((value, index) => (
+                                            <FaStar key={index} className="icon-size-5">{value}</FaStar>
                                         )) : null
                                 }
                             </div>
