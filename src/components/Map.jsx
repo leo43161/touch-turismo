@@ -30,7 +30,6 @@ export default function Map({ coords, icon }) {
             zoom={13}
             minZoom={12.8}
             style={{ height: "100%", width: "100%" }}
-            maxBounds={maxBounds}
         >
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             {/* Marcador del origen */}

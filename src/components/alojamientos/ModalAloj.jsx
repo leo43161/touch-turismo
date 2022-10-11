@@ -38,7 +38,8 @@ export default function ModalAloj({ show, handleClose, modal: { id, idGaleria } 
         setAlojamiento(alojamiento.hotel);
         setGaleria(alojamiento.galeria);
         setServicios(alojamiento.servicios);
-        setCoords([alojamiento.hotel.latitud, alojamiento.hotel.longitud])
+        setCoords([alojamiento.hotel.latitud, alojamiento.hotel.longitud]);
+        console.log(alojamiento.hotel);
     }
     return (
         <Modal show={show} onHide={handleClose} size="lg">
@@ -92,7 +93,7 @@ export default function ModalAloj({ show, handleClose, modal: { id, idGaleria } 
                         <div>
                             <Carousel className="rounded" style={{ height: "500px", overflow: "hidden" }}>
                                 {galeria.map((value, index) =>
-                                    <Carousel.Item>
+                                    <Carousel.Item key={index}>
                                         <img
                                             className="d-block w-100"
                                             src={`https://www.tucumanturismo.gob.ar/carga/image/${value.archivo}`}
