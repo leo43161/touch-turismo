@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import axios from 'axios';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
@@ -11,6 +12,12 @@ export default function ModalAloj({ show, handleClose, modal: { id, idGaleria } 
     const [estrellas, setEstrellas] = useState([]);
     const [galeria, setGaleria] = useState([]);
     const [servicios, setServicios] = useState([]);
+    const [coords, setCoords] = useState([-26.831011, -65.204603]);
+
+    const MapWithNoSSR = dynamic(() => import("../../components/Map"), {
+        ssr: false
+    });
+
     useEffect(() => {
         console.log(idGaleria);
         if (show) {
@@ -31,7 +38,7 @@ export default function ModalAloj({ show, handleClose, modal: { id, idGaleria } 
         setAlojamiento(alojamiento.hotel);
         setGaleria(alojamiento.galeria);
         setServicios(alojamiento.servicios);
-        console.log(alojamiento)
+        setCoords([alojamiento.hotel.latitud, alojamiento.hotel.longitud])
     }
     return (
         <Modal show={show} onHide={handleClose} size="lg">
@@ -95,20 +102,14 @@ export default function ModalAloj({ show, handleClose, modal: { id, idGaleria } 
                         </div>
                     </div>
                 </div> : null}
-                <div>
-                    <h3 className="mb-3 text-aloj text-center">Mapa</h3>
-                    <iframe
-                        style={{ border: "0", width: "100%" }}
-                        width="600"
-                        height="450"
-                        frameborder="0"
-                        scrolling="no"
-                        marginheight="0"
-                        marginwidth="0"
-                        src={`https://maps.google.com/maps?q=${alojamiento.latitud},${alojamiento.longitud}&hl=es&z=14&amp;output=embed`}
-                    >
-                    </iframe>
-                </div>
+                {alojamiento ?
+                    <div>
+                        <h3 className="mb-3 text-aloj text-center">Mapa</h3>
+                        <div className="rounded overflow-hidden border" style={{ height: "55vh" }}>
+                            <MapWithNoSSR coords={coords} icon="aloj"></MapWithNoSSR>
+                        </div>
+                    </div> : null}
+
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
