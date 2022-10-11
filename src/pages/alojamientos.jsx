@@ -7,19 +7,21 @@ import { useState, useEffect } from "react";
 import ModalAlojamiento from "../components/alojamientos/ModalAloj";
 import PaginationTouch from "../components/Pagination";
 
-export default function alojamientos({ restaurantesSQL, filtrosSQL }) {
+export default function alojamientos({ restaurantesSQL, filtrosSQL: { categorias, localidades } }) {
+    console.log(restaurantesSQL);
+    console.log(categorias);
     //Modal
     const [show, setShow] = useState(false);
     const [modal, setModal] = useState({});
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
     //Alojamientos
-    const [alojamientos, setAlojamientos] = useState(Alojamientos);
+    const [alojamientos, setAlojamientos] = useState(restaurantesSQL);
     const [reload, setReload] = useState(true);
     const [filters, setfilters] = useState({ categoria: "", estrellas: "", localidad: "" });
     //Pagination
     const [currentPage, setCurrentPage] = useState(1);
-    const [perPage] = useState(2);
+    const [perPage] = useState(7);
     const [total, setTotal] = useState(Alojamientos.length);
 
     const paginate = pageNumber => {
@@ -43,7 +45,7 @@ export default function alojamientos({ restaurantesSQL, filtrosSQL }) {
     };
 
     const handleFilter = () => {
-        let _alojamientos = Alojamientos;
+        let _alojamientos = restaurantesSQL;
         for (const key in filters) {
             if (filters[key] !== "") {
                 _alojamientos = _alojamientos.filter((value) => value[key] == filters[key]);
@@ -66,16 +68,14 @@ export default function alojamientos({ restaurantesSQL, filtrosSQL }) {
     return (
         <div>
             <HeaderSecc title="alojamiento" icon="aloj" color="#0089B8"></HeaderSecc>
-            <main className="container articulos-list mb-5 mt-4">
+            <main className="container mb-5 mt-4">
                 <div className="d-flex justify-content-around align-items-center bg-aloj p-2 rounded">
                     <h2 className="m-0 text-white">Filtros:</h2>
                     <div>
-                        <Form.Select size="lg" onChange={handleSelect} name="categoria">
+                        <Form.Select size="lg" onChange={handleSelect} name="categoria_hoteles_id">
                             <option value="">Seleccione una categoria</option>
                             <option value="">Todas</option>
-                            <option value="hotel">Hoteles</option>
-                            <option value="hosteria">Hosterias</option>
-                            <option value="camping">Camping</option>
+                            {categorias.map(({ nombre, id }, index) => <option key={index} value={id}>{nombre}</option>)}
                         </Form.Select>
                     </div>
                     <div>
@@ -90,18 +90,16 @@ export default function alojamientos({ restaurantesSQL, filtrosSQL }) {
                         </Form.Select>
                     </div>
                     <div>
-                        <Form.Select size="lg" onChange={handleSelect} name="localidad">
+                        <Form.Select size="lg" onChange={handleSelect} name="localidad_id">
                             <option value="">Seleccione una localidad</option>
                             <option value="">Todas</option>
-                            <option value="san miguel de tucuman">San miguel de tucuman</option>
-                            <option value="simoca">Simoca</option>
-                            <option value="monteros">Monteros</option>
+                            {localidades.map(({ nombre, id }, index) => <option key={index} value={id}>{nombre}</option>)}
                         </Form.Select>
                     </div>
                 </div>
                 <div className="mt-3">
-                    <div className="d-flex flex-column">
-                        {restaurantesSQL.map((value, index) =>
+                    <div className="d-flex flex-column articulos-list">
+                        {alojamientos.map((value, index) =>
                         (<div key={index}>
                             <CardAlojamiento setModal={setModal} alojamiento={value} handleShow={handleShow}></CardAlojamiento>
                         </div>)
