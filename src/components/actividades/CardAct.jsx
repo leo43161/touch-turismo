@@ -3,7 +3,6 @@ import { useRouter } from 'next/router'
 
 export default function CardAct({ actividad }) {
     const { nombre, imagen, idAct } = actividad;
-    console.log(actividad);
     const router = useRouter()
     return (
         <div className="col" onClick={() => router.push(`/actividades/${idAct}`)}>

@@ -19,7 +19,7 @@ export default function restaurantes({ restaurantesSQL, filtrosSQL }) {
     const [filters, setfilters] = useState({ categoria: "", localidad: "" });
     //Pagination
     const [currentPage, setCurrentPage] = useState(1);
-    const [perPage] = useState(16);
+    const [perPage] = useState(24);
     const [total, setTotal] = useState(Restaurantes.length);
 
     const paginate = pageNumber => {
@@ -73,8 +73,8 @@ export default function restaurantes({ restaurantesSQL, filtrosSQL }) {
                         <Form.Select size="lg" onChange={handleSelect} name="categoria">
                             <option value="">Seleccione una categoria</option>
                             <option value="">Todas</option>
-                            {categorias.map(categoria => (
-                                <option value={categoria}>{htmlParse(categoria)}</option>
+                            {categorias.map((categoria, index) => (
+                                <option key={index} value={categoria}>{htmlParse(categoria)}</option>
                             ))}
                         </Form.Select>
                     </div>
@@ -82,8 +82,8 @@ export default function restaurantes({ restaurantesSQL, filtrosSQL }) {
                         <Form.Select size="lg" onChange={handleSelect} name="localidad">
                             <option value="">Seleccione una localidad</option>
                             <option value="">Todas</option>
-                            {localidades.map(localidad => (
-                                <option value={localidad}>{localidad}</option>
+                            {localidades.map((localidad, index) => (
+                                <option key={index} value={localidad}>{localidad}</option>
                             ))}
                         </Form.Select>
                     </div>

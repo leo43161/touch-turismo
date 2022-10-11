@@ -1,7 +1,6 @@
 import Pagination from 'react-bootstrap/Pagination';
 
 export default function PaginationTouch({ perPages, total, page, paginate, type }) {
-    console.log(total);
     /*  */
     const lastPage = Math.ceil(total / perPages);
     const delta = 2;
@@ -9,7 +8,6 @@ export default function PaginationTouch({ perPages, total, page, paginate, type 
 
     for (let i = Math.max(2, (page - delta)); i <= Math.min((lastPage - 1), (page + delta)); i += 1) {
         range.push(i);
-        console.log(total)
     }
 
     if ((page - delta) > 2) {
@@ -22,8 +20,6 @@ export default function PaginationTouch({ perPages, total, page, paginate, type 
 
     range.unshift(1);
     if (lastPage !== 1) range.push(lastPage);
-
-    console.log(range);
 
     /*  */
 

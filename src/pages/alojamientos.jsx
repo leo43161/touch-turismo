@@ -8,8 +8,6 @@ import ModalAlojamiento from "../components/alojamientos/ModalAloj";
 import PaginationTouch from "../components/Pagination";
 
 export default function alojamientos({ restaurantesSQL, filtrosSQL: { categorias, localidades } }) {
-    console.log(restaurantesSQL);
-    console.log(categorias);
     //Modal
     const [show, setShow] = useState(false);
     const [modal, setModal] = useState({});

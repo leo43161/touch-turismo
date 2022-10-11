@@ -19,7 +19,6 @@ export default function ModalAloj({ show, handleClose, modal: { id, idGaleria } 
     });
 
     useEffect(() => {
-        console.log(idGaleria);
         if (show) {
             getAlojamiento(id, idGaleria)
         }
@@ -39,7 +38,6 @@ export default function ModalAloj({ show, handleClose, modal: { id, idGaleria } 
         setGaleria(alojamiento.galeria);
         setServicios(alojamiento.servicios);
         setCoords([alojamiento.hotel.latitud, alojamiento.hotel.longitud]);
-        console.log(alojamiento.hotel);
     }
     return (
         <Modal show={show} onHide={handleClose} size="lg">
