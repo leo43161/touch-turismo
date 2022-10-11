@@ -19,7 +19,7 @@ export default function CardAlojamiento({ handleShow, alojamiento, setModal }) {
                 <div className="col-9 ps-3 pe-4 py-3 d-flex flex-column justify-content-between h-100">
                     <div>
                         <div className="d-flex justify-content-between pt-1">
-                            <small class="text-muted text-uppercase">{catnombre}</small>
+                            <small className="text-muted text-uppercase">{catnombre}</small>
                             <div className="d-flex text-aloj align-items-center">
                                 {
                                     _estrellas.length > 1 ?

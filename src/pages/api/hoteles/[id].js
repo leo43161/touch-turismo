@@ -45,7 +45,17 @@ FROM galeria_imagen AS gi
 
 LEFT JOIN imagenes AS im ON gi.imagen_id = im.id
 
-WHERE gi.galeria_id = "${169}" AND im.estado = 1`;
+WHERE gi.galeria_id = "${idGaleria}" AND im.estado = 1`;
+
+const queryGetServicios = (idHotel) => `
+SELECT sh.nombre as 'nombre'
+
+FROM hoteles_servicios_hoteles as hsh 
+
+INNER JOIN servicios_hoteles AS sh on hsh.servicios_hoteles_id=sh.id
+left JOIN tipos_servicios as tp on sh.tipos_servicios_id=tp.id
+
+WHERE hsh.hoteles_id=${idHotel}`;
 
 export default async function handler(req, res) {
     switch (req.method) {
@@ -63,7 +73,9 @@ const getPrestadores = async (req, res) => {
     try {
         const resultsHotel = await pool.query(queryGetAloj(id));
         const resultsGaleria = await pool.query(queryGetGaleria(idGaleria));
-        return res.status(200).json({ hotel: resultsHotel[0], galeria: resultsGaleria });
+        const resultsServicios = await pool.query(queryGetServicios(id));
+        const servicios = resultsServicios.map(value => value.nombre);
+        return res.status(200).json({ hotel: resultsHotel[0], galeria: resultsGaleria, servicios });
     } catch (error) {
         return res.status(500).json({ error });
     }
