@@ -5,8 +5,11 @@ import ToggleButton from "react-bootstrap/ToggleButton";
 import CardEventos from '../components/eventos/CardEventos';
 import ModalEvento from '../components/eventos/ModalEvento';
 import PaginationTouch from "../components/Pagination";
+import Loader from '../components/Loader';
 
 export default function eventos() {
+    //Loader
+    const [loader, setLoader] = useState(true)
     //Modal
     const [show, setShow] = useState(false);
     const [modal, setModal] = useState({});
@@ -57,6 +60,26 @@ export default function eventos() {
         const _eventos = handlePagination(eventos);
         setEventos(_eventos);
         setTotal(eventos.length);
+        setLoader(false)
+    }
+
+    const listarEventos = () => {
+        if (loader) return (<div className="col-12 card-aloj border rounded shadow-sm border-aloj mb-3">
+            <div className="d-flex justify-content-center py-4">
+                <Loader></Loader>
+            </div>
+        </div>)
+
+        return eventos.length > 0 ? eventos.map((value, index) =>
+        (<div key={index}>
+            <CardEventos setModal={setModal} evento={value} handleShow={handleShow}></CardEventos>
+        </div>)
+        ) :
+            <div className="col-12 card-aloj border rounded shadow-sm border-aloj mb-3">
+                <div className="d-flex justify-content-center py-4">
+                    <h3>No hay eventos</h3>
+                </div>
+            </div>
     }
 
     return (
@@ -104,16 +127,7 @@ export default function eventos() {
                 </div>
                 <div className="mt-3">
                     <div className="d-flex flex-column">
-                        {eventos.length > 0 ? eventos.map((value, index) =>
-                        (<div key={index}>
-                            <CardEventos setModal={setModal} evento={value} handleShow={handleShow}></CardEventos>
-                        </div>)
-                        ) :
-                            <div className="col-12 card-aloj border rounded shadow-sm border-aloj mb-3">
-                                <div className="d-flex justify-content-center py-4">
-                                    <h3>No se cargaron eventos</h3>
-                                </div>
-                            </div>}
+                        {listarEventos()}
                     </div>
                 </div>
             </main>

@@ -97,7 +97,7 @@ body {
 /*  */
 
 .articulos-list {
-    height: 1700px;
+    height: 1500px;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -117,6 +117,13 @@ body {
 .object-cover {
     object-fit: cover;
 }
+
+.image-responsive {
+    object-fit: contain;
+    width: 100% !important;
+    position: relative !important;
+    height: unset !important;
+  }
 
 /* COLORES DE SECCIONES */
 

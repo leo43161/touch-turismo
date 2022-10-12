@@ -6,21 +6,21 @@ import CardRest from "../components/restaurantes/CardRest";
 import PaginationTouch from "../components/Pagination";
 import Col from 'react-bootstrap/Col';
 import helpers from '../helpers'
+import Loader from '../components/Loader';
 
-export default function restaurantes({ restaurantesSQL, filtrosSQL }) {
+export default function restaurantes({ filtrosSQL: { categorias, localidades } }) {
+    //Loader
+    const [loader, setLoader] = useState(true)
     //Helpers
     const { htmlParse } = helpers;
-    /* Datos que devuelven las consultas a la base de datos */
-    const { localidades, categorias } = filtrosSQL;
-    const Restaurantes = restaurantesSQL;
     //Restaurantes
-    const [restaurantes, setAlojamientos] = useState(Restaurantes);
+    const [restaurantes, setRestaurantes] = useState([]);
     const [reload, setReload] = useState(true);
     const [filters, setfilters] = useState({ categoria: "", localidad: "" });
     //Pagination
     const [currentPage, setCurrentPage] = useState(1);
     const [perPage] = useState(24);
-    const [total, setTotal] = useState(Restaurantes.length);
+    const [total, setTotal] = useState(0);
 
     const paginate = pageNumber => {
         setCurrentPage(pageNumber);
@@ -42,8 +42,8 @@ export default function restaurantes({ restaurantesSQL, filtrosSQL }) {
         setReload(true);
     };
 
-    const handleFilter = () => {
-        let _restaurantes = Restaurantes;
+    const handleFilter = (restaurantes) => {
+        let _restaurantes = restaurantes;
         for (const key in filters) {
             if (filters[key] !== "") {
                 _restaurantes = _restaurantes.filter((value) => value[key] == filters[key]);
@@ -54,19 +54,49 @@ export default function restaurantes({ restaurantesSQL, filtrosSQL }) {
         return _restaurantes;
     }
 
+    const getRestaurantes = async () => {
+        setRestaurantes([]);
+        const { data: restaurantes } = await axios.get(
+            process.env.LOCALIP + "api/restaurantes"
+        );
+        const _restaurantes = handleFilter(restaurantes);
+        setRestaurantes(_restaurantes);
+        setTotal(restaurantes.length);
+        setLoader(false);
+    }
+
     useEffect(() => {
         if (reload) {
-            const _restaurantes = handleFilter();
-            setAlojamientos(_restaurantes);
+            setLoader(true);
+            getRestaurantes();
             setReload(false);
         }
-    }, [reload, setAlojamientos]);
+    }, [reload, getRestaurantes]);
 
+    const listarRestaurantes = () => {
+        if (loader) return (<div className="col-12">
+            <div className="d-flex justify-content-center py-4">
+                <Loader></Loader>
+            </div>
+        </div>)
+
+        return restaurantes.length > 0 ? <div className="row row-cols-1 row-cols-md-4 g-3 articulos-list">
+            {restaurantes.map((value, index) =>
+            (<Col key={index}>
+                <CardRest restaurante={value}></CardRest>
+            </Col>)
+            )} </div> :
+            <div className="col-12 card-aloj border rounded shadow-sm border-aloj mb-3">
+                <div className="d-flex justify-content-center py-4">
+                    <h3>No hay eventos</h3>
+                </div>
+            </div>
+    }
 
     return (
         <div>
             <HeaderSecc title="restaurantes" icon="rest" color="#63367B"></HeaderSecc>
-            <main className="container articulos-list mb-5 mt-4">
+            <main className="container mb-5 mt-4">
                 <div className="d-flex justify-content-around align-items-center bg-rest p-2 rounded">
                     <h2 className="m-0 text-white">Filtros:</h2>
                     <div>
@@ -89,14 +119,7 @@ export default function restaurantes({ restaurantesSQL, filtrosSQL }) {
                     </div>
                 </div>
                 <div className="mt-3">
-                    <div className="row row-cols-1 row-cols-md-4 g-3">
-                        {restaurantes.map((value, index) =>
-                        (<Col key={index}>
-                            <CardRest restaurante={value}></CardRest>
-                        </Col>)
-                        )}
-
-                    </div>
+                    {listarRestaurantes()}
                 </div>
             </main>
             <div className="d-flex justify-content-center">
@@ -113,9 +136,6 @@ export default function restaurantes({ restaurantesSQL, filtrosSQL }) {
 }
 
 export const getServerSideProps = async () => {
-    const { data: restaurantesSQL } = await axios.get(
-        "http://localhost:3000/api/restaurantes"
-    );
 
     const { data: filtrosSQL } = await axios.get(
         "http://localhost:3000/api/restaurantes/filtros"
@@ -123,7 +143,7 @@ export const getServerSideProps = async () => {
 
     return {
         props: {
-            restaurantesSQL, filtrosSQL
+            filtrosSQL
         },
     };
 };

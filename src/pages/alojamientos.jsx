@@ -1,26 +1,28 @@
 import axios from 'axios';
 import HeaderSecc from "../components/HeaderSecc";
-import Alojamientos from "../data/Alojamientos";
 import Form from 'react-bootstrap/Form';
 import CardAlojamiento from "../components/alojamientos/CardAlojamiento";
 import { useState, useEffect } from "react";
 import ModalAlojamiento from "../components/alojamientos/ModalAloj";
 import PaginationTouch from "../components/Pagination";
+import Loader from '../components/Loader';
 
-export default function alojamientos({ restaurantesSQL, filtrosSQL: { categorias, localidades } }) {
+export default function alojamientos({ filtrosSQL: { categorias, localidades } }) {
+    //Loader
+    const [loader, setLoader] = useState(true)
     //Modal
     const [show, setShow] = useState(false);
     const [modal, setModal] = useState({});
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
     //Alojamientos
-    const [alojamientos, setAlojamientos] = useState(restaurantesSQL);
+    const [alojamientos, setAlojamientos] = useState([]);
     const [reload, setReload] = useState(true);
     const [filters, setfilters] = useState({ categoria: "", estrellas: "", localidad: "" });
     //Pagination
     const [currentPage, setCurrentPage] = useState(1);
-    const [perPage] = useState(7);
-    const [total, setTotal] = useState(Alojamientos.length);
+    const [perPage] = useState(6);
+    const [total, setTotal] = useState(0);
 
     const paginate = pageNumber => {
         setCurrentPage(pageNumber);
@@ -42,8 +44,8 @@ export default function alojamientos({ restaurantesSQL, filtrosSQL: { categorias
         setReload(true);
     };
 
-    const handleFilter = () => {
-        let _alojamientos = restaurantesSQL;
+    const handleFilter = (restaurantes) => {
+        let _alojamientos = restaurantes;
         for (const key in filters) {
             if (filters[key] !== "") {
                 _alojamientos = _alojamientos.filter((value) => value[key] == filters[key]);
@@ -54,13 +56,46 @@ export default function alojamientos({ restaurantesSQL, filtrosSQL: { categorias
         return _alojamientos;
     }
 
+    const getAlojamientos = async () => {
+        setAlojamientos([]);
+        const { data: alojamientos } = await axios.get(
+            process.env.LOCALIP + "api/hoteles", {
+            params: { filters }
+        }
+        );
+        const _alojamientos = handleFilter(alojamientos);
+        setAlojamientos(_alojamientos);
+        setTotal(alojamientos.length)
+        setLoader(false)
+    }
+
     useEffect(() => {
         if (reload) {
-            const _alojamientos = handleFilter();
-            setAlojamientos(_alojamientos);
+            setLoader(true)
+            getAlojamientos();
             setReload(false);
         }
     }, [reload, setAlojamientos]);
+
+
+    const listarAlojamientos = () => {
+        if (loader) return (<div className="col-12 card-aloj border rounded shadow-sm border-aloj mb-3">
+            <div className="d-flex justify-content-center py-4">
+                <Loader></Loader>
+            </div>
+        </div>)
+
+        return alojamientos.length > 0 ? alojamientos.map((value, index) =>
+        (<div key={index}>
+            <CardAlojamiento setModal={setModal} alojamiento={value} handleShow={handleShow}></CardAlojamiento>
+        </div>)
+        ) :
+        <div className="col-12 card-aloj border rounded shadow-sm border-aloj mb-3">
+            <div className="d-flex justify-content-center py-4">
+                <h3>No hay eventos</h3>
+            </div>
+        </div>
+    }
 
 
     return (
@@ -97,12 +132,7 @@ export default function alojamientos({ restaurantesSQL, filtrosSQL: { categorias
                 </div>
                 <div className="mt-3">
                     <div className="d-flex flex-column articulos-list">
-                        {alojamientos.map((value, index) =>
-                        (<div key={index}>
-                            <CardAlojamiento setModal={setModal} alojamiento={value} handleShow={handleShow}></CardAlojamiento>
-                        </div>)
-                        )}
-
+                        {listarAlojamientos()}
                     </div>
                 </div>
             </main>
@@ -115,9 +145,6 @@ export default function alojamientos({ restaurantesSQL, filtrosSQL: { categorias
 }
 
 export const getServerSideProps = async () => {
-    const { data: restaurantesSQL } = await axios.get(
-        "http://localhost:3000/api/hoteles"
-    );
 
     const { data: filtrosSQL } = await axios.get(
         "http://localhost:3000/api/hoteles/filtros"
@@ -125,7 +152,7 @@ export const getServerSideProps = async () => {
 
     return {
         props: {
-            restaurantesSQL, filtrosSQL
+            filtrosSQL
         },
     };
 };
