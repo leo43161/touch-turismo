@@ -9,7 +9,7 @@ export default function index() {
       <HeaderSecc title="Transportes" icon="trans" color="#C4007A"></HeaderSecc>
       <div className="container mt-5">
 
-        <div className="col mb-5" onClick={() => router.push('/transportes/destino')}>
+        <div className="col mb-5" onClick={() => router.push('/transportes/comollegar')}>
           <div className="card shadow p-4">
             <div className="card-body d-flex justify-content-start align-items-center px-3">
               <FaRoute className='icon-size-1'></FaRoute>
@@ -21,7 +21,7 @@ export default function index() {
           </div>
         </div>
 
-        <div className="col mb-5" onClick={() => router.push('/transportes/destino')}>
+        <div className="col mb-5" onClick={() => router.push('/transportes/destinos')}>
           <div className="card shadow p-4">
             <div className="card-body d-flex justify-content-start align-items-center px-3">
               <FaMapMarkerAlt className='icon-size-1'></FaMapMarkerAlt>
@@ -33,7 +33,7 @@ export default function index() {
           </div>
         </div>
 
-        <div className="col mb-5" onClick={() => router.push('/transportes/destino')}>
+        <div className="col mb-5" onClick={() => router.push('/transportes')}>
           <div className="card shadow p-4">
             <div className="card-body d-flex justify-content-start align-items-center px-3">
               <FaBusAlt className='icon-size-1'></FaBusAlt>
@@ -45,7 +45,7 @@ export default function index() {
           </div>
         </div>
 
-        <div className="col mb-5" onClick={() => router.push('/transportes/destino')}>
+        <div className="col mb-5" onClick={() => router.push('/transportes')}>
           <div className="card shadow p-4">
             <div className="card-body d-flex justify-content-start align-items-center px-3">
               <FaCarAlt className='icon-size-1'></FaCarAlt>
