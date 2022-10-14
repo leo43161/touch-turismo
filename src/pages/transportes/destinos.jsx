@@ -12,7 +12,6 @@ export default function destinos() {
     const _circuitos = Destinos.map(({ nombre, id, color }) => { return { nombre, id, color } });
 
     const destinoHandler = (id) => {
-        console.log(id)
         setDestino(id);
         setReload(true);
     }
@@ -34,8 +33,8 @@ export default function destinos() {
     return (
         <div>
             <HeaderSecc title="alojamiento" icon="trans" home={true} color="#C4007A"></HeaderSecc>
-            <div className="mt-3 px-2" style={{height: "1150px"}}>
-                <Row xs={1} md={3} className="g-2">
+            <div className="mt-3 px-3" style={{height: "1250px"}}>
+                <Row xs={1} md={3} className="g-4">
                     {destinos.map((circuito) => {
                         return circuito.destinos.map((destino, index) => <Col key={index}>
                             <Card className="" style={{ height: "150px" }}>
