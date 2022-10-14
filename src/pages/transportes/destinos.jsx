@@ -12,7 +12,9 @@ export default function destinos() {
     const _circuitos = Destinos.map(({ nombre, id, color }) => { return { nombre, id, color } });
 
     const destinoHandler = (id) => {
-
+        console.log(id)
+        setDestino(id);
+        setReload(true);
     }
 
     useEffect(() => {
@@ -26,13 +28,13 @@ export default function destinos() {
             setDestinos(_destinos);
             setReload(false);
         }
-    }, [])
+    }, [reload])
 
 
     return (
         <div>
             <HeaderSecc title="alojamiento" icon="trans" home={true} color="#C4007A"></HeaderSecc>
-            <div className="mt-3 px-2">
+            <div className="mt-3 px-2" style={{height: "1150px"}}>
                 <Row xs={1} md={3} className="g-2">
                     {destinos.map((circuito) => {
                         return circuito.destinos.map((destino, index) => <Col key={index}>
@@ -50,14 +52,14 @@ export default function destinos() {
             <div className="mt-3 px-2">
                 <Row xs={1} md={5} className="g-2">
                     <Col>
-                        <Card className="bg-aloj text-white h-100 destino-bt-select">
+                        <Card className={`bg-aloj text-white h-100 ${destino === 0 ? "destino-bt-select" : null}`} onClick={() => destinoHandler(0)}>
                             <Card.Body className="d-flex justify-content-center align-items-center">
                                 <h2 className="mb-0">Todos los circuitos</h2>
                             </Card.Body>
                         </Card>
                     </Col>
                     {_circuitos.map(({ nombre, id, color }, index) => <Col key={index}>
-                        <Card className="text-white h-100" style={{ backgroundColor: color }} onClick={() => destinoHandler(id)}>
+                        <Card className={`text-white h-100 ${id === destino ? "destino-bt-select" : null}`} style={{ backgroundColor: color }} onClick={() => destinoHandler(id)}>
                             <Card.Body className="d-flex justify-content-center align-items-center">
                                 <h2 className="mb-0">{nombre}</h2>
                             </Card.Body>
