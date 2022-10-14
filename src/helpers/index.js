@@ -44,4 +44,9 @@ DataConverter.dayConverter = (date) => {
     return `${day} ${meses[month]}`;
 }
 
+DataConverter.desordenarArray = (array) => {
+    var _array = array.sort(function (a, b) { return (Math.random() - 0.5) });
+    return [..._array];
+}
+
 export default DataConverter;
