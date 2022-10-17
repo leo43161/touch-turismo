@@ -1,10 +1,11 @@
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css';
 import "leaflet-defaulticon-compatibility";
 
-export default function Map({ coords, icon }) {
+export default function Map({ coords, icon, route, zoom }) {
     const Icons = {
+        terminal: "bus-marker-1.png",
         aloj: "hotel-marker-1.png",
         default: "icon-destino.png"
     }
@@ -22,12 +23,12 @@ export default function Map({ coords, icon }) {
     const destinoIcon = L.icon({
         iconUrl: '/img/transportes/' + (icon ? Icons[icon] : Icons.default),
         iconSize: [40, 40],
-        iconAnchor: [7, 30],
+        iconAnchor: [20, 30],
     });
     return (
         <MapContainer
             center={coords}
-            zoom={13}
+            zoom={zoom ? zoom : 13}
             minZoom={12.8}
             style={{ height: "100%", width: "100%" }}
         >
@@ -47,6 +48,7 @@ export default function Map({ coords, icon }) {
                 icon={destinoIcon}
             >
             </Marker>
+            {route && <Polyline pathOptions={{ color: '#C4007A' }} positions={route} />}
         </MapContainer>
     )
 }
