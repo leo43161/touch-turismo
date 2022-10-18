@@ -13,3 +13,29 @@
 .destino-bt-select {
     border: 4px ridge #1d1d1d;
 }
+
+.table-wrapper {
+    width: 100%;
+    height: 200px;
+    /* Altura de ejemplo */
+    overflow: auto;
+}
+
+.table-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.table-wrapper table thead {
+    position: -webkit-sticky;
+    /* Safari... */
+    position: sticky;
+    top: 0;
+    left: 0;
+    background-color: white;
+    border-bottom: 2px solid black;
+}
+
+.table-wrapper table {
+    border-collapse: separate;
+    border-spacing: 0;
+}

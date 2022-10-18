@@ -39,7 +39,7 @@ export default function destinos() {
                 <Row xs={1} md={3} className="g-4">
                     {destinos.map((circuito) => {
                         return circuito.destinos.map((destino, index) => <Col key={index}>
-                            <Card style={{ height: "150px" }} onClick={() => router.push('/transportes/destinos/' + (index + 1))}>
+                            <Card style={{ height: "150px" }} onClick={() => router.push('/transportes/destinos/' + (index + 1))} id={index}>
                                 <Card.Body className="d-flex justify-content-center align-items-center">
                                     <h1 className="mb-0">{destino}</h1>
                                 </Card.Body>
