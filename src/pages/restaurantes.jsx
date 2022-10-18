@@ -49,6 +49,7 @@ export default function restaurantes({ filtrosSQL: { categorias, localidades } }
                 _restaurantes = _restaurantes.filter((value) => value[key] == filters[key]);
             }
         }
+        console.log(_restaurantes.length)
         setTotal(_restaurantes.length);
         _restaurantes = handlePagination(_restaurantes);
         return _restaurantes;
@@ -61,7 +62,6 @@ export default function restaurantes({ filtrosSQL: { categorias, localidades } }
         );
         const _restaurantes = handleFilter(restaurantes);
         setRestaurantes(_restaurantes);
-        setTotal(restaurantes.length);
         setLoader(false);
     }
 
