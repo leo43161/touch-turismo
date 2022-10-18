@@ -65,7 +65,6 @@ export default function alojamientos({ filtrosSQL: { categorias, localidades } }
         );
         const _alojamientos = handleFilter(alojamientos);
         setAlojamientos(_alojamientos);
-        setTotal(alojamientos.length)
         setLoader(false)
     }
 
