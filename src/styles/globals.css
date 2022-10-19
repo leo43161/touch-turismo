@@ -7,14 +7,52 @@
     --secondary-text-color: #655C5D;
 }
 
+.leaflet-control-attribution.leaflet-control {
+    display: none;
+}
+
 @font-face {
     font-family: "Oswald";
     src: url("../assets/font/Oswald-VariableFont_wght.ttf");
 }
 
+@font-face {
+    font-family: "SequelHight";
+    src: url("../assets/font/Sequel_Sans_Black_Body.ttf");
+}
+
+@font-face {
+    font-family: "Lato";
+    src: url("../assets/font/Lato-Light.ttf");
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Lato";
+    src: url("../assets/font/Lato-Regular.ttf");
+    font-weight: 400;
+    font-style: normal;
+}
+
+
 body {
     font-family: "Oswald";
     background-color: var(--main-bg-color);
+}
+
+.sequel-hight {
+    font-family: "SequelHight";
+}
+
+.lato-light {
+    font-family: "Lato";
+    font-weight: 300;
+}
+
+.lato-regular {
+    font-family: "Lato";
+    font-weight: 400;
 }
 
 /* Estilos de colores generales */
@@ -43,6 +81,7 @@ body {
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
+
 .line-clamp-3 {
     display: -webkit-box;
     -webkit-line-clamp: 3;
@@ -123,7 +162,7 @@ body {
     width: 100% !important;
     position: relative !important;
     height: unset !important;
-  }
+}
 
 /* COLORES DE SECCIONES */
 
@@ -310,39 +349,63 @@ body {
     left: 0;
     background-color: rgb(255, 255, 255);
     z-index: 9999;
-  
-  }
-  .spinner {
+
+}
+
+.spinner {
     position: absolute;
     left: 50%;
     top: 50%;
-    height:60px;
-    width:60px;
-    margin:0px auto;
+    height: 60px;
+    width: 60px;
+    margin: 0px auto;
     -webkit-animation: rotation .6s infinite linear;
     -moz-animation: rotation .6s infinite linear;
     -o-animation: rotation .6s infinite linear;
     animation: rotation .6s infinite linear;
-    border-left:6px solid rgba(0,174,239,.15);
-    border-right:6px solid rgba(0,174,239,.15);
-    border-bottom:6px solid rgba(0,174,239,.15);
-    border-top:6px solid rgba(0,174,239,.8);
-    border-radius:100%;
-  }
-  
-  @-webkit-keyframes rotation {
-    from {-webkit-transform: rotate(0deg);}
-    to {-webkit-transform: rotate(359deg);}
-  }
-  @-moz-keyframes rotation {
-    from {-moz-transform: rotate(0deg);}
-    to {-moz-transform: rotate(359deg);}
-  }
-  @-o-keyframes rotation {
-    from {-o-transform: rotate(0deg);}
-    to {-o-transform: rotate(359deg);}
-  }
-  @keyframes rotation {
-    from {transform: rotate(0deg);}
-    to {transform: rotate(359deg);}
-  }
+    border-left: 6px solid rgba(0, 174, 239, .15);
+    border-right: 6px solid rgba(0, 174, 239, .15);
+    border-bottom: 6px solid rgba(0, 174, 239, .15);
+    border-top: 6px solid rgba(0, 174, 239, .8);
+    border-radius: 100%;
+}
+
+@-webkit-keyframes rotation {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+
+    to {
+        -webkit-transform: rotate(359deg);
+    }
+}
+
+@-moz-keyframes rotation {
+    from {
+        -moz-transform: rotate(0deg);
+    }
+
+    to {
+        -moz-transform: rotate(359deg);
+    }
+}
+
+@-o-keyframes rotation {
+    from {
+        -o-transform: rotate(0deg);
+    }
+
+    to {
+        -o-transform: rotate(359deg);
+    }
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(359deg);
+    }
+}

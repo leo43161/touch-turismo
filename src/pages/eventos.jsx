@@ -21,7 +21,7 @@ export default function eventos() {
     const [filters, setfilters] = useState("todos");
     //Pagination
     const [currentPage, setCurrentPage] = useState(1);
-    const [perPage] = useState(4);
+    const [perPage] = useState(5);
     const [total, setTotal] = useState([]);
 
     const paginate = pageNumber => {

@@ -7,6 +7,7 @@ import SectionsButton from '../components/SectionsButton';
 import axios from 'axios';
 import { useState } from 'react';
 import ModalEvento from '../components/eventos/ModalEvento';
+import Footer from '../components/Footer';
 
 export default function Home({ eventos = [] }) {
 
@@ -17,8 +18,8 @@ export default function Home({ eventos = [] }) {
   const handleClose = () => setShow(false);
   const listarEvents = () => {
     if (eventos.length === 0) return (<div className="d-flex justify-content-center align-items-center" style={{ height: "300px" }}>
-        <h1>No hay eventos durante la semana</h1>
-      </div>);
+      <h1>No hay eventos durante la semana</h1>
+    </div>);
     return eventos.map((evento, index) => (
       <Carousel.Item key={index}>
         <HomeEventoCard evento={evento} setModal={setModal} handleShow={handleShow} />
@@ -59,7 +60,7 @@ export default function Home({ eventos = [] }) {
           </Carousel>
         </div>
       </header>
-      <main>
+      <main className="mb-5">
         <div className="px-5 py-4 bg-color-2 text-light text-center mb-5">
           <h1 className="fw-bold">NAVEGÁ ENTRE NUESTRAS OPCIONES</h1>
         </div>
@@ -104,6 +105,12 @@ export default function Home({ eventos = [] }) {
           </div>
         </div>
       </main>
+      <section className="d-flex justify-content-center container mb-3 p-0 card overflow-hidden shadow">
+        <video autoPlay muted loop width="100%">
+          <source src="img/dji.mp4" type="video/mp4"></source>
+        </video>
+      </section>
+      <Footer></Footer>
       <ModalEvento show={show} handleClose={handleClose} modal={modal}></ModalEvento>
     </div>
   )

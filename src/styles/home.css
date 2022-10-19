@@ -51,3 +51,15 @@
     align-items: center;
     flex-direction: column;
 }
+
+/* FOOTER */
+
+.share-nav-button {
+    /* background-color: #00608f; */
+    background-color: var(--primary-bg-color);
+    color: #ffffff;
+    border-radius: 11px;
+    font-size: 14px;
+    width: 28px;
+    height: 28px;
+}
