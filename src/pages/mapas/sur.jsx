@@ -24,6 +24,11 @@ export default function sur() {
                 </div>
                 <NavMaps></NavMaps>
             </div>
+            <section className="d-flex justify-content-center card overflow-hidden shadow">
+                <video autoPlay muted loop width="100%">
+                    <source src="/img/dji.mp4" type="video/mp4"></source>
+                </video>
+            </section>
         </div>
     )
 }

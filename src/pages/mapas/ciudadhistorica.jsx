@@ -10,7 +10,7 @@ export default function ciudadhistorica() {
                     <h2 className="mb-0 text-white">CIRCUITO CIUDAD HISTORICA</h2>
                 </div>
             </div>
-            <div>
+            <div className="mb-4">
                 <div className="position-relative px-4 pt-3">
                     <img src="/img/mapas/mapas_historica.png" className="img-fluid" alt="" />
                 </div>
@@ -24,6 +24,11 @@ export default function ciudadhistorica() {
                 </div>
                 <NavMaps></NavMaps>
             </div>
+            <section className="d-flex justify-content-center card overflow-hidden shadow container p-0">
+                <video autoPlay muted loop width="100%">
+                    <source src="/img/dji.mp4" type="video/mp4"></source>
+                </video>
+            </section>
         </div>
     )
 }
