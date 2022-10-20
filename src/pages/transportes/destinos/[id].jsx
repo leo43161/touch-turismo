@@ -11,9 +11,6 @@ export default function destino() {
     const MapWithNoSSR = dynamic(() => import("../../../components/Map"), {
         ssr: false
     });
-    const scrollHandler = (e) => {
-        console.log(e)
-    }
     return (
         <div>
             <HeaderSecc title="Transportes" icon="trans" color="#C4007A" home={true}></HeaderSecc>
@@ -64,7 +61,7 @@ export default function destino() {
                                                     <div className="card-body">
                                                         <h4>{dias}</h4>
                                                         <div className="rounded">
-                                                            <div className="table-wrapper" style={{ height: "480px" }} onScroll={scrollHandler}>
+                                                            <div className="table-wrapper" style={{ height: "480px" }}>
                                                                 <table className="table table-striped position-relative mb-0">
                                                                     <thead>
                                                                         <tr>
