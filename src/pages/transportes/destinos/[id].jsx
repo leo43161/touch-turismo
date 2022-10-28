@@ -36,7 +36,7 @@ export default function destino() {
             </div>
             <div className="card p-3 mb-4 m-3 shadow-sm">
                 <div className="rounded overflow-hidden border" style={{ height: "30vh" }}>
-                    <MapWithNoSSR coords={[-26.834893, -65.193433]} zoom={15} icon="terminal" route={destino ? destino.nodos : null}></MapWithNoSSR>
+                    <MapWithNoSSR coords={[-26.834893, -65.193433]} zoom={15} icon="terminal" route={destino ? destino.nodos : null} marker></MapWithNoSSR>
                 </div>
             </div>
             <div className="overflow-hidden" style={{ height: "950px" }}>

@@ -3,7 +3,7 @@ import 'leaflet/dist/leaflet.css'
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css';
 import "leaflet-defaulticon-compatibility";
 
-export default function Map({ coords, icon, route, zoom }) {
+export default function Map({ coords, icon, route, zoom, marker }) {
     const Icons = {
         terminal: "bus-marker-1.png",
         aloj: "hotel-marker-1.png",
@@ -42,12 +42,13 @@ export default function Map({ coords, icon, route, zoom }) {
                 <Popup offset={[8, 40]} >Usted esta aqui</Popup>
             </Marker>
             {/* Marcador del destino */}
-            <Marker
+            {marker && <Marker
                 position={coords}
                 animate={true}
                 icon={destinoIcon}
             >
-            </Marker>
+            </Marker>}
+
             {route && <Polyline pathOptions={{ color: '#C4007A' }} positions={route} />}
         </MapContainer>
     )

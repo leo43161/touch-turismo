@@ -3,6 +3,7 @@ import { FaAngleDown } from 'react-icons/fa';
 import Accordion from 'react-bootstrap/Accordion';
 import { useAccordionButton } from 'react-bootstrap/AccordionButton';
 import BusList from "../../../components/transportes/BusList";
+import { useRouter } from 'next/router';
 import BusesGroup from "../../../data/BusesGroup";
 
 function ToggleLinea({ children, eventKey }) {
@@ -21,6 +22,7 @@ function ToggleLinea({ children, eventKey }) {
 }
 
 export default function colectivos() {
+    const router = useRouter();
     return (
         <div>
             <HeaderSecc title="Transportes" icon="trans" color="#C4007A" home={true}></HeaderSecc>
@@ -38,7 +40,11 @@ export default function colectivos() {
                                         <ToggleLinea eventKey={`${indexGroup}-${index}`}>{linea}</ToggleLinea>
                                         <Accordion.Collapse eventKey={`${indexGroup}-${index}`}>
                                             <div className="container">
-                                                {lineas.map((value, index) => <div key={index}><BusList bus={value}></BusList></div>)}
+                                                {lineas.map((value, index) =>
+                                                    <div key={index} onClick={() => router.push('/transportes/colectivos/' + value.cod)}>
+                                                        <BusList bus={value}></BusList>
+                                                    </div>
+                                                )}
                                             </div>
                                         </Accordion.Collapse>
                                     </div>

@@ -105,7 +105,7 @@ export default function ModalAloj({ show, handleClose, modal: { id, idGaleria } 
                     <div>
                         <h3 className="mb-3 text-aloj text-center">Mapa</h3>
                         <div className="rounded overflow-hidden border" style={{ height: "55vh" }}>
-                            <MapWithNoSSR coords={coords} icon="aloj"></MapWithNoSSR>
+                            <MapWithNoSSR coords={coords} icon="aloj" marker></MapWithNoSSR>
                         </div>
                     </div> : null}
 
