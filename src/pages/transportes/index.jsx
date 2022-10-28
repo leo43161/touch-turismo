@@ -33,7 +33,7 @@ export default function index() {
           </div>
         </div>
 
-        <div className="col mb-5" onClick={() => router.push('/transportes')}>
+        <div className="col mb-5" onClick={() => router.push('/transportes/colectivos')}>
           <div className="card shadow p-4">
             <div className="card-body d-flex justify-content-start align-items-center px-3">
               <FaBusAlt className='icon-size-1'></FaBusAlt>
