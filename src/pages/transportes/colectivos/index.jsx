@@ -1,5 +1,5 @@
 import HeaderSecc from "../../../components/HeaderSecc"
-import { FaAngleDown } from 'react-icons/fa';
+import { FaAngleDown, FaBusAlt } from 'react-icons/fa';
 import Accordion from 'react-bootstrap/Accordion';
 import { useAccordionButton } from 'react-bootstrap/AccordionButton';
 import BusList from "../../../components/transportes/BusList";
@@ -24,7 +24,7 @@ function ToggleLinea({ children, eventKey }) {
 export default function colectivos() {
     const router = useRouter();
     return (
-        <div>
+        <div className="mb-3">
             <HeaderSecc title="Transportes" icon="trans" color="#C4007A" home={true}></HeaderSecc>
             <div className="text-center mt-3 mb-4">
                 <h1>Seleccione un colectivos para ver su recorrido</h1>
@@ -40,16 +40,30 @@ export default function colectivos() {
                                         <ToggleLinea eventKey={`${indexGroup}-${index}`}>{linea}</ToggleLinea>
                                         <Accordion.Collapse eventKey={`${indexGroup}-${index}`}>
                                             <div className="container">
-                                                {lineas.map((value, index) =>
-                                                    <div key={index} onClick={() => router.push('/transportes/colectivos/' + value.cod)}>
-                                                        <BusList bus={value}></BusList>
+                                                {lineas.map(({ descripcion, cod }, index) =>
+                                                    <div key={index} onClick={() => router.push('/transportes/colectivos/' + cod)}>
+                                                        <div className="card mb-3 px-3 shadow-sm">
+                                                            <div className="card-body d-flex justify-content-between align-items-center px-3">
+                                                                <h1 className="text-center mb-0 d-flex align-items-center">{descripcion}</h1>
+                                                                <FaBusAlt className='text-trans icon-size-3'></FaBusAlt>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 )}
                                             </div>
                                         </Accordion.Collapse>
                                     </div>
                                 )}
-                                {lineas && lineas.map((bus, index) => <div key={index}><BusList bus={bus}></BusList></div>)}
+                                {lineas && lineas.map(({ descripcion, cod }, index) =>
+                                    <div key={index} onClick={() => router.push('/transportes/colectivos/' + cod)}>
+                                        <div className="card mb-3 px-3 shadow-sm">
+                                            <div className="card-body d-flex justify-content-between align-items-center px-3">
+                                                <h1 className="text-center mb-0 d-flex align-items-center">{descripcion}</h1>
+                                                <FaBusAlt className='text-trans icon-size-3'></FaBusAlt>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
                             </Accordion>
                         </div>
                     </Accordion.Collapse>
