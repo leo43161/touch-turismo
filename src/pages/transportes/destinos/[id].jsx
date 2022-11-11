@@ -27,16 +27,16 @@ export default function destino() {
                         Terminal
                     </h4>
                 </div>
-                <div className="card px-4 py-3 d-flex align-items-center">
+                {/* <div className="card px-4 py-3 d-flex align-items-center">
                     <h4 className="text-center mb-0 d-flex align-items-center h-100">
                         <span className="me-2"><img src="/img/transportes/bus-stop.png" style={{ width: "25px" }} alt="" /></span>
                         Paradas
                     </h4>
-                </div>
+                </div> */}
             </div>
             <div className="card p-3 mb-4 m-3 shadow-sm">
                 <div className="rounded overflow-hidden border" style={{ height: "30vh" }}>
-                    <MapWithNoSSR coords={[-26.834893, -65.193433]} zoom={15} icon="terminal" route={destino ? destino.nodos : null} marker></MapWithNoSSR>
+                    <MapWithNoSSR coords={[-26.834893, -65.193433]} zoom={15} icon="terminal" marker></MapWithNoSSR>
                 </div>
             </div>
             <div className="overflow-hidden" style={{ height: "950px" }}>

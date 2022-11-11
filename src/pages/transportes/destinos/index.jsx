@@ -34,7 +34,7 @@ export default function destinos() {
 
     return (
         <div>
-            <HeaderSecc title="alojamiento" icon="trans" home={true} color="#C4007A"></HeaderSecc>
+            <HeaderSecc title="transporte" icon="trans" home={true} color="#C4007A"></HeaderSecc>
             <div className="mt-3 px-3" style={{ height: "1250px" }}>
                 <Row xs={1} md={3} className="g-4">
                     {destinos.map((circuito) => {
