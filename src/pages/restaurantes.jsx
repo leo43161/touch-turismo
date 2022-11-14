@@ -8,7 +8,7 @@ import Col from 'react-bootstrap/Col';
 import helpers from '../helpers'
 import Loader from '../components/Loader';
 
-export default function restaurantes({ filtrosSQL: { categorias, localidades } }) {
+export default function Restaurantes({ filtrosSQL: { categorias, localidades } }) {
     //Loader
     const [loader, setLoader] = useState(true)
     //Helpers

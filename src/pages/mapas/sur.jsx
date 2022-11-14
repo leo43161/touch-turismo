@@ -1,7 +1,7 @@
 import HeaderSecc from "../../components/HeaderSecc"
 import NavMaps from "../../components/mapas/NavMaps";
 
-export default function sur() {
+export default function Sur() {
     return (
         <div style={{ backgroundColor: "#ABA693" }}>
             <HeaderSecc title="Mapas" icon="map" color="#E51E21" home={true} url={"/mapas"}></HeaderSecc>

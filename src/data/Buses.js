@@ -1,4 +1,4 @@
-export default [
+const Buses = [
     {
         "_id": "62bf0285df0fcf5a4d94d4eb",
         "cod": 1,
@@ -1453,3 +1453,5 @@ export default [
         "__v": 0
     }
 ]
+
+export default Buses;

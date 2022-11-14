@@ -1,4 +1,4 @@
-export default [
+const BusesGroup = [
     {
         "grupo": "Urbano",
         "linea": [
@@ -622,3 +622,5 @@ export default [
         ]
     }
 ]
+
+export default BusesGroup;

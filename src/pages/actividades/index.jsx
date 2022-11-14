@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import CardAct from '../../components/actividades/CardAct';
 
-export default function actividades({ actividades }) {
+export default function Actividades({ actividades }) {
     const router = useRouter()
     return (
         <div>

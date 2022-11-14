@@ -1,4 +1,4 @@
-export default [
+const Circuitos = [
     {
         id: 1,
         nombre: "Circuito Choromoro",
@@ -24,3 +24,5 @@ export default [
         destinos: ["El cadillal", "El Siambon", "Horco Molle", "Raco", "San Javier", "Yerba Buena"]
     }
 ]
+
+export default Circuitos;

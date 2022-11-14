@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import ModalAutos from "../../components/transportes/ModalAutos";
 import { useState } from "react";
 
-export default function index() {
+export default function Transportes() {
   //Modal
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);

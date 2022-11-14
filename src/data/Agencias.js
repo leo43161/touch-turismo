@@ -1,4 +1,4 @@
-export default [
+const Agencias = [
     {
         "id": 1,
         "titulo": "E.V.T  AURORA TRAVEL",
@@ -288,3 +288,5 @@ export default [
         "legajo": 17092
     }
 ]
+
+export default Agencias;

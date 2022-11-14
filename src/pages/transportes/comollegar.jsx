@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import { useState } from "react";
 import Recorridos from "../../data/Recorridos";
 
-export default function transportes() {
+export default function ComoLlegar() {
     const [origen] = useState([-26.831011, -65.204603]);
     const MapWithNoSSR = dynamic(() => import("../../components/transportes/Map"), {
         ssr: false

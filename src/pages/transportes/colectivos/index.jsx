@@ -20,7 +20,7 @@ function ToggleLinea({ children, eventKey }) {
     );
 }
 
-export default function colectivos() {
+export default function Colectivos() {
     const router = useRouter();
     return (
         <div className="mb-3">

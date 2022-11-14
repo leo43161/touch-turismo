@@ -7,7 +7,7 @@ import ModalEvento from '../components/eventos/ModalEvento';
 import PaginationTouch from "../components/Pagination";
 import Loader from '../components/Loader';
 
-export default function eventos() {
+export default function Eventos() {
     //Loader
     const [loader, setLoader] = useState(true)
     //Modal

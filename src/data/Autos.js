@@ -1,4 +1,4 @@
-export default [
+const Autos = [
     {
         "id": 0,
         "titulo": "Avis",
@@ -54,3 +54,5 @@ export default [
         "mail": ""
     }
 ]
+
+export default Autos;

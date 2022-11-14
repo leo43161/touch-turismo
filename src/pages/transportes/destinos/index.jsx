@@ -6,7 +6,7 @@ import Circuitos from '../../../data/Circuitos';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from "react";
 
-export default function destinos() {
+export default function Destinos() {
     const router = useRouter();
     const [destino, setDestino] = useState(0);
     const [destinos, setDestinos] = useState([]);

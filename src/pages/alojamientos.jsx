@@ -7,7 +7,7 @@ import ModalAlojamiento from "../components/alojamientos/ModalAloj";
 import PaginationTouch from "../components/Pagination";
 import Loader from '../components/Loader';
 
-export default function alojamientos({ filtrosSQL: { categorias, localidades } }) {
+export default function Alojamientos({ filtrosSQL: { categorias, localidades } }) {
     //Loader
     const [loader, setLoader] = useState(true)
     //Modal

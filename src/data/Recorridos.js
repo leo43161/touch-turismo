@@ -1,4 +1,4 @@
-export default [
+const Recorridos = [
     {
         "cod": 1,
         "nodos": [
@@ -134745,3 +134745,5 @@ export default [
         "activo": true
     }
 ]
+
+export default Recorridos;

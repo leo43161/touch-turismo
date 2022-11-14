@@ -1,4 +1,4 @@
-export default [
+const Destinos = [
     {
         "id": 1,
         "titulo": "El Cadillal",
@@ -1399,3 +1399,5 @@ export default [
         "activo": true
     }
 ];
+
+export default Destinos;

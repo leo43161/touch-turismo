@@ -4,7 +4,7 @@ import { FaAngleDown } from 'react-icons/fa';
 import HeaderSecc from "../../../components/HeaderSecc";
 import { useRouter } from 'next/router';
 
-export default function destino() {
+export default function Destino() {
     const router = useRouter();
     const { id } = router.query;
     const destino = Destinos.find((value) => value.id === parseInt(id));

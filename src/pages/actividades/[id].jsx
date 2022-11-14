@@ -5,7 +5,7 @@ import CardPrest from "../../components/actividades/CardPrest";
 import Col from 'react-bootstrap/Col';
 import ModalPresta from "../../components/actividades/ModalPresta";
 
-export default function actividad({ prestadoresSQL }) {
+export default function Actividad({ prestadoresSQL }) {
     const { prestadores, actividad } = prestadoresSQL;
     //Modal
     const [show, setShow] = useState(false);
