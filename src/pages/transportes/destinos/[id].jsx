@@ -1,16 +1,52 @@
 import dynamic from "next/dynamic";
 import Destinos from '../../../data/Destinos';
-import { FaAngleDown } from 'react-icons/fa';
 import HeaderSecc from "../../../components/HeaderSecc";
-import { useRouter } from 'next/router';
+import axios from 'axios';
+import { useEffect, useState } from "react";
 
-export default function Destino() {
-    const router = useRouter();
-    const { id } = router.query;
-    const destino = Destinos.find((value) => value.id === parseInt(id));
+export default function Destino({ _colectivos, _periodos, _horarios }) {
+    /* const [colectivos, setColectivos] = useState([]); */
     const MapWithNoSSR = dynamic(() => import("../../../components/Map"), {
         ssr: false
     });
+
+    const horariosHTML = (index) => {
+        const horarios = _horarios[index];
+        const ida = horarios.filter(h => h.Ida === 1);
+        const vuelta = horarios.filter(h => h.Ida === 0);
+        console.log(ida);
+        console.log(vuelta[0].hora);
+
+        if (ida.length > vuelta.length) {
+            const horarioVuelta = ida.map(({ hora }, indexHorario) => {
+                const _vuelta = vuelta[indexHorario] ? vuelta[indexHorario].hora : "";
+                console.log(_vuelta)
+                return <tr key={indexHorario}>
+                    <td className="fw-bold">{hora}</td>
+                    <td className="fw-bold">{_vuelta}</td>
+                </tr>
+            }
+            )
+            return horarioVuelta
+        } else {
+            const horarioVuelta = vuelta.map(({ hora }, indexHorario) => {
+                const _ida = ida[indexHorario] ? ida[indexHorario].hora : "";
+                console.log(_ida)
+                return <tr key={indexHorario}>
+                    <td className="fw-bold">{hora}</td>
+                    <td className="fw-bold">{_ida}</td>
+                </tr>
+            }
+            )
+            return horarioVuelta
+        }
+    }
+
+    console.log(_colectivos);
+    console.log(_horarios);
+    console.log(_periodos);
+
+
     return (
         <div>
             <HeaderSecc title="Transportes" icon="trans" color="#C4007A" home={true}></HeaderSecc>
@@ -27,12 +63,6 @@ export default function Destino() {
                         Terminal
                     </h4>
                 </div>
-                {/* <div className="card px-4 py-3 d-flex align-items-center">
-                    <h4 className="text-center mb-0 d-flex align-items-center h-100">
-                        <span className="me-2"><img src="/img/transportes/bus-stop.png" style={{ width: "25px" }} alt="" /></span>
-                        Paradas
-                    </h4>
-                </div> */}
             </div>
             <div className="card p-3 mb-4 m-3 shadow-sm">
                 <div className="rounded overflow-hidden border" style={{ height: "30vh" }}>
@@ -43,49 +73,61 @@ export default function Destino() {
                 <div className="p-3">
                     <div className="card border shadow-sm">
                         <div className="card-body">
-                            {destino && <div className={`d-flex flex-column`}>
-                                <div className="col d-flex flex-column justify-content-between py-4">
-                                    <h1 className="text-trans text-uppercase">{destino.titulo}</h1>
-                                    <h3><u>Línea / Empresa:</u> <span>{destino.linea}</span> </h3>
-                                    <h3><u>Costo:</u> {destino.costo}</h3>
-                                    <h3><u>Dónde Tomarlo:</u> {destino.parada} (Marcado en
-                                        el mapa).</h3>
+                            {<div className={`d-flex flex-column`}>
+                                <h1 className="text-trans text-uppercase">{_colectivos[0].nombre}</h1>
+                                <div className={`row  ${_colectivos[1] ? "row-cols-2" : "row-cols-1"} g-3 col my-2`}>
+                                    {/* LINEAS */}
+                                    {_colectivos && _colectivos.map((colectivo, index) => (
+                                        <div className="col" key={index}>
+                                            <div className="col d-flex flex-column justify-content-between py-4 card px-3">
+                                                <h3><u>Línea / Empresa:</u> <span>{colectivo.linea}</span> </h3>
+                                                <h3><u>Costo:</u> {colectivo.costo}</h3>
+                                                <h3><u>Dónde Tomarlo:</u> {colectivo.dondetomar} (Marcado en
+                                                    el mapa).</h3>
+                                            </div>
+                                        </div>
+                                    ))}
                                 </div>
+                                {/*  */}
                                 <div className="col text-center">
                                     <h3>Horarios</h3>
-                                    {destino.indicaciones && <p className="text-muted">{destino.indicaciones}</p>}
-                                    <div className={`row row-cols-1 h-100 ${destino.horarios.length > 2 ? "row-cols-md-3" : "row-cols-md-2"} g-2 col mt-2`}>
-                                        {destino.horarios.map(({ dias, ida, vuelta }, index) =>
-                                            <div className="col" key={index}>
-                                                <div className="card col ms-2">
-                                                    <div className="card-body">
-                                                        <h4>{dias}</h4>
-                                                        <div className="rounded">
-                                                            <div className="table-wrapper" style={{ height: "480px" }}>
-                                                                <table className="table table-striped position-relative mb-0">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th scope="col" className="border-bottom border-dark">Ida</th>
-                                                                            <th scope="col">Vuelta</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody className="table-group-divider overflow-scroll">
-                                                                        {ida.length > vuelta.length ? ida.map((value, index) =>
-                                                                            <tr key={index}>
-                                                                                <td className="fw-bold">{value}</td>
-                                                                                <td className="fw-bold">{vuelta[index]}</td>
-                                                                            </tr>
-                                                                        ) : vuelta.map((value, index) =>
-                                                                            <tr key={index}>
-                                                                                <td className="fw-bold">{ida[index]}</td>
-                                                                                <td className="fw-bold">{value}</td>
-                                                                            </tr>
-                                                                        )}
-                                                                    </tbody>
-                                                                </table>
+                                    <div className={`row ${_colectivos.length > 1 ? "row-cols-2" : "row-cols-1"}`}>
+                                        {_periodos.map((periodo, _index) => (
+                                            <div className="col" key={_index}>
+                                                <h4>{periodo[0].linea}</h4>
+                                                <div className={`row row-cols-1 h-100 row-cols-md-3 g-2 col mt-2`}>
+                                                    {periodo.map(({ periodo }, index) => (
+                                                        <div className="col" key={index}>
+                                                            <div className="card col ms-2">
+                                                                <div className="card-body">
+                                                                    <h4>{periodo}</h4>
+                                                                    <div className="rounded">
+                                                                        <div className="table-wrapper" style={{ height: "480px" }}>
+                                                                            <table className="table table-striped position-relative mb-0">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th scope="col" className="border-bottom border-dark">Ida</th>
+                                                                                        <th scope="col">Vuelta</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody className="table-group-divider overflow-scroll">
+                                                                                    {horariosHTML(index)}
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
 
-                                                            {ida.length > vuelta.length ?
+                                {/* 
+                                {ida.length > vuelta.length ?
                                                                 (ida.length > 11 ?
                                                                     <div className="d-flex justify-content-center border rounded-bottom">
                                                                         <FaAngleDown className="h4 mb-0"></FaAngleDown>
@@ -99,8 +141,9 @@ export default function Destino() {
                                                 </div>
                                             </div>
                                         )}
-                                    </div>
-                                </div>
+                                        */}
+
+
                             </div>}
                         </div>
                     </div>
@@ -109,3 +152,43 @@ export default function Destino() {
         </div>
     )
 }
+
+
+export const getServerSideProps = async ({ query }) => {
+    let _periodos = [];
+    let _horarios = [];
+    const { id } = query;
+    const { data: _colectivos } = await axios.get(
+        process.env.LOCALIP + "api/destinos",
+        { params: { localidad: id ? id : null } }
+    );
+
+    for (let index = 0; index < _colectivos.length; index++) {
+        const { linea, nombre } = _colectivos[index];
+        const { data: periodos } = await axios.get(
+            process.env.LOCALIP + "api/destinos/periodo",
+            { params: { linea, nombre } }
+        );
+        _periodos.push(periodos);
+
+        for (let index = 0; index < _periodos.length; index++) {
+
+            const periodoBus = _periodos[index];
+
+            for (let index = 0; index < periodoBus.length; index++) {
+                const { periodo } = periodoBus[index];
+                const { data: horarios } = await axios.get(
+                    process.env.LOCALIP + "api/destinos/horarios",
+                    { params: { linea, nombre, periodo } }
+                );
+                _horarios.push(horarios);
+            }
+
+        }
+    }
+    return {
+        props: {
+            _colectivos, _periodos, _horarios
+        },
+    };
+};
