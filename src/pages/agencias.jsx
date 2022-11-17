@@ -1,18 +1,18 @@
 import HeaderSecc from "../components/HeaderSecc";
-import Agencias from "../data/Agencias";
+import _Agencias from "../data/Agencias";
 import { useState } from "react";
 import CardAgen from "../components/agencias/CardAgen";
 import Col from 'react-bootstrap/Col';
 import ModalAgen from "../components/agencias/ModalAgen";
 
-export default function agencias() {
+export default function Agencias() {
     //Modal
     const [show, setShow] = useState(false);
     const [modal, setModal] = useState({});
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
     //Agencias
-    const [agencias] = useState(Agencias);
+    const [agencias] = useState(_Agencias);
 
     return (
         <div>

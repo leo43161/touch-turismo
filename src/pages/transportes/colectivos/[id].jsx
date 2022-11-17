@@ -4,10 +4,7 @@ import { useRouter } from 'next/router';
 import RecorridosBuses from '../../../data/Recorridos';
 import Buses from '../../../data/Buses';
 
-export default function Recorridos() {
-    const router = useRouter();
-    const { id } = router.query;
-    const { nodos, paradas } = RecorridosBuses.find((value) => value.cod === parseInt(id));
+export default function Recorridos({ nodos, paradas, id }) {
     const { descripcion } = Buses.find((value) => value.cod === parseInt(id));
     const MapWithNoSSR = dynamic(() => import("../../../components/Map"), {
         ssr: false
@@ -46,3 +43,14 @@ export default function Recorridos() {
         </div>
     )
 }
+
+export const getServerSideProps = async ({ query }) => {
+    const { id } = query;
+    const { nodos, paradas } = RecorridosBuses.find((value) => value.cod === parseInt(id));
+
+    return {
+        props: {
+            nodos, paradas, id
+        },
+    };
+};
