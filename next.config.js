@@ -4,7 +4,7 @@ const nextConfig = {
   swcMinify: true,
   env: {
     URL: "https://www.tucumanturismo.gob.ar/",
-    LOCALIP: "https://turismo-touch.netlify.app",
+    LOCALIP: "https://turismo-touch.netlify.app/",
     LOCALPC : "http://localhost:3000/"
   }
 }
