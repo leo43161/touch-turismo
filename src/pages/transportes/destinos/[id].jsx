@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 import Destinos from '../../../data/Destinos';
 import HeaderSecc from "../../../components/HeaderSecc";
 import axios from 'axios';
-import { useEffect, useState } from "react";
+import { FaAngleDown } from "react-icons/fa";
 
 export default function Destino({ _colectivos, _periodos, _horarios }) {
     /* const [colectivos, setColectivos] = useState([]); */
@@ -14,31 +14,21 @@ export default function Destino({ _colectivos, _periodos, _horarios }) {
         const horarios = _horarios[index];
         const ida = horarios.filter(h => h.Ida === 1);
         const vuelta = horarios.filter(h => h.Ida === 0);
-        console.log(ida);
-        console.log(vuelta[0].hora);
-
         if (ida.length > vuelta.length) {
-            const horarioVuelta = ida.map(({ hora }, indexHorario) => {
-                const _vuelta = vuelta[indexHorario] ? vuelta[indexHorario].hora : "";
-                console.log(_vuelta)
+            return ida.map(({ hora }, indexHorario) => {
                 return <tr key={indexHorario}>
                     <td className="fw-bold">{hora}</td>
-                    <td className="fw-bold">{_vuelta}</td>
+                    <td className="fw-bold">{vuelta[indexHorario] ? vuelta[indexHorario].hora : ""}</td>
                 </tr>
             }
             )
-            return horarioVuelta
         } else {
-            const horarioVuelta = vuelta.map(({ hora }, indexHorario) => {
-                const _ida = ida[indexHorario] ? ida[indexHorario].hora : "";
-                console.log(_ida)
+            return vuelta.map(({ hora }, indexHorario) => {
                 return <tr key={indexHorario}>
                     <td className="fw-bold">{hora}</td>
-                    <td className="fw-bold">{_ida}</td>
+                    <td className="fw-bold">{ida[indexHorario] ? ida[indexHorario].hora : ""}</td>
                 </tr>
-            }
-            )
-            return horarioVuelta
+            })
         }
     }
 
@@ -69,7 +59,7 @@ export default function Destino({ _colectivos, _periodos, _horarios }) {
                     <MapWithNoSSR coords={[-26.834893, -65.193433]} zoom={15} icon="terminal" marker></MapWithNoSSR>
                 </div>
             </div>
-            <div className="overflow-hidden" style={{ height: "950px" }}>
+            <div className="" style={{ height: "920px" }}>
                 <div className="p-3">
                     <div className="card border shadow-sm">
                         <div className="card-body">
@@ -95,12 +85,12 @@ export default function Destino({ _colectivos, _periodos, _horarios }) {
                                         {_periodos.map((periodo, _index) => (
                                             <div className="col" key={_index}>
                                                 <h4>{periodo[0].linea}</h4>
-                                                <div className={`row row-cols-1 h-100 row-cols-md-3 g-2 col mt-2`}>
+                                                <div className={`row h-100 ${periodo.length === 1 ? "row-cols-1" : periodo.length === 2 ? "row-cols-2" : periodo.length === 3 ? "row-cols-3" : "row-cols-4"} g-2 col mt-2`}>
                                                     {periodo.map(({ periodo }, index) => (
                                                         <div className="col" key={index}>
                                                             <div className="card col ms-2">
                                                                 <div className="card-body">
-                                                                    <h4>{periodo}</h4>
+                                                                    <h5>{periodo}</h5>
                                                                     <div className="rounded">
                                                                         <div className="table-wrapper" style={{ height: "480px" }}>
                                                                             <table className="table table-striped position-relative mb-0">
@@ -114,6 +104,9 @@ export default function Destino({ _colectivos, _periodos, _horarios }) {
                                                                                     {horariosHTML(index)}
                                                                                 </tbody>
                                                                             </table>
+                                                                        </div>
+                                                                        <div className="d-flex justify-content-center border rounded-bottom">
+                                                                            <FaAngleDown className="h4 mb-0"></FaAngleDown>
                                                                         </div>
                                                                     </div>
                                                                 </div>
