@@ -118,7 +118,7 @@ export default function Home({ eventos = [] }) {
 
 export const getServerSideProps = async () => {
   const { data: eventos } = await axios.get(
-    "http://localhost:3000/api/eventos", {
+    "https://turismo-touch.netlify.app/api/eventos", {
     params: { limit: 5 }
   }
   );

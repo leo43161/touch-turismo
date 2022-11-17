@@ -61,7 +61,7 @@ export default function Actividades({ actividades }) {
 
 export const getServerSideProps = async () => {
     const { data: actividades } = await axios.get(
-        "http://localhost:3000/api/actividades"
+        "https://turismo-touch.netlify.app/api/actividades"
     );
 
     return {

@@ -146,7 +146,7 @@ export default function Alojamientos({ filtrosSQL: { categorias, localidades } }
 export const getServerSideProps = async () => {
 
     const { data: filtrosSQL } = await axios.get(
-        "http://localhost:3000/api/hoteles/filtros"
+        "https://turismo-touch.netlify.app/api/hoteles/filtros"
     );
 
     return {

@@ -137,7 +137,7 @@ export default function Restaurantes({ filtrosSQL: { categorias, localidades } }
 export const getServerSideProps = async () => {
 
     const { data: filtrosSQL } = await axios.get(
-        "http://localhost:3000/api/restaurantes/filtros"
+        "https://turismo-touch.netlify.app/api/restaurantes/filtros"
     );
 
     return {

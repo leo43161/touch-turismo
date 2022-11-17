@@ -43,7 +43,7 @@ export default function Actividad({ prestadoresSQL }) {
 export const getServerSideProps = async ({ query }) => {
     const { id } = query;
     const { data: prestadoresSQL } = await axios.get(
-        "http://localhost:3000/api/actividades/" + id
+        "https://turismo-touch.netlify.app/api/actividades/" + id
     );
 
     return {
