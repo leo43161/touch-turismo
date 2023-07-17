@@ -36,7 +36,7 @@ export default function Home({ eventos = [] }) {
       </Head>
       <header>
         <div className="px-5 py-4 bg-color-2 text-light d-flex justify-content-between">
-          <h1 className="fw-bold">CONOCÉ NUESTROS ULTIMOS EVENTOS</h1>
+          <h1 className="fw-bold">CONOCÉ NUESTROS ULTIMOS EVENTOS111</h1>
           <Link href={"/eventos"}>
             <div className="btn-touch bg-color-1 d-flex text-light align-items-center justify-content-center col-2 rounded-0 text-decoration-none">
               Ver Todos
