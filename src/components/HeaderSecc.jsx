@@ -41,11 +41,11 @@ export default function HeaderSecc({ icon, title, color, home, url }) {
                 </div>
             </header>
             <div className="contenedor">
-                <button class="volver" style={{ backgroundColor: color }} onClick={() => url ? router.push(url) : router.back()}>
+                <button className="volver" style={{ backgroundColor: color }} onClick={() => url ? router.push(url) : router.back()}>
                     <FaReply className="icon-size-8"></FaReply>
                 </button>
                 {home &&
-                    <button class="volver-casa" style={{ backgroundColor: color }} onClick={() => router.push("/")}>
+                    <button className="volver-casa" style={{ backgroundColor: color }} onClick={() => router.push("/")}>
                         <FaHome className="icon-size-8"></FaHome>
                     </button>
                 }

@@ -25,56 +25,59 @@ export default function Colectivos() {
     return (
         <div className="mb-3">
             <HeaderSecc title="Transportes" icon="trans" color="#C4007A" home={true}></HeaderSecc>
-            <section className="d-flex justify-content-center container my-4 p-0 card overflow-hidden shadow">
-                <video autoPlay muted loop width="100%">
-                    <source src="./img/dji.mp4" type="video/mp4"></source>
-                </video>
-            </section>
-            <div className="text-center mt-3 mb-4">
-                <h1>Seleccione un colectivos para ver su recorrido</h1>
-            </div>
-            <Accordion className="container">
-                {BusesGroup.map(({ grupo, linea, lineas }, indexGroup) =>
-                    <div key={indexGroup}>
-                        <ToggleLinea eventKey={indexGroup}>{grupo}</ToggleLinea>
-                        <Accordion.Collapse eventKey={indexGroup}>
-                            <div>
-                                <Accordion className="container overflow-auto" style={{ maxHeight: "40vh" }}>
-                                    {linea && linea.map(({ linea, lineas }, index) =>
-                                        <div key={index}>
-                                            <ToggleLinea eventKey={`${indexGroup}-${index}`}>{linea}</ToggleLinea>
-                                            <Accordion.Collapse eventKey={`${indexGroup}-${index}`}>
-                                                <div className="container">
-                                                    {lineas.map(({ descripcion, cod }, index) =>
-                                                        <div key={index} onClick={() => router.push('/transportes/colectivos/' + cod)}>
-                                                            <div className="card mb-3 px-3 shadow-sm">
-                                                                <div className="card-body d-flex justify-content-between align-items-center px-3">
-                                                                    <h1 className="text-center mb-0 d-flex align-items-center">{descripcion}</h1>
-                                                                    <FaBusAlt className='text-trans icon-size-3'></FaBusAlt>
+            <div className="d-flex flex-column justify-content-end" style={{height:"1700px"}}>
+                <section className="d-flex justify-content-center container my-4 p-0 card overflow-hidden shadow">
+                    <video autoPlay muted loop width="100%">
+                        <source src="./img/dji.mp4" type="video/mp4"></source>
+                    </video>
+                </section>
+                <div className="text-center mt-3 mb-4">
+                    <h1>Seleccione un colectivos para ver su recorrido</h1>
+                </div>
+                <Accordion className="container">
+                    {BusesGroup.map(({ grupo, linea, lineas }, indexGroup) =>
+                        <div key={indexGroup}>
+                            <ToggleLinea eventKey={indexGroup}>{grupo}</ToggleLinea>
+                            <Accordion.Collapse eventKey={indexGroup}>
+                                <div>
+                                    <Accordion className="container overflow-auto" style={{ maxHeight: "30vh" }}>
+                                        {linea && linea.map(({ linea, lineas }, index) =>
+                                            <div key={index}>
+                                                <ToggleLinea eventKey={`${indexGroup}-${index}`}>{linea}</ToggleLinea>
+                                                <Accordion.Collapse eventKey={`${indexGroup}-${index}`}>
+                                                    <div className="container">
+                                                        {lineas.map(({ descripcion, cod }, index) =>
+                                                            <div key={index} onClick={() => router.push('/transportes/colectivos/' + cod)}>
+                                                                <div className="card mb-3 px-3 shadow-sm">
+                                                                    <div className="card-body d-flex justify-content-between align-items-center px-3">
+                                                                        <h1 className="text-center mb-0 d-flex align-items-center">{descripcion}</h1>
+                                                                        <FaBusAlt className='text-trans icon-size-3'></FaBusAlt>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    )}
-                                                </div>
-                                            </Accordion.Collapse>
-                                        </div>
-                                    )}
-                                    {lineas && lineas.map(({ descripcion, cod }, index) =>
-                                        <div key={index} onClick={() => router.push('/transportes/colectivos/' + cod)}>
-                                            <div className="card mb-3 px-3 shadow-sm">
-                                                <div className="card-body d-flex justify-content-between align-items-center px-3">
-                                                    <h1 className="text-center mb-0 d-flex align-items-center">{descripcion}</h1>
-                                                    <FaBusAlt className='text-trans icon-size-3'></FaBusAlt>
+                                                        )}
+                                                    </div>
+                                                </Accordion.Collapse>
+                                            </div>
+                                        )}
+                                        {lineas && lineas.map(({ descripcion, cod }, index) =>
+                                            <div key={index} onClick={() => router.push('/transportes/colectivos/' + cod)}>
+                                                <div className="card mb-3 px-3 shadow-sm">
+                                                    <div className="card-body d-flex justify-content-between align-items-center px-3">
+                                                        <h1 className="text-center mb-0 d-flex align-items-center">{descripcion}</h1>
+                                                        <FaBusAlt className='text-trans icon-size-3'></FaBusAlt>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    )}
-                                </Accordion>
-                            </div>
-                        </Accordion.Collapse>
-                    </div>
-                )}
-            </Accordion>
+                                        )}
+                                    </Accordion>
+                                </div>
+                            </Accordion.Collapse>
+                        </div>
+                    )}
+                </Accordion>
+            </div>
+
         </div>
     )
 }

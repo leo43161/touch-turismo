@@ -96,6 +96,9 @@ export default function Restaurantes({ filtrosSQL: { categorias, localidades } }
         <div>
             <HeaderSecc title="restaurantes" icon="rest" color="#63367B"></HeaderSecc>
             <main className="container mb-5 mt-4">
+                <div className="mt-3">
+                    {listarRestaurantes()}
+                </div>
                 <div className="d-flex justify-content-around align-items-center bg-rest p-2 rounded">
                     <h2 className="m-0 text-white">Filtros:</h2>
                     <div>
@@ -116,9 +119,6 @@ export default function Restaurantes({ filtrosSQL: { categorias, localidades } }
                             ))}
                         </Form.Select>
                     </div>
-                </div>
-                <div className="mt-3">
-                    {listarRestaurantes()}
                 </div>
             </main>
             <div className="d-flex justify-content-center">

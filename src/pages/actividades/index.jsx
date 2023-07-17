@@ -10,7 +10,7 @@ export default function Actividades({ actividades }) {
     return (
         <div>
             <HeaderSecc title="actividades" icon="act" color="#A0BF37"></HeaderSecc>
-            <main className="container mt-3">
+            <main className="container mt-3 d-flex justify-content-end flex-column" style={{height:"1700px"}}>
                 <div className="mb-3 text-center">
                     <h1>RUTAS</h1>
                 </div>

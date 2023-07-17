@@ -102,7 +102,7 @@ export default function Alojamientos({ filtrosSQL: { categorias, localidades } }
             <HeaderSecc title="alojamiento" icon="aloj" color="#0089B8"></HeaderSecc>
             <main className="container mb-5 mt-4">
                 <div className="mt-3">
-                    <div className="d-flex flex-column articulos-list">
+                    <div className="d-flex flex-column articulos-list flex-column-reverse">
                         {listarAlojamientos()}
                     </div>
                 </div>
