@@ -85,7 +85,12 @@ export default function Eventos() {
     return (
         <div>
             <HeaderSecc title="eventos" icon="event" color="#07476B"></HeaderSecc>
-            <main className="container articulos-list mb-5 mt-4">
+            <main className="container articulos-list mb-5 mt-4 d-flex flex-column justify-content-between">
+                <div className="mt-3">
+                    <div className="d-flex flex-column">
+                        {listarEventos()}
+                    </div>
+                </div>
                 <div className="d-flex justify-content-around align-items-center bg-color-1 p-2 rounded">
                     <h2 className="m-0 text-white">Filtros:</h2>
                     <ToggleButton
@@ -124,11 +129,6 @@ export default function Eventos() {
                     >
                         Todos los eventos
                     </ToggleButton>
-                </div>
-                <div className="mt-3">
-                    <div className="d-flex flex-column">
-                        {listarEventos()}
-                    </div>
                 </div>
             </main>
             <div className="d-flex justify-content-center">

@@ -63,3 +63,49 @@
     width: 28px;
     height: 28px;
 }
+
+/* BTN flotante */
+
+.contenedor {
+    width: 90px;
+    height: 240px;
+    position: fixed;
+    right: 0px;
+    bottom: 300px;
+    z-index: 10000000000000000;
+}
+
+.volver {
+    width: 85px;
+    height: 85px;
+    border-radius: 100%;
+    background: #F44336;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    margin-right: 16px;
+    margin-bottom: 16px;
+    border: none;
+    outline: none;
+    color: #FFF;
+    font-size: 25px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    transition: .3s;
+}
+.volver-casa {
+    width: 85px;
+    height: 85px;
+    border-radius: 100%;
+    background: #F44336;
+    right: 0;
+    bottom: 100px;
+    position: absolute;
+    margin-right: 16px;
+    margin-bottom: 16px;
+    border: none;
+    outline: none;
+    color: #FFF;
+    font-size: 25px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    transition: .3s;
+}

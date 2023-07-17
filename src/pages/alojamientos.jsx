@@ -101,6 +101,11 @@ export default function Alojamientos({ filtrosSQL: { categorias, localidades } }
         <div>
             <HeaderSecc title="alojamiento" icon="aloj" color="#0089B8"></HeaderSecc>
             <main className="container mb-5 mt-4">
+                <div className="mt-3">
+                    <div className="d-flex flex-column articulos-list">
+                        {listarAlojamientos()}
+                    </div>
+                </div>
                 <div className="d-flex justify-content-around align-items-center bg-aloj p-2 rounded">
                     <h2 className="m-0 text-white">Filtros:</h2>
                     <div>
@@ -127,11 +132,6 @@ export default function Alojamientos({ filtrosSQL: { categorias, localidades } }
                             <option value="">Todas</option>
                             {localidades.map(({ nombre, id }, index) => <option key={index} value={id}>{nombre}</option>)}
                         </Form.Select>
-                    </div>
-                </div>
-                <div className="mt-3">
-                    <div className="d-flex flex-column articulos-list">
-                        {listarAlojamientos()}
                     </div>
                 </div>
             </main>

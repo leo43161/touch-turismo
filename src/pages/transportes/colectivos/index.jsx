@@ -25,6 +25,11 @@ export default function Colectivos() {
     return (
         <div className="mb-3">
             <HeaderSecc title="Transportes" icon="trans" color="#C4007A" home={true}></HeaderSecc>
+            <section className="d-flex justify-content-center container my-4 p-0 card overflow-hidden shadow">
+                <video autoPlay muted loop width="100%">
+                    <source src="./img/dji.mp4" type="video/mp4"></source>
+                </video>
+            </section>
             <div className="text-center mt-3 mb-4">
                 <h1>Seleccione un colectivos para ver su recorrido</h1>
             </div>
@@ -34,7 +39,7 @@ export default function Colectivos() {
                         <ToggleLinea eventKey={indexGroup}>{grupo}</ToggleLinea>
                         <Accordion.Collapse eventKey={indexGroup}>
                             <div>
-                                <Accordion className="container overflow-auto" style={{ maxHeight: "71vh" }}>
+                                <Accordion className="container overflow-auto" style={{ maxHeight: "40vh" }}>
                                     {linea && linea.map(({ linea, lineas }, index) =>
                                         <div key={index}>
                                             <ToggleLinea eventKey={`${indexGroup}-${index}`}>{linea}</ToggleLinea>

@@ -11,10 +11,15 @@ export default function Transportes() {
   const handleClose = () => setShow(false);
   const router = useRouter();
   return (
-    <div>
+    <div className="">
       <HeaderSecc title="Transportes" icon="trans" color="#C4007A"></HeaderSecc>
-      <div className="container mt-5">
-        <div className="col mb-5" onClick={() => router.push('/transportes/comollegar')}>
+      <section className="d-flex justify-content-center container my-4 p-0 card overflow-hidden shadow">
+        <video autoPlay muted loop width="100%">
+          <source src="img/dji.mp4" type="video/mp4"></source>
+        </video>
+      </section>
+      <div className="container mt-5 d-flex flex-column justify-content-end">
+        <div className="mb-5" onClick={() => router.push('/transportes/comollegar')}>
           <div className="card shadow p-4">
             <div className="card-body d-flex justify-content-start align-items-center px-3">
               <FaRoute className='icon-size-1'></FaRoute>
@@ -26,7 +31,7 @@ export default function Transportes() {
           </div>
         </div>
 
-        <div className="col mb-5" onClick={() => router.push('/transportes/destinos')}>
+        <div className="mb-5" onClick={() => router.push('/transportes/destinos')}>
           <div className="card shadow p-4">
             <div className="card-body d-flex justify-content-start align-items-center px-3">
               <FaMapMarkerAlt className='icon-size-1'></FaMapMarkerAlt>
@@ -38,7 +43,7 @@ export default function Transportes() {
           </div>
         </div>
 
-        <div className="col mb-5" onClick={() => router.push('/transportes/colectivos')}>
+        <div className="mb-5" onClick={() => router.push('/transportes/colectivos')}>
           <div className="card shadow p-4">
             <div className="card-body d-flex justify-content-start align-items-center px-3">
               <FaBusAlt className='icon-size-1'></FaBusAlt>
@@ -50,7 +55,7 @@ export default function Transportes() {
           </div>
         </div>
 
-        <div className="col mb-5" onClick={handleShow}>
+        <div className="mb-5" onClick={handleShow}>
           <div className="card shadow p-4">
             <div className="card-body d-flex justify-content-start align-items-center px-3">
               <FaCarAlt className='icon-size-1'></FaCarAlt>

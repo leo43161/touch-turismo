@@ -81,6 +81,7 @@ export default function Destino({ _colectivos, _periodos, _horarios }) {
                                 {/*  */}
                                 <div className="col text-center">
                                     <h3>Horarios</h3>
+                                    <h5 className="text-danger">Horarios tentativos para informacion mas precisa consultar con terminal de omnibus</h5>
                                     <div className={`row ${_colectivos.length > 1 ? "row-cols-2" : "row-cols-1"}`}>
                                         {_periodos.map((periodo, _index) => (
                                             <div className="col" key={_index}>
