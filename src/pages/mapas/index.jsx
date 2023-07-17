@@ -5,6 +5,11 @@ export default function Mapas() {
     return (
         <div>
             <HeaderSecc title="Mapas" icon="map" color="#E51E21" url={"/"}></HeaderSecc>
+            <section className="d-flex justify-content-center card overflow-hidden shadow">
+                <video autoPlay muted loop width="100%">
+                    <source src="img/dji.mp4" type="video/mp4"></source>
+                </video>
+            </section>
             <div className="text-center py-3 text-black border-bottom" style={{ backgroundColor: "#ABA693" }}>
                 <h1 className="mb-0 fw-bold">Recorré los 5 circuitos que tenemos para vos</h1>
             </div>
@@ -20,11 +25,6 @@ export default function Mapas() {
                 </div>
                 <NavMaps></NavMaps>
             </div>
-            <section className="d-flex justify-content-center card overflow-hidden shadow">
-                <video autoPlay muted loop width="100%">
-                    <source src="img/dji.mp4" type="video/mp4"></source>
-                </video>
-            </section>
         </div>
     )
 }

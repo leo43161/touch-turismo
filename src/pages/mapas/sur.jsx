@@ -5,6 +5,11 @@ export default function Sur() {
     return (
         <div style={{ backgroundColor: "#ABA693" }}>
             <HeaderSecc title="Mapas" icon="map" color="#E51E21" home={true} url={"/mapas"}></HeaderSecc>
+            <section className="d-flex justify-content-center card overflow-hidden shadow">
+                <video autoPlay muted loop width="100%">
+                    <source src="/img/dji.mp4" type="video/mp4"></source>
+                </video>
+            </section>
             <div className="text-center pt-3 text-black d-flex px-4">
                 <div className="py-2 px-3" style={{ backgroundColor: "#613980" }}>
                     <h2 className="mb-0 text-white">CIRCUITO SUR</h2>
@@ -24,11 +29,6 @@ export default function Sur() {
                 </div>
                 <NavMaps></NavMaps>
             </div>
-            <section className="d-flex justify-content-center card overflow-hidden shadow">
-                <video autoPlay muted loop width="100%">
-                    <source src="/img/dji.mp4" type="video/mp4"></source>
-                </video>
-            </section>
         </div>
     )
 }

@@ -87,7 +87,7 @@ export default function Eventos() {
             <HeaderSecc title="eventos" icon="event" color="#07476B"></HeaderSecc>
             <main className="container articulos-list mb-5 mt-4 d-flex flex-column justify-content-between">
                 <div className="mt-3">
-                    <div className="d-flex flex-column">
+                    <div className="d-flex flex-column-reverse" style={{height:"1400px"}}>
                         {listarEventos()}
                     </div>
                 </div>

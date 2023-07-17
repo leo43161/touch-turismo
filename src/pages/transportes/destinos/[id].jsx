@@ -40,109 +40,93 @@ export default function Destino({ _colectivos, _periodos, _horarios }) {
     return (
         <div>
             <HeaderSecc title="Transportes" icon="trans" color="#C4007A" home={true}></HeaderSecc>
-            <div className="d-flex my-3 justify-content-around">
-                <div className="card px-4 py-3 d-flex align-items-center">
-                    <h4 className="text-center mb-0 d-flex align-items-center h-100">
-                        <span className="me-2"><img src="/img/transportes/icon-inicio.png" style={{ width: "25px" }} alt="" /></span>
-                        Ubicacion
-                    </h4>
+            {_colectivos ? <div className="d-flex flex-column justify-content-end" style={{height: "1770px", width: "100"}}>
+                <div className="d-flex my-3 justify-content-around">
+                    <div className="card px-4 py-3 d-flex align-items-center">
+                        <h4 className="text-center mb-0 d-flex align-items-center h-100">
+                            <span className="me-2"><img src="/img/transportes/icon-inicio.png" style={{ width: "25px" }} alt="" /></span>
+                            Ubicacion
+                        </h4>
+                    </div>
+                    <div className="card px-4 py-3 d-flex align-items-center">
+                        <h4 className="text-center mb-0 d-flex align-items-center h-100">
+                            <span className="me-2"><img src="/img/transportes/bus-marker-1.png" style={{ width: "35px" }} alt="" /></span>
+                            Terminal
+                        </h4>
+                    </div>
                 </div>
-                <div className="card px-4 py-3 d-flex align-items-center">
-                    <h4 className="text-center mb-0 d-flex align-items-center h-100">
-                        <span className="me-2"><img src="/img/transportes/bus-marker-1.png" style={{ width: "35px" }} alt="" /></span>
-                        Terminal
-                    </h4>
+                <div className="card p-3 mb-4 m-3 shadow-sm">
+                    <div className="rounded overflow-hidden border" style={{ height: "30vh" }}>
+                        <MapWithNoSSR coords={[-26.834893, -65.193433]} zoom={15} icon="terminal" marker></MapWithNoSSR>
+                    </div>
                 </div>
-            </div>
-            <div className="card p-3 mb-4 m-3 shadow-sm">
-                <div className="rounded overflow-hidden border" style={{ height: "30vh" }}>
-                    <MapWithNoSSR coords={[-26.834893, -65.193433]} zoom={15} icon="terminal" marker></MapWithNoSSR>
-                </div>
-            </div>
-            <div className="" style={{ height: "920px" }}>
-                <div className="p-3">
-                    <div className="card border shadow-sm">
-                        <div className="card-body">
-                            {<div className={`d-flex flex-column`}>
-                                <h1 className="text-trans text-uppercase">{_colectivos[0].nombre}</h1>
-                                <div className={`row  ${_colectivos[1] ? "row-cols-2" : "row-cols-1"} g-3 col my-2`}>
-                                    {/* LINEAS */}
-                                    {_colectivos && _colectivos.map((colectivo, index) => (
-                                        <div className="col" key={index}>
-                                            <div className="col d-flex flex-column justify-content-between py-4 card px-3">
-                                                <h3><u>Línea / Empresa:</u> <span>{colectivo.linea}</span> </h3>
-                                                <h3><u>Costo:</u> {colectivo.costo}</h3>
-                                                <h3><u>Dónde Tomarlo:</u> {colectivo.dondetomar} (Marcado en
-                                                    el mapa).</h3>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                                {/*  */}
-                                <div className="col text-center">
-                                    <h3>Horarios</h3>
-                                    <h5 className="text-danger">Horarios tentativos para informacion mas precisa consultar con terminal de omnibus</h5>
-                                    <div className={`row ${_colectivos.length > 1 ? "row-cols-2" : "row-cols-1"}`}>
-                                        {_periodos.map((periodo, _index) => (
-                                            <div className="col" key={_index}>
-                                                <h4>{periodo[0].linea}</h4>
-                                                <div className={`row h-100 ${periodo.length === 1 ? "row-cols-1" : periodo.length === 2 ? "row-cols-2" : periodo.length === 3 ? "row-cols-3" : "row-cols-4"} g-2 col mt-2`}>
-                                                    {periodo.map(({ periodo }, index) => (
-                                                        <div className="col" key={index}>
-                                                            <div className="card col ms-2">
-                                                                <div className="card-body">
-                                                                    <h5>{periodo}</h5>
-                                                                    <div className="rounded">
-                                                                        <div className="table-wrapper" style={{ height: "480px" }}>
-                                                                            <table className="table table-striped position-relative mb-0">
-                                                                                <thead>
-                                                                                    <tr>
-                                                                                        <th scope="col" className="border-bottom border-dark">Ida</th>
-                                                                                        <th scope="col">Vuelta</th>
-                                                                                    </tr>
-                                                                                </thead>
-                                                                                <tbody className="table-group-divider overflow-scroll">
-                                                                                    {horariosHTML(index)}
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </div>
-                                                                        <div className="d-flex justify-content-center border rounded-bottom">
-                                                                            <FaAngleDown className="h4 mb-0"></FaAngleDown>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    ))}
+                <div className="" style={{ height: "800px" }}>
+                    <div className="p-3">
+                        <div className="card border shadow-sm">
+                            <div className="card-body">
+                                {_colectivos && <div className={`d-flex flex-column`}>
+                                    <h1 className="text-trans text-uppercase">{_colectivos[0] && _colectivos[0].nombre }</h1>
+                                    <div className={`row  ${_colectivos[1] ? "row-cols-2" : "row-cols-1"} g-3 col my-2`}>
+                                        {/* LINEAS */}
+                                        {_colectivos && _colectivos.map((colectivo, index) => (
+                                            <div className="col" key={index}>
+                                                <div className="col d-flex flex-column justify-content-between py-4 card px-3">
+                                                    <h3><u>Línea / Empresa:</u> <span>{colectivo.linea}</span> </h3>
+                                                    <h3><u>Costo:</u> {colectivo.costo}</h3>
+                                                    <h3><u>Dónde Tomarlo:</u> {colectivo.dondetomar} (Marcado en
+                                                        el mapa).</h3>
                                                 </div>
                                             </div>
                                         ))}
                                     </div>
-                                </div>
-
-                                {/* 
-                                {ida.length > vuelta.length ?
-                                                                (ida.length > 11 ?
-                                                                    <div className="d-flex justify-content-center border rounded-bottom">
-                                                                        <FaAngleDown className="h4 mb-0"></FaAngleDown>
-                                                                    </div> : null) :
-                                                                (vuelta.length > 11 ?
-                                                                    <div className="d-flex justify-content-center border rounded-bottom">
-                                                                        <FaAngleDown className="h4 mb-0"></FaAngleDown>
-                                                                    </div> : null)}
-                                                        </div>
+                                    {/*  */}
+                                    <div className="col text-center">
+                                        <h3>Horarios</h3>
+                                        <h5 className="text-danger">Horarios tentativos para informacion mas precisa consultar con terminal de omnibus</h5>
+                                        <div className={`row ${_colectivos.length > 1 ? "row-cols-2" : "row-cols-1"}`}>
+                                            {_periodos.map((periodo, _index) => (
+                                                <div className="col" key={_index}>
+                                                    <h4>{periodo[0].linea}</h4>
+                                                    <div className={`row h-100 ${periodo.length === 1 ? "row-cols-1" : periodo.length === 2 ? "row-cols-2" : periodo.length === 3 ? "row-cols-3" : "row-cols-4"} g-2 col mt-2`}>
+                                                        {periodo.map(({ periodo }, index) => (
+                                                            <div className="col" key={index}>
+                                                                <div className="card col ms-2">
+                                                                    <div className="card-body">
+                                                                        <h5>{periodo}</h5>
+                                                                        <div className="rounded">
+                                                                            <div className="table-wrapper">
+                                                                                <table className="table table-striped position-relative mb-0">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th scope="col" className="border-bottom border-dark">Ida</th>
+                                                                                            <th scope="col">Vuelta</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody className="table-group-divider overflow-scroll">
+                                                                                        {horariosHTML(index)}
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                            <div className="d-flex justify-content-center border rounded-bottom">
+                                                                                <FaAngleDown className="h4 mb-0"></FaAngleDown>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        ))}
                                                     </div>
                                                 </div>
-                                            </div>
-                                        )}
-                                        */}
-
-
-                            </div>}
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> : null}
+
         </div>
     )
 }
@@ -156,7 +140,9 @@ export const getServerSideProps = async ({ query }) => {
         process.env.LOCALIP + "api/destinos",
         { params: { localidad: id ? id : null } }
     );
-
+    console.log("Esta es la data")
+    console.log(id)
+    console.log(_colectivos)
     for (let index = 0; index < _colectivos.length; index++) {
         const { linea, nombre } = _colectivos[index];
         const { data: periodos } = await axios.get(
