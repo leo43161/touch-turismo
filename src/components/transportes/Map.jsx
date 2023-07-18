@@ -5,18 +5,33 @@ import "leaflet-defaulticon-compatibility";
 import { useMemo, useState, useRef, useEffect } from 'react';
 import BusesLists from './BusesList';
 
-export default function Map({ origen, recorridos, getDistance }) {
-  const markerRef = useRef(null);
+export default function Map({ recorridos, getDistance }) {
+  const [origen, setOrigen] = useState([-26.831011, -65.204603]);
+  const markerOrigRef = useRef(null);
+  const markerDestRef = useRef(null);
   const [busesMatch, setBusesMatch] = useState([]);
   const [reloadMap, setReloadMap] = useState(true);
   const [destino, setDestino] = useState([-26.816810, -65.196848]);
   const [route, setRoute] = useState(null);
   const [paradas, setParadas] = useState([]);
 
-  const eventHandlers = useMemo(
+  const eventHandlersOrigen = useMemo(
     () => ({
       dragend() {
-        const marker = markerRef.current
+        const marker = markerDestRef.current
+        if (marker != null) {
+          const { lat, lng } = marker.getLatLng();
+          setOrigen([lat, lng]);
+          setReloadMap(true);
+        }
+      },
+    }),
+    [],
+  )
+  const eventHandlerDestino = useMemo(
+    () => ({
+      dragend() {
+        const marker = markerOrigRef.current
         if (marker != null) {
           const { lat, lng } = marker.getLatLng();
           setDestino([lat, lng]);
@@ -110,10 +125,16 @@ export default function Map({ origen, recorridos, getDistance }) {
           </h4>
         </div>
       </div>
-      <div className="card p-3 mb-4 m-3 shadow-sm">
+      <div className="card p-3 mb-4 m-3 shadow-sm position-relative">
+        <div className="card px-4 py-3 d-flex align-items-center position-absolute">
+          <h4 className="text-center mb-0 d-flex align-items-center h-100">
+            <span className="me-2"><img src="/img/transportes/bus-stop.png" style={{ width: "25px" }} alt="" /></span>
+            Paradas
+          </h4>
+        </div>
         <div className="rounded overflow-hidden border" style={{ height: "45vh" }}>
           <MapContainer
-            center={origen}
+            center={[-26.831011, -65.204603]}
             zoom={13}
             minZoom={12.8}
             style={{ height: "100%", width: "100%" }}
@@ -126,17 +147,20 @@ export default function Map({ origen, recorridos, getDistance }) {
               position={origen}
               animate={true}
               icon={inicioIcon}
+              draggable={true}
+              eventHandlers={eventHandlersOrigen}
+              ref={markerDestRef}
             >
               <Popup offset={[8, 40]} >Usted esta aqui</Popup>
             </Marker>
             {/* Marcador del destino */}
             <Marker
-              eventHandlers={eventHandlers}
+              eventHandlers={eventHandlerDestino}
               position={destino}
               animate={true}
               draggable={true}
               icon={destinoIcon}
-              ref={markerRef}
+              ref={markerOrigRef}
             >
             </Marker>
             {route && <Polyline pathOptions={{ color: '#C4007A' }} positions={route} />}

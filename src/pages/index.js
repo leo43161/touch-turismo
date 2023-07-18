@@ -5,11 +5,18 @@ import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
 import Carousel from 'react-bootstrap/Carousel';
 import SectionsButton from '../components/SectionsButton';
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ModalEvento from '../components/eventos/ModalEvento';
 import Footer from '../components/Footer';
 
 export default function Home({ eventos = [] }) {
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        console.log(position);
+      });
+    } else { console.log("Geolocation is not supported by this browser."); }
+  }, []);
 
   //Modal
   const [show, setShow] = useState(false);
@@ -110,7 +117,7 @@ export default function Home({ eventos = [] }) {
           </div>
         </div>
       </main>
-      
+
       <Footer></Footer>
       <ModalEvento show={show} handleClose={handleClose} modal={modal}></ModalEvento>
     </div>
