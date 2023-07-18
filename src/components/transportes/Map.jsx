@@ -105,34 +105,38 @@ export default function Map({ recorridos, getDistance }) {
   });
   return (
     <>
-      <div className="d-flex mb-3 justify-content-around">
-        <div className="card px-4 py-3 d-flex align-items-center">
-          <h4 className="text-center mb-0 d-flex align-items-center h-100">
-            <span className="me-2"><img src="/img/transportes/icon-inicio.png" style={{ width: "25px" }} alt="" /></span>
-            Origen
-          </h4>
-        </div>
-        <div className="card px-4 py-3 d-flex align-items-center">
-          <h4 className="text-center mb-0 d-flex align-items-center h-100">
-            <span className="me-2"><img src="/img/transportes/icon-destino.png" style={{ width: "25px" }} alt="" /></span>
-            Destino
-          </h4>
-        </div>
-        <div className="card px-4 py-3 d-flex align-items-center">
-          <h4 className="text-center mb-0 d-flex align-items-center h-100">
-            <span className="me-2"><img src="/img/transportes/bus-stop.png" style={{ width: "25px" }} alt="" /></span>
-            Paradas
-          </h4>
-        </div>
-      </div>
-      <div className="card p-3 mb-4 m-3 shadow-sm position-relative">
-        <div className="card px-4 py-3 d-flex align-items-center position-absolute">
-          <h4 className="text-center mb-0 d-flex align-items-center h-100">
-            <span className="me-2"><img src="/img/transportes/bus-stop.png" style={{ width: "25px" }} alt="" /></span>
-            Paradas
-          </h4>
-        </div>
-        <div className="rounded overflow-hidden border" style={{ height: "45vh" }}>
+      <div className="card p-3 mb-4 m-3 shadow-sm">
+        <div className="rounded overflow-hidden border position-relative" style={{ height: "45vh" }}>
+          <div className="buttons-map position-absolute bottom-0 start-50 translate-middle-x pb-2 px-2 w-100 d-flex">
+            <div className="d-flex gap-3 col-6">
+              <div className="card px-4 py-3 d-flex align-items-center col-4">
+                <h4 className="text-center mb-0 d-flex align-items-center h-100">
+                  <span className="me-2"><img src="/img/transportes/icon-inicio.png" style={{ width: "25px" }} alt="" /></span>
+                  Origen
+                </h4>
+              </div>
+              <div className="card px-4 py-3 d-flex align-items-center col-4">
+                <h4 className="text-center mb-0 d-flex align-items-center h-100">
+                  <span className="me-2"><img src="/img/transportes/icon-destino.png" style={{ width: "25px" }} alt="" /></span>
+                  Destino
+                </h4>
+              </div>
+              <div className="card px-4 py-3 d-flex align-items-center col-4">
+                <h4 className="text-center mb-0 d-flex align-items-center h-100">
+                  <span className="me-2"><img src="/img/transportes/bus-stop.png" style={{ width: "25px" }} alt="" /></span>
+                  Paradas
+                </h4>
+              </div>
+            </div>
+            <div className="d-flex col-6 justify-content-end pe-5">
+              <div className="card px-4 py-3 d-flex align-items-center col-4">
+                <h4 className="text-center mb-0 d-flex align-items-center h-100">
+                  Zoom
+                </h4>
+              </div>
+            </div>
+          </div>
+
           <MapContainer
             center={[-26.831011, -65.204603]}
             zoom={13}
@@ -177,6 +181,9 @@ export default function Map({ recorridos, getDistance }) {
             <ZoomControl zoom position="bottomright"></ZoomControl>
           </MapContainer>
         </div>
+      </div>
+      <div className="text-center text-trans">
+        <h1>Arrastre los marcadores para indicar el punto de origen y destino deseado</h1>
       </div>
       <div>
         <BusesLists busesMatch={busesMatch} setRoute={setRoute} setParadas={setParadas}></BusesLists>
