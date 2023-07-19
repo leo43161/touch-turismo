@@ -1,5 +1,5 @@
 import HeaderSecc from "../components/HeaderSecc";
-import _Agencias from "../data/Agencias";
+import AgenciasData from "../data/Agencias";
 import { useState } from "react";
 import CardAgen from "../components/agencias/CardAgen";
 import Col from 'react-bootstrap/Col';
@@ -12,7 +12,7 @@ export default function Agencias() {
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
     //Agencias
-    const [agencias] = useState(_Agencias);
+    const [agencias] = useState(AgenciasData);
 
     return (
         <div>

@@ -1,10 +1,20 @@
 import dynamic from "next/dynamic";
 import HeaderSecc from "../../../components/HeaderSecc";
 import { useRouter } from 'next/router';
-import RecorridosBuses from '../../../data/Recorridos';
+import RecorridosBuses from '../../../data/Recorridos.json';
 import Buses from '../../../data/Buses';
 
-export default function Recorridos({ nodos, paradas, id }) {
+export default function Recorridos() {
+    const router = useRouter();
+    const { id } = router.query;
+    const recorrido = RecorridosBuses.find((value) => value.cod === parseInt(id));
+
+    if (!recorrido) {
+        // Manejar el caso en que el recorrido no se encuentre
+        return <div>Recorrido no encontrado.</div>;
+    }
+
+    const { nodos, paradas } = recorrido;
     const { descripcion } = Buses.find((value) => value.cod === parseInt(id));
     const MapWithNoSSR = dynamic(() => import("../../../components/Map"), {
         ssr: false

@@ -4,11 +4,9 @@ import { useState } from "react";
 import Recorridos from "../../data/Recorridos";
 
 export default function ComoLlegar() {
-    const [origen] = useState([-26.831011, -65.204603]);
     const MapWithNoSSR = dynamic(() => import("../../components/transportes/Map"), {
         ssr: false
     });
-
     const getDistance = (lat1, lon1, lat2, lon2, unit) => {
         if ((lat1 == lat2) && (lon1 == lon2)) {
           return 0;
@@ -35,7 +33,7 @@ export default function ComoLlegar() {
         <div>
             <HeaderSecc title="transporte" icon="trans" home={true} color="#C4007A"></HeaderSecc>
             <div className="py-3">
-                <MapWithNoSSR origen={origen} recorridos={Recorridos} getDistance={getDistance}></MapWithNoSSR>
+                <MapWithNoSSR recorridos={Recorridos} getDistance={getDistance}></MapWithNoSSR>
             </div>
         </div>
     )
