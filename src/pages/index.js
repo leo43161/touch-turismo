@@ -43,7 +43,7 @@ export default function Home({ eventos = [] }) {
       </Head>
       <section className="d-flex justify-content-center container my-4 p-0 card overflow-hidden shadow">
         <video autoPlay muted loop width="100%">
-          <source src="img/dji.mp4" type="video/mp4"></source>
+          <source src="img/PORTADA WEB SHOW LOURDES.mp4" type="video/mp4"></source>
         </video>
       </section>
       <header>
