@@ -1,12 +1,12 @@
 import HeaderSecc from "../../components/HeaderSecc";
 import { useState } from "react";
-import axios from "axios";
+/* import axios from "axios"; */
 import CardPrest from "../../components/actividades/CardPrest";
 import Col from 'react-bootstrap/Col';
 import ModalPresta from "../../components/actividades/ModalPresta";
+import { prestadoresActualizados } from "../../data/Actividades";
 
-export default function Actividad({ prestadoresSQL }) {
-    const { prestadores, actividad } = prestadoresSQL;
+export default function Actividad({ prestadores, actividad }) {
     //Modal
     const [show, setShow] = useState(false);
     const [modal, setModal] = useState({});
@@ -41,14 +41,15 @@ export default function Actividad({ prestadoresSQL }) {
 }
 
 export const getServerSideProps = async ({ query }) => {
-    const { id } = query;
-    const { data: prestadoresSQL } = await axios.get(
+    const { id: actividad } = query;
+    const prestadores = prestadoresActualizados.filter((prestador) => prestador.actividad.includes(actividad))
+    /* const { data: prestadoresSQL } = await axios.get(
         "https://turismo-touch.netlify.app/api/actividades/" + id
     );
-
+ */
     return {
         props: {
-            prestadoresSQL
+            prestadores, actividad
         },
     };
 };

@@ -13,7 +13,7 @@ INNER JOIN localidades AS loc ON datcon.localidades_id=loc.id
 LEFT JOIN categorias_restos AS catrest ON rest.id=catrest.restos_id 
 LEFT JOIN restos_categorias AS restcat ON catrest.restos_categorias_id=restcat.id
 
-WHERE 1  
+WHERE rest.estado = 1
 ORDER BY rest.nombre ASC
 `;
 

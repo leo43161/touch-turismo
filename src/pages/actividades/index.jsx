@@ -4,13 +4,52 @@ import HeaderSecc from "../../components/HeaderSecc";
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import CardAct from '../../components/actividades/CardAct';
+import { actividadesPrest } from '../../data/Actividades';
+
 
 export default function Actividades({ actividades }) {
     const router = useRouter()
+    const formatAct = () => {
+        // Crear un objeto para agrupar los prestadores por actividad
+        const prestadoresPorActividad = {};
+        const actividades = [];
+
+        // Recorrer el array de prestadores
+        for (const prestador of prestadoresActualizados) {
+            // Recorrer las actividades del prestador
+            for (const actividad of prestador.actividad) {
+                // Si la actividad no existe en el objeto, crearla con un array vacío
+                if (!prestadoresPorActividad[actividad]) {
+                    prestadoresPorActividad[actividad] = [];
+                    actividades.push({ actividad, imagen: "" });
+                }
+                // Agregar el prestador al array correspondiente a la actividad
+                prestadoresPorActividad[actividad].push({
+                    nombre: prestador.nombre,
+                    zona: prestador.zona,
+                    telefono: prestador.telefono
+                });
+            }
+        }
+        console.log(prestadoresPorActividad);
+        console.log(actividades);
+        // Crear un array final con el formato deseado
+        const resultadoFinal = [];
+        for (const actividad in prestadoresPorActividad) {
+            resultadoFinal.push({
+                actividad: actividad,
+                prestadores: prestadoresPorActividad[actividad],
+                imagen: "" // Puedes añadir la imagen correspondiente aquí
+            });
+        }
+
+        console.log(resultadoFinal);
+    }
+    console.log(actividades);
     return (
         <div>
             <HeaderSecc title="actividades" icon="act" color="#A0BF37"></HeaderSecc>
-            <main className="container mt-3 d-flex justify-content-end flex-column" style={{height:"1700px"}}>
+            <main className="container mt-3 d-flex justify-content-end flex-column" style={{ height: "1700px" }}>
                 <div className="mb-3 text-center">
                     <h1>RUTAS</h1>
                 </div>
@@ -47,7 +86,7 @@ export default function Actividades({ actividades }) {
 
                 <div className="mt-3">
                     <div className="row row-cols-1 row-cols-md-3 g-3">
-                        {actividades.map((value, index) =>
+                        {actividadesPrest && actividadesPrest.map((value, index) =>
                         (<Col key={index}>
                             <CardAct actividad={value}></CardAct>
                         </Col>)
