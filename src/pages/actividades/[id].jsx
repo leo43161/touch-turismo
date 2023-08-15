@@ -16,7 +16,7 @@ export default function Actividad({ prestadores, actividad }) {
         <div>
             <HeaderSecc title="actividades" icon="act" color="#A0BF37"></HeaderSecc>
             <div className="d-flex justify-content-center py-4 bg-color-3">
-                <h2 className="mb-0 text-white">{actividad.Nombre}</h2>
+                <h2 className="mb-0 text-white">{actividad}</h2>
             </div>
             <div className='text-center bg-color-1'>
                 <img className="img-fluid" src={"/img/actividades/" + actividad.imagen} alt="" />
